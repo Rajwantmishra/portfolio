@@ -12,4 +12,4 @@ AZURE_OPENAI_API_VERSION = "2024-08-01-preview"
 # Then paste the returned id below.
 [[kv_namespaces]]
 binding = "CHAT_KV"
-id = "PUT_YOUR_KV_NAMESPACE_ID_HERE"
+id = "6f642a5deda84d00a8653c8bd3d8d478"
