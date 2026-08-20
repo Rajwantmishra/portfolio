@@ -6,10 +6,11 @@ is logged so you can review what people are asking. Bot abuse is blocked two
 ways: a Cloudflare Turnstile challenge (invisible CAPTCHA) and a per-IP rate
 limit (15 messages/hour by default).
 
-## What you'll need (all free tier)
-- A Cloudflare account: https://dash.cloudflare.com/sign-up
-- An Anthropic API key: https://console.anthropic.com (pay-as-you-go; a Q&A
-  bot like this typically costs a few cents per 100 conversations on Haiku)
+## What you'll need
+- A Cloudflare account: https://dash.cloudflare.com/sign-up (free tier)
+- An Azure OpenAI resource with a chat-completion model deployed
+  (Azure Portal → Azure OpenAI resource → Deployments). You'll need the
+  resource **endpoint**, the **deployment name**, and an **API key**.
 - Node.js installed on your machine (to run `wrangler`, Cloudflare's CLI)
 
 ## 1. Install Wrangler and log in
@@ -34,9 +35,14 @@ Copy the `id` it prints and paste it into `wrangler.toml` under
    `index.html` (search for `data-sitekey="PUT_YOUR_TURNSTILE_SITE_KEY_HERE"`)
 4. Copy the **Secret Key** — you'll set it as a Worker secret in step 4
 
-## 4. Set your secrets
+## 4. Fill in Azure OpenAI config and set your secrets
+In `wrangler.toml`, fill in `AZURE_OPENAI_ENDPOINT` (e.g.
+`https://your-resource.openai.azure.com`) and `AZURE_OPENAI_DEPLOYMENT`
+(your model deployment name). Adjust `AZURE_OPENAI_API_VERSION` if needed.
+
+Then set the secrets:
 ```
-wrangler secret put ANTHROPIC_API_KEY
+wrangler secret put AZURE_OPENAI_API_KEY
 wrangler secret put TURNSTILE_SECRET
 wrangler secret put ADMIN_SECRET
 ```

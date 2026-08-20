@@ -27,7 +27,7 @@ A single-page portfolio (`index.html`) plus an optional AI chatbot backend
 
 ## Adding the chatbot (optional)
 See `chatbot/README.md` for full setup — it takes about 15-20 minutes and
-needs a free Cloudflare account plus an Anthropic API key. Once deployed,
+needs a free Cloudflare account plus an Azure OpenAI resource. Once deployed,
 paste your Worker URL and Turnstile site key into the two `PUT_YOUR_..._HERE`
 placeholders in `index.html`, then re-upload/commit that file.
 

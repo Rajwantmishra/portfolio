@@ -6,15 +6,18 @@
  *   GET  /admin?key=ADMIN_SECRET&limit=50    -> view logged questions
  *
  * Required secrets (set with `wrangler secret put <NAME>`):
- *   ANTHROPIC_API_KEY   - your Anthropic API key
- *   TURNSTILE_SECRET    - Cloudflare Turnstile secret key
- *   ADMIN_SECRET        - a password you choose, used to view logs
+ *   AZURE_OPENAI_API_KEY - your Azure OpenAI resource API key
+ *   TURNSTILE_SECRET     - Cloudflare Turnstile secret key
+ *   ADMIN_SECRET         - a password you choose, used to view logs
  *
  * Required KV binding (see wrangler.toml):
  *   CHAT_KV
  *
- * Required var:
- *   TURNSTILE_SITE_KEY (not secret — also goes in index.html)
+ * Required vars (see wrangler.toml, not secret):
+ *   TURNSTILE_SITE_KEY     - also goes in index.html
+ *   AZURE_OPENAI_ENDPOINT  - e.g. https://your-resource.openai.azure.com
+ *   AZURE_OPENAI_DEPLOYMENT - your deployment name, e.g. gpt-4o-mini
+ *   AZURE_OPENAI_API_VERSION - e.g. 2024-08-01-preview
  */
 
 import KNOWLEDGE_BASE from "./knowledge_base.json";
@@ -22,7 +25,6 @@ import KNOWLEDGE_BASE from "./knowledge_base.json";
 const ALLOWED_ORIGIN = "*"; // tighten to your GitHub Pages URL after deploying, e.g. "https://yourname.github.io"
 const RATE_LIMIT_MAX = 15;       // max messages
 const RATE_LIMIT_WINDOW = 3600;  // per hour, in seconds
-const MODEL = "claude-haiku-4-5-20251001"; // fast + cheap, good enough for grounded Q&A
 
 function corsHeaders() {
   return {
@@ -117,29 +119,30 @@ async function handleChat(request, env) {
     return json({ error: "You've hit the question limit for now — please try again later." }, 429);
   }
 
-  // Call Anthropic
-  const anthropicRes = await fetch("https://api.anthropic.com/v1/messages", {
+  // Call Azure OpenAI
+  const azureUrl = `${env.AZURE_OPENAI_ENDPOINT.replace(/\/$/, "")}/openai/deployments/${env.AZURE_OPENAI_DEPLOYMENT}/chat/completions?api-version=${env.AZURE_OPENAI_API_VERSION}`;
+  const azureRes = await fetch(azureUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": env.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
+      "api-key": env.AZURE_OPENAI_API_KEY,
     },
     body: JSON.stringify({
-      model: MODEL,
       max_tokens: 500,
-      system: buildSystemPrompt(KNOWLEDGE_BASE),
-      messages: [{ role: "user", content: message.trim() }],
+      messages: [
+        { role: "system", content: buildSystemPrompt(KNOWLEDGE_BASE) },
+        { role: "user", content: message.trim() },
+      ],
     }),
   });
 
-  if (!anthropicRes.ok) {
-    const errText = await anthropicRes.text();
+  if (!azureRes.ok) {
+    const errText = await azureRes.text();
     return json({ error: "The assistant is temporarily unavailable.", detail: errText }, 502);
   }
 
-  const data = await anthropicRes.json();
-  const reply = data.content?.find((b) => b.type === "text")?.text || "Sorry, I couldn't generate a response.";
+  const data = await azureRes.json();
+  const reply = data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response.";
 
   // Log the interaction (question + answer + hashed IP, not raw IP, for privacy)
   const ipHash = await sha256(ip + (env.ADMIN_SECRET || "salt"));

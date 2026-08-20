@@ -4,6 +4,9 @@ compatibility_date = "2024-11-01"
 
 [vars]
 TURNSTILE_SITE_KEY = "PUT_YOUR_TURNSTILE_SITE_KEY_HERE"
+AZURE_OPENAI_ENDPOINT = "PUT_YOUR_AZURE_OPENAI_ENDPOINT_HERE"
+AZURE_OPENAI_DEPLOYMENT = "PUT_YOUR_AZURE_OPENAI_DEPLOYMENT_HERE"
+AZURE_OPENAI_API_VERSION = "2024-08-01-preview"
 
 # Create with: wrangler kv namespace create CHAT_KV
 # Then paste the returned id below.
