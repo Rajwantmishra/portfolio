@@ -2,8 +2,12 @@
  * Rajwant Mishra Portfolio Chatbot — Cloudflare Worker
  *
  * Endpoints:
- *   POST /chat   { message, turnstileToken, website (honeypot, must be empty) }
- *   GET  /admin?key=ADMIN_SECRET&limit=50    -> view logged questions
+ *   POST /chat                 { message, turnstileToken, website (honeypot, must be empty) }
+ *   GET  /admin?key=ADMIN_SECRET               -> admin dashboard (logs + knowledge base editor)
+ *   GET  /admin/logs?key=ADMIN_SECRET&limit=50 -> logged questions, as JSON
+ *   GET  /admin/kb?key=ADMIN_SECRET            -> current knowledge base, as JSON
+ *   POST /admin/kb?key=ADMIN_SECRET            -> replace the knowledge base (raw JSON body)
+ *   POST /admin/kb/reset?key=ADMIN_SECRET      -> revert knowledge base to the file bundled at deploy time
  *
  * Required secrets (set with `wrangler secret put <NAME>`):
  *   AZURE_OPENAI_API_KEY - your Azure OpenAI resource API key
@@ -69,6 +73,20 @@ async function checkRateLimit(kv, ip) {
   return true;
 }
 
+const KB_KV_KEY = "kb:override";
+
+async function getKB(env) {
+  const override = await env.CHAT_KV.get(KB_KV_KEY);
+  if (override) {
+    try {
+      return JSON.parse(override);
+    } catch {
+      // fall through to bundled default if the stored override is somehow corrupt
+    }
+  }
+  return KNOWLEDGE_BASE;
+}
+
 function buildSystemPrompt(kb) {
   return `You are a helpful assistant on ${kb.name}'s personal portfolio website, answering visitor questions ON BEHALF OF ${kb.name} using ONLY the information below.
 
@@ -129,7 +147,7 @@ async function handleChat(request, env) {
     },
     body: JSON.stringify({
       messages: [
-        { role: "system", content: buildSystemPrompt(KNOWLEDGE_BASE) },
+        { role: "system", content: buildSystemPrompt(await getKB(env)) },
         { role: "user", content: message.trim() },
       ],
     }),
@@ -155,12 +173,15 @@ async function handleChat(request, env) {
   return json({ reply });
 }
 
-async function handleAdmin(request, env) {
+function requireAdminKey(request, env) {
   const url = new URL(request.url);
   const key = url.searchParams.get("key");
-  if (!key || key !== env.ADMIN_SECRET) {
-    return json({ error: "Unauthorized." }, 401);
-  }
+  return key && key === env.ADMIN_SECRET;
+}
+
+async function handleAdminLogs(request, env) {
+  if (!requireAdminKey(request, env)) return json({ error: "Unauthorized." }, 401);
+  const url = new URL(request.url);
   const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10), 200);
   const list = await env.CHAT_KV.list({ prefix: "log:", limit });
   const entries = await Promise.all(
@@ -171,6 +192,163 @@ async function handleAdmin(request, env) {
   );
   entries.sort((a, b) => (a && b ? new Date(b.ts) - new Date(a.ts) : 0));
   return json({ count: entries.length, entries: entries.filter(Boolean) });
+}
+
+async function handleGetKB(request, env) {
+  if (!requireAdminKey(request, env)) return json({ error: "Unauthorized." }, 401);
+  const override = await env.CHAT_KV.get(KB_KV_KEY);
+  return json({
+    source: override ? "override" : "default",
+    kb: override ? JSON.parse(override) : KNOWLEDGE_BASE,
+  });
+}
+
+async function handleSaveKB(request, env) {
+  if (!requireAdminKey(request, env)) return json({ error: "Unauthorized." }, 401);
+  let text;
+  try {
+    text = await request.text();
+  } catch {
+    return json({ error: "Could not read request body." }, 400);
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch (e) {
+    return json({ error: "Invalid JSON: " + e.message }, 400);
+  }
+  if (!parsed || typeof parsed !== "object" || !parsed.name || !parsed.contact) {
+    return json({ error: "Knowledge base must be an object with at least 'name' and 'contact' fields." }, 400);
+  }
+  await env.CHAT_KV.put(KB_KV_KEY, JSON.stringify(parsed));
+  return json({ ok: true });
+}
+
+async function handleResetKB(request, env) {
+  if (!requireAdminKey(request, env)) return json({ error: "Unauthorized." }, 401);
+  await env.CHAT_KV.delete(KB_KV_KEY);
+  return json({ ok: true, kb: KNOWLEDGE_BASE });
+}
+
+function adminPage(key) {
+  const safeKey = JSON.stringify(key);
+  return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chatbot Admin</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 16px; color: #1a1a1a; }
+  h1 { font-size: 20px; }
+  h2 { font-size: 16px; margin-top: 36px; }
+  textarea { width: 100%; height: 360px; font-family: ui-monospace, Consolas, monospace; font-size: 13px; box-sizing: border-box; padding: 10px; }
+  button { padding: 8px 16px; font-size: 14px; cursor: pointer; margin-right: 8px; }
+  #kbStatus, #logStatus { font-size: 13px; margin-top: 8px; }
+  .ok { color: #0a7a2f; }
+  .err { color: #c1121f; }
+  table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+  th, td { border: 1px solid #ddd; padding: 6px 8px; font-size: 13px; text-align: left; vertical-align: top; }
+  th { background: #f5f5f5; }
+  .muted { color: #666; font-size: 12px; }
+</style>
+</head>
+<body>
+<h1>Chatbot Admin</h1>
+
+<h2>Knowledge base <span class="muted" id="kbSource"></span></h2>
+<textarea id="kbText" spellcheck="false"></textarea>
+<div>
+  <button id="saveKb">Save &amp; deploy live</button>
+  <button id="resetKb">Reset to file default</button>
+</div>
+<div id="kbStatus"></div>
+
+<h2>Recent questions</h2>
+<div>
+  <button id="loadLogs">Refresh logs</button>
+</div>
+<div id="logStatus"></div>
+<table id="logTable" style="display:none">
+  <thead><tr><th>Time</th><th>Question</th><th>Answer</th></tr></thead>
+  <tbody></tbody>
+</table>
+
+<script>
+const KEY = ${safeKey};
+
+async function loadKB() {
+  const res = await fetch('/admin/kb?key=' + encodeURIComponent(KEY));
+  const data = await res.json();
+  if (!res.ok) { document.getElementById('kbStatus').innerHTML = '<span class="err">' + (data.error || 'Failed to load') + '</span>'; return; }
+  document.getElementById('kbText').value = JSON.stringify(data.kb, null, 2);
+  document.getElementById('kbSource').textContent = '(' + data.source + ')';
+}
+
+document.getElementById('saveKb').addEventListener('click', async () => {
+  const status = document.getElementById('kbStatus');
+  status.textContent = 'Saving...';
+  try {
+    JSON.parse(document.getElementById('kbText').value);
+  } catch (e) {
+    status.innerHTML = '<span class="err">Invalid JSON: ' + e.message + '</span>';
+    return;
+  }
+  const res = await fetch('/admin/kb?key=' + encodeURIComponent(KEY), {
+    method: 'POST',
+    body: document.getElementById('kbText').value,
+  });
+  const data = await res.json();
+  status.innerHTML = res.ok ? '<span class="ok">Saved. Live immediately, no redeploy needed.</span>' : '<span class="err">' + (data.error || 'Save failed') + '</span>';
+  if (res.ok) loadKB();
+});
+
+document.getElementById('resetKb').addEventListener('click', async () => {
+  if (!confirm('Revert to the knowledge base bundled at last deploy? This discards any admin edits.')) return;
+  const res = await fetch('/admin/kb/reset?key=' + encodeURIComponent(KEY), { method: 'POST' });
+  const data = await res.json();
+  document.getElementById('kbStatus').innerHTML = res.ok ? '<span class="ok">Reset to file default.</span>' : '<span class="err">' + (data.error || 'Reset failed') + '</span>';
+  if (res.ok) loadKB();
+});
+
+async function loadLogs() {
+  const status = document.getElementById('logStatus');
+  status.textContent = 'Loading...';
+  const res = await fetch('/admin/logs?key=' + encodeURIComponent(KEY) + '&limit=100');
+  const data = await res.json();
+  if (!res.ok) { status.innerHTML = '<span class="err">' + (data.error || 'Failed to load') + '</span>'; return; }
+  status.textContent = data.count + ' questions (last 90 days)';
+  const tbody = document.querySelector('#logTable tbody');
+  tbody.innerHTML = '';
+  for (const e of data.entries) {
+    const tr = document.createElement('tr');
+    const time = document.createElement('td');
+    time.textContent = new Date(e.ts).toLocaleString();
+    const q = document.createElement('td');
+    q.textContent = e.question;
+    const a = document.createElement('td');
+    a.textContent = e.answer;
+    tr.append(time, q, a);
+    tbody.appendChild(tr);
+  }
+  document.getElementById('logTable').style.display = data.entries.length ? '' : 'none';
+}
+
+document.getElementById('loadLogs').addEventListener('click', loadLogs);
+loadKB();
+loadLogs();
+</script>
+</body>
+</html>`;
+}
+
+async function handleAdminPage(request, env) {
+  const url = new URL(request.url);
+  const key = url.searchParams.get("key");
+  if (!key || key !== env.ADMIN_SECRET) {
+    return new Response("Unauthorized.", { status: 401 });
+  }
+  return new Response(adminPage(key), { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }
 
 export default {
@@ -184,7 +362,19 @@ export default {
       return handleChat(request, env);
     }
     if (url.pathname === "/admin" && request.method === "GET") {
-      return handleAdmin(request, env);
+      return handleAdminPage(request, env);
+    }
+    if (url.pathname === "/admin/logs" && request.method === "GET") {
+      return handleAdminLogs(request, env);
+    }
+    if (url.pathname === "/admin/kb" && request.method === "GET") {
+      return handleGetKB(request, env);
+    }
+    if (url.pathname === "/admin/kb" && request.method === "POST") {
+      return handleSaveKB(request, env);
+    }
+    if (url.pathname === "/admin/kb/reset" && request.method === "POST") {
+      return handleResetKB(request, env);
     }
     return json({ error: "Not found." }, 404);
   },

@@ -74,18 +74,39 @@ const ALLOWED_ORIGIN = "https://yourname.github.io";
 ```
 Then `wrangler deploy` again.
 
-## Viewing your question logs
-Visit (in a browser, or via curl):
+## Admin dashboard
+Visit in a browser:
 ```
 https://<your-worker-url>/admin?key=<your ADMIN_SECRET>
 ```
-Returns JSON with every question, the answer given, a hashed (not raw) IP,
-and a timestamp. Logs auto-expire after 90 days.
+This gives you:
+- A **knowledge base editor** — a textarea with the bot's current knowledge
+  base JSON. Edit it and click "Save & deploy live" — changes apply
+  immediately, no `wrangler deploy` needed. "Reset to file default" discards
+  any admin edits and reverts to whatever is bundled in `knowledge_base.json`
+  at your last deploy.
+- A **question log table** — every question asked, the answer given, and
+  when, for the last 90 days.
+
+Raw JSON is also available directly, if you prefer curl/scripts:
+- `GET /admin/logs?key=<ADMIN_SECRET>&limit=50` — question logs
+- `GET /admin/kb?key=<ADMIN_SECRET>` — current knowledge base + whether it's
+  the file default or an admin-saved override
+- `POST /admin/kb?key=<ADMIN_SECRET>` — replace the knowledge base (raw JSON
+  body)
+- `POST /admin/kb/reset?key=<ADMIN_SECRET>` — revert to the file default
 
 ## Updating what the bot knows
-Just edit `knowledge_base.json` and run `wrangler deploy` again — no code
-changes needed. Keep it factual; the system prompt instructs the model to
-only use what's in this file and never invent details.
+Two ways:
+1. **Admin dashboard** (above) — edits take effect immediately, but only
+   live in Cloudflare KV; `knowledge_base.json` in the repo is unchanged
+   until you also copy your edits back into the file.
+2. **Edit `knowledge_base.json` directly** and run `wrangler deploy` — this
+   is what "Reset to file default" reverts to, so it's the source of truth
+   for a fresh deploy.
+
+Keep it factual either way; the system prompt instructs the model to only
+use what's in the knowledge base and never invent details.
 
 ## Anti-abuse summary
 - **Turnstile challenge**: blocks scripted/automated submissions before they
