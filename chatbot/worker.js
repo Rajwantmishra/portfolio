@@ -22,7 +22,7 @@
 
 import KNOWLEDGE_BASE from "./knowledge_base.json";
 
-const ALLOWED_ORIGIN = "*"; // tighten to your GitHub Pages URL after deploying, e.g. "https://yourname.github.io"
+const ALLOWED_ORIGIN = "https://rajwantmishra.github.io";
 const RATE_LIMIT_MAX = 15;       // max messages
 const RATE_LIMIT_WINDOW = 3600;  // per hour, in seconds
 
