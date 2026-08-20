@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajwant Mishra — AI & Data Science Leader</title>
+<meta name="description" content="Rajwant Mishra — Enterprise AI transformation, healthcare AI, and platform leadership.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1114;
+    --panel:#161A1F;
+    --panel-hover:#1C2129;
+    --border:rgba(255,255,255,0.08);
+    --border-strong:rgba(255,255,255,0.16);
+    --text:#ECE9E2;
+    --muted:#8C929B;
+    --muted2:#5F6570;
+    --amber:#F2A93B;
+    --teal:#4FD1C5;
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(14,17,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1120px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-logo{font-family:var(--mono);font-size:14px;letter-spacing:0.05em;color:var(--text);}
+  .nav-logo span{color:var(--amber);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-size:14px;color:var(--muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{
+    font-family:var(--mono);font-size:13px;color:var(--bg)!important;
+    background:var(--amber);padding:9px 16px;border-radius:3px;font-weight:600;
+    transition:opacity .2s;
+  }
+  .nav-cta:hover{opacity:0.85;}
+  @media(max-width:720px){.nav-links a:not(.nav-cta){display:none;}}
+
+  /* HERO */
+  .hero{padding:88px 0 64px;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .eyebrow{
+    font-family:var(--mono);font-size:13px;color:var(--teal);
+    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);}
+  h1{
+    font-family:var(--display);font-size:44px;line-height:1.12;font-weight:600;
+    letter-spacing:-0.01em;margin-bottom:22px;
+  }
+  h1 em{font-style:normal;color:var(--amber);}
+  @media(max-width:640px){h1{font-size:32px;}}
+  .hero-sub{font-size:17px;color:var(--muted);max-width:52ch;margin-bottom:32px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);font-size:13px;padding:12px 20px;border-radius:3px;
+    display:inline-flex;align-items:center;gap:8px;transition:all .2s;
+  }
+  .btn-primary{background:var(--amber);color:var(--bg);font-weight:600;}
+  .btn-primary:hover{opacity:0.85;}
+  .btn-secondary{border:1px solid var(--border-strong);color:var(--text);}
+  .btn-secondary:hover{background:var(--panel-hover);}
+
+  /* DIAGRAM */
+  .diagram-wrap{position:relative;}
+  .diagram-caption{
+    font-family:var(--mono);font-size:11px;color:var(--muted2);
+    text-align:center;margin-top:14px;letter-spacing:0.03em;
+  }
+  svg{width:100%;height:auto;overflow:visible;}
+  .node-box{fill:var(--panel);stroke:var(--border-strong);stroke-width:1;}
+  .node-hub{fill:#1A1E24;stroke:var(--amber);stroke-width:1.5;}
+  .node-label{font-family:var(--mono);font-size:10.5px;fill:var(--muted);}
+  .node-label-hub{font-family:var(--display);font-size:13px;fill:var(--text);font-weight:600;}
+  .flow-line{
+    fill:none;stroke:var(--border-strong);stroke-width:1.2;
+    stroke-dasharray:4 300;
+    animation:flow 3.5s linear infinite;
+  }
+  .flow-line.out{stroke:rgba(79,209,197,0.5);}
+  @keyframes flow{to{stroke-dashoffset:-304;}}
+  .pulse{animation:pulse 2.6s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.55;}}
+
+  /* METRICS STRIP */
+  .metrics{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 0;}
+  .metrics-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
+  @media(max-width:900px){.metrics-grid{grid-template-columns:repeat(2,1fr);}}
+  .metric{text-align:left;}
+  .metric-num{font-family:var(--display);font-size:26px;font-weight:600;color:var(--amber);}
+  .metric-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:0.02em;}
+
+  /* SECTIONS */
+  section{padding:80px 0;}
+  .section-head{margin-bottom:40px;}
+  .section-eyebrow{
+    font-family:var(--mono);font-size:12px;color:var(--muted2);
+    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;
+  }
+  h2{font-family:var(--display);font-size:28px;font-weight:600;}
+  .lede{font-size:16px;color:var(--muted);max-width:68ch;margin-top:14px;}
+
+  /* ABOUT */
+  .about-body{font-size:16.5px;color:#C7CAD1;max-width:74ch;}
+  .about-body p{margin-bottom:18px;}
+
+  /* TIMELINE */
+  .tl-item{
+    display:grid;grid-template-columns:140px 1fr;gap:24px;
+    padding:22px 0;border-top:1px solid var(--border);
+  }
+  .tl-item:last-child{border-bottom:1px solid var(--border);}
+  @media(max-width:640px){.tl-item{grid-template-columns:1fr;gap:6px;}}
+  .tl-date{font-family:var(--mono);font-size:12.5px;color:var(--muted2);padding-top:2px;}
+  .tl-role{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:4px;}
+  .tl-org{font-size:13.5px;color:var(--teal);margin-bottom:10px;}
+  .tl-desc{font-size:14.5px;color:var(--muted);max-width:62ch;}
+
+  /* PROJECTS */
+  .proj-note{font-size:14.5px;color:var(--muted);max-width:70ch;margin-bottom:32px;padding:14px 18px;background:var(--panel);border-left:2px solid var(--amber);border-radius:0 4px 4px 0;}
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:800px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:6px;
+    padding:22px 24px;cursor:pointer;transition:border-color .2s,background .2s;
+  }
+  .proj-card:hover{border-color:var(--border-strong);background:var(--panel-hover);}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .proj-title{font-family:var(--display);font-size:16.5px;font-weight:600;}
+  .proj-tag{
+    font-family:var(--mono);font-size:10px;color:var(--teal);
+    border:1px solid rgba(79,209,197,0.3);padding:3px 8px;border-radius:20px;
+    white-space:nowrap;letter-spacing:0.03em;
+  }
+  .proj-summary{font-size:13.5px;color:var(--muted);margin-top:10px;}
+  .proj-detail{
+    max-height:0;overflow:hidden;transition:max-height .35s ease,margin-top .35s ease;
+    font-size:13.5px;color:#B7BAC2;
+  }
+  .proj-card.open .proj-detail{max-height:400px;margin-top:14px;}
+  .proj-detail ul{padding-left:18px;margin-top:6px;}
+  .proj-detail li{margin-bottom:6px;}
+  .proj-toggle{font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:12px;}
+
+  /* RESEARCH */
+  .research-item{
+    display:grid;grid-template-columns:1fr;gap:6px;
+    padding:20px 0;border-top:1px solid var(--border);
+  }
+  .research-item:last-child{border-bottom:1px solid var(--border);}
+  .research-title{font-family:var(--display);font-size:16px;font-weight:600;}
+  .research-desc{font-size:14px;color:var(--muted);max-width:66ch;}
+
+  /* SKILLS */
+  .pills{display:flex;flex-wrap:wrap;gap:10px;}
+  .pill{
+    font-family:var(--mono);font-size:12.5px;color:var(--muted);
+    border:1px solid var(--border);padding:7px 14px;border-radius:20px;
+  }
+
+  /* EDU */
+  .edu-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;}
+  .edu-degree{font-family:var(--display);font-size:16px;font-weight:600;}
+  .edu-school{font-size:14px;color:var(--muted);}
+
+  /* CONTACT / FOOTER */
+  footer{border-top:1px solid var(--border);padding:64px 0 40px;}
+  .contact-grid{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;}
+  @media(max-width:600px){.contact-grid{grid-template-columns:1fr;text-align:center;justify-items:center;}}
+  .avatar{
+    width:88px;height:88px;border-radius:50%;
+    background:linear-gradient(135deg,#1C2129,#262C35);
+    border:1px solid var(--border-strong);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-size:26px;font-weight:600;color:var(--amber);
+    position:relative;
+  }
+  .avatar-tag{
+    position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
+    font-family:var(--mono);font-size:8.5px;color:var(--muted2);
+    background:var(--bg);padding:1px 6px;border-radius:8px;border:1px solid var(--border);
+    white-space:nowrap;
+  }
+  .contact-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;}
+  .contact-links a{font-family:var(--mono);font-size:13px;color:var(--teal);}
+  .contact-links a:hover{text-decoration:underline;}
+  .footnote{font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:36px;text-align:center;}
+
+  ::selection{background:var(--amber);color:var(--bg);}
+</style>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+  .chat-fab{
+    position:fixed;bottom:24px;right:24px;z-index:200;
+    width:56px;height:56px;border-radius:50%;
+    background:var(--amber);border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 20px rgba(0,0,0,0.4);
+    transition:transform .2s;
+  }
+  .chat-fab:hover{transform:scale(1.06);}
+  .chat-fab svg{width:24px;height:24px;}
+  .chat-panel{
+    position:fixed;bottom:92px;right:24px;z-index:200;
+    width:340px;max-width:calc(100vw - 40px);
+    height:440px;max-height:calc(100vh - 140px);
+    background:var(--panel);border:1px solid var(--border-strong);
+    border-radius:10px;display:none;flex-direction:column;
+    box-shadow:0 12px 40px rgba(0,0,0,0.5);
+    overflow:hidden;
+  }
+  .chat-panel.open{display:flex;}
+  .chat-head{
+    padding:14px 16px;border-bottom:1px solid var(--border);
+    font-family:var(--display);font-size:14px;font-weight:600;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .chat-head-sub{font-family:var(--mono);font-size:10.5px;color:var(--muted2);font-weight:400;margin-top:2px;}
+  .chat-close{cursor:pointer;color:var(--muted);font-size:18px;background:none;border:none;}
+  .chat-body{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
+  .chat-msg{font-size:13.5px;line-height:1.5;max-width:88%;padding:9px 12px;border-radius:8px;}
+  .chat-msg.bot{background:#1E2329;color:var(--text);align-self:flex-start;}
+  .chat-msg.user{background:var(--amber);color:var(--bg);align-self:flex-end;}
+  .chat-msg.err{background:#3A1F1F;color:#F2A0A0;align-self:flex-start;}
+  .chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);}
+  .chat-input-row input{
+    flex:1;background:#1A1E24;border:1px solid var(--border);border-radius:6px;
+    color:var(--text);padding:9px 10px;font-size:13px;font-family:var(--body);
+  }
+  .chat-input-row input:focus{outline:1px solid var(--teal);}
+  .chat-send{
+    background:var(--amber);border:none;border-radius:6px;padding:0 14px;
+    font-family:var(--mono);font-size:12px;font-weight:600;color:var(--bg);cursor:pointer;
+  }
+  .chat-send:disabled{opacity:0.5;cursor:not-allowed;}
+  #honeypot-field{position:absolute;left:-9999px;opacity:0;height:0;width:0;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">RAJWANT<span>·</span>MISHRA</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="Rajwant_Mishra_Resume.docx" download>Resume ↓</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Open to Head of AI / VP AI Leadership roles</div>
+      <h1>I build the layer between <em>AI ambiguity</em> and the business that has to adopt it.</h1>
+      <p class="hero-sub">15+ years turning AI strategy into infrastructure, budget, and adoption &mdash; across healthcare, enterprise data platforms, and regulated environments spanning four countries.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#projects">See the work ↓</a>
+        <a class="btn btn-secondary" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+        <!-- input nodes -->
+        <g id="inputs">
+          <rect x="0" y="18" width="150" height="38" rx="4" class="node-box"/>
+          <text x="12" y="41" class="node-label">Healthcare AI &amp; Compliance</text>
+
+          <rect x="0" y="92" width="150" height="38" rx="4" class="node-box"/>
+          <text x="12" y="115" class="node-label">Platform Architecture (MCP)</text>
+
+          <rect x="0" y="166" width="150" height="38" rx="4" class="node-box"/>
+          <text x="12" y="189" class="node-label">GenAI · LLM · RAG</text>
+
+          <rect x="0" y="240" width="150" height="38" rx="4" class="node-box"/>
+          <text x="12" y="263" class="node-label">Data Governance &amp; Security</text>
+        </g>
+
+        <!-- flow lines in -->
+        <path class="flow-line" d="M150,37 C185,37 185,150 210,150"/>
+        <path class="flow-line" d="M150,111 C180,111 190,150 210,150"/>
+        <path class="flow-line" d="M150,185 C180,185 190,160 210,160"/>
+        <path class="flow-line" d="M150,259 C185,259 185,170 210,170"/>
+
+        <!-- hub -->
+        <rect x="210" y="128" width="86" height="44" rx="6" class="node-box node-hub pulse"/>
+        <text x="253" y="146" text-anchor="middle" class="node-label-hub">RM</text>
+        <text x="253" y="161" text-anchor="middle" class="node-label" style="font-size:9px;">integration layer</text>
+
+        <!-- flow lines out -->
+        <path class="flow-line out" d="M296,140 C330,140 330,40 360,40"/>
+        <path class="flow-line out" d="M296,148 C325,148 330,113 360,113"/>
+        <path class="flow-line out" d="M296,158 C325,158 330,187 360,187"/>
+        <path class="flow-line out" d="M296,165 C330,165 330,261 360,261"/>
+
+        <!-- output nodes -->
+        <g id="outputs">
+          <rect x="360" y="20" width="120" height="38" rx="4" class="node-box"/>
+          <text x="372" y="43" class="node-label">$2&ndash;3M+ savings</text>
+
+          <rect x="360" y="94" width="120" height="38" rx="4" class="node-box"/>
+          <text x="372" y="117" class="node-label">16&ndash;30 person org</text>
+
+          <rect x="360" y="168" width="120" height="38" rx="4" class="node-box"/>
+          <text x="372" y="191" class="node-label">4 global regions</text>
+
+          <rect x="360" y="242" width="120" height="38" rx="4" class="node-box"/>
+          <text x="372" y="265" class="node-label">10+ initiatives</text>
+        </g>
+      </svg>
+      <div class="diagram-caption">the same integration pattern I build for teams, applied to my own track record</div>
+    </div>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="wrap metrics-grid">
+    <div class="metric"><div class="metric-num">15+</div><div class="metric-label">YEARS IN AI &amp; DATA</div></div>
+    <div class="metric"><div class="metric-num">$1M+</div><div class="metric-label">ANNUAL BUDGET OWNED</div></div>
+    <div class="metric"><div class="metric-num">16&ndash;30</div><div class="metric-label">TEAM LED</div></div>
+    <div class="metric"><div class="metric-num">4</div><div class="metric-label">GLOBAL REGIONS</div></div>
+    <div class="metric"><div class="metric-num">10+</div><div class="metric-label">CONCURRENT AI INITIATIVES</div></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">About</div>
+      <h2>Builder first, strategist by necessity.</h2>
+    </div>
+    <div class="about-body">
+      <p>I lead a 16&ndash;30 person Data Science and Data Engineering organization with direct reports across India, Israel, Milan, and the U.S., and I own AI strategy and delivery for a global enterprise's medical and clinical technology portfolio &mdash; 10+ concurrent initiatives at any given time, from automated booking to clinical translation to document processing.</p>
+      <p>What sets my work apart is that I still build. I designed and built the proprietary NLP/LLM pipeline that replaced our third-party translation vendors, saving roughly $2&ndash;3M annually. I architected an internal AI platform (ButlerAI) that abstracts LLM integration, UI, and onboarding behind a single MCP layer, so any team can adopt AI without reinventing the plumbing. I fine-tune models myself when the problem calls for it.</p>
+      <p>I operate with an entrepreneurial, ideas-to-delivery mindset &mdash; identifying where AI creates real value, building the stakeholder buy-in to move on it, and then being the person accountable for shipping it. That combination of technical depth and executive ownership is what I bring to every room.</p>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Experience</div>
+      <h2>Track record</h2>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Feb 2023 &ndash; Present</div>
+      <div>
+        <div class="tl-role">Sr. Manager, IT &mdash; Data Science &amp; AI</div>
+        <div class="tl-org">Luxottica (EssilorLuxottica), New York, NY</div>
+        <div class="tl-desc">Own enterprise AI/ML strategy and delivery for the group's medical and clinical technology portfolio. Lead a global team, own $1M+ in budget, and drive the AI innovation roadmap directly with business stakeholders.</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Oct 2016 &ndash; Jan 2023</div>
+      <div>
+        <div class="tl-role">Lead Business Analyst &mdash; Digital &amp; AI</div>
+        <div class="tl-org">Luxottica, New York, NY</div>
+        <div class="tl-desc">Led digital transformation across sales, CRM, and marketing. Owned AI integration across SAP CRM and Salesforce, delivering real-time insights to 500+ global sales representatives.</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2007 &ndash; 2016</div>
+      <div>
+        <div class="tl-role">SAP Sales, CRM Business Consultant</div>
+        <div class="tl-org">Infosys, Colgate-Palmolive, Deloitte &amp; Cognizant</div>
+        <div class="tl-desc">Delivered digital transformation initiatives for Fortune 500 clients including Kraft Heinz, Colgate-Palmolive, and NuSkin. Built trade promotion systems leveraging SAP CRM and predictive modeling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Selected Work</div>
+      <h2>Projects</h2>
+      <p class="lede">A representative slice &mdash; click any card for detail. Several additional strategic initiatives are currently in flight and not yet public.</p>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">ButlerAI</div>
+          <div class="proj-tag">PLATFORM</div>
+        </div>
+        <div class="proj-summary">An internal enterprise AI platform that makes adopting AI a one-integration decision, not a project.</div>
+        <div class="proj-detail">
+          <p>Architected a platform layer built around MCP (Model Context Protocol) that abstracts LLM integration, UI, user onboarding, auth, and audit behind a single standard. Any team exposes one MCP server and inherits the rest automatically.</p>
+          <ul>
+            <li>Removed repeated onboarding/UI/LLM plumbing per use case org-wide</li>
+            <li>Centralized audit and governance without slowing teams down</li>
+            <li>Designed to make AI adoption a decision, not an engineering project</li>
+          </ul>
+        </div>
+        <div class="proj-toggle">+ expand</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">RAG-Driven Chat Service</div>
+          <div class="proj-tag">GOVERNANCE</div>
+        </div>
+        <div class="proj-summary">Compliant AI chat across regulated and non-regulated domains, without merging the data.</div>
+        <div class="proj-detail">
+          <p>Built a retrieval-augmented chat service deployed internally and across multiple group-facing websites, with fully separate medical and non-medical infrastructure to satisfy compliance requirements.</p>
+          <ul>
+            <li>Serves both internal teams and external site visitors</li>
+            <li>Strict data segregation between medical and non-medical domains</li>
+            <li>Governance built in from day one, not retrofitted</li>
+          </ul>
+        </div>
+        <div class="proj-toggle">+ expand</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">On-Prem OCR Fine-Tuning</div>
+          <div class="proj-tag">APPLIED ML</div>
+        </div>
+        <div class="proj-summary">An open-weight model, fine-tuned on our own data, running entirely on-prem.</div>
+        <div class="proj-detail">
+          <p>Fine-tuned an on-premises, open-weight model on proprietary data to automate OCR-based document processing for business operations.</p>
+          <ul>
+            <li>~90% accuracy in production</li>
+            <li>~$1.5M annual savings against ~$150K operating cost</li>
+            <li>RAG-based fine-tuning approach, selecting the right retrieval/model strategy per use case</li>
+          </ul>
+        </div>
+        <div class="proj-toggle">+ expand</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">Forensic Incident Processing (FIPP)</div>
+          <div class="proj-tag">SECURITY</div>
+        </div>
+        <div class="proj-summary">Finding PHI/PII in breach data fast enough to actually scope notification.</div>
+        <div class="proj-detail">
+          <p>Built an AI-driven platform to identify PHI/PII exposure within breach-related logs and leaked datasets, working with a third-party forensics partner to determine the affected notification population.</p>
+          <ul>
+            <li>Direct collaboration with forensics, compliance, and legal</li>
+            <li>Cut time and cost previously spent on manual third-party review</li>
+          </ul>
+        </div>
+        <div class="proj-toggle">+ expand</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">BookMySpot</div>
+          <div class="proj-tag">AUTOMATION</div>
+        </div>
+        <div class="proj-summary">AI answering the phone, talking to legacy systems, actually getting things done.</div>
+        <div class="proj-detail">
+          <p>Integrated AI with telephony systems (Genesys) so AI agents can connect to legacy backend systems on customers' behalf &mdash; appointment booking, cancellations, order status, and more.</p>
+          <ul>
+            <li>Adopted across multiple business units</li>
+            <li>Bridges modern AI with legacy infrastructure without replacing it</li>
+          </ul>
+        </div>
+        <div class="proj-toggle">+ expand</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Research &amp; Publications</div>
+      <h2>Original work</h2>
+    </div>
+
+    <div class="research-item">
+      <div class="research-title">TrueLens Framework</div>
+      <div class="research-desc">A published framework for mitigating algorithmic bias, referenced in enterprise AI governance practice.</div>
+    </div>
+    <div class="research-item">
+      <div class="research-title">Adaptive Time-Stretching AI Algorithm ("Ice Cube")</div>
+      <div class="research-desc">Published paper on original research enabling synchronized AI-translated multilingual video, improving accessibility for media platforms.</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Toolkit</div>
+      <h2>Core competencies</h2>
+    </div>
+    <div class="pills">
+      <div class="pill">Enterprise AI Strategy</div>
+      <div class="pill">Healthcare AI &amp; Compliance</div>
+      <div class="pill">Responsible AI Governance</div>
+      <div class="pill">Global Team Leadership</div>
+      <div class="pill">Multi-Vendor Program Management</div>
+      <div class="pill">Azure · Databricks · OpenAI</div>
+      <div class="pill">Generative AI · NLP · LLMs</div>
+      <div class="pill">RAG Architecture</div>
+      <div class="pill">Model Context Protocol (MCP)</div>
+      <div class="pill">C-Suite Stakeholder Management</div>
+      <div class="pill">Python · R · Spark · SQL</div>
+      <div class="pill">SAP CRM · Salesforce</div>
+    </div>
+
+    <div class="section-head" style="margin-top:48px;">
+      <div class="section-eyebrow">Education</div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-degree">M.S., Data Science</div>
+      <div class="edu-school">City University of New York (CUNY)</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="avatar">
+        RM
+        <div class="avatar-tag">photo placeholder</div>
+      </div>
+      <div>
+        <h2 style="margin-bottom:6px;">Let's talk.</h2>
+        <p style="color:var(--muted);font-size:14.5px;">Open to Head of AI, VP AI, and AI Platform leadership conversations.</p>
+        <div class="contact-links">
+          <a href="mailto:rajwantmishra@gmail.com">rajwantmishra@gmail.com</a>
+          <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">linkedin.com/in/rajwant</a>
+          <a href="Rajwant_Mishra_Resume.docx" download>Download resume ↓</a>
+        </div>
+      </div>
+    </div>
+    <div class="footnote">&copy; RAJWANT MISHRA &mdash; BUILT WITH INTENT, NOT A TEMPLATE.</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.proj-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const wasOpen = card.classList.contains('open');
+      document.querySelectorAll('.proj-card').forEach(c => {
+        c.classList.remove('open');
+        c.querySelector('.proj-toggle').textContent = '+ expand';
+      });
+      if(!wasOpen){
+        card.classList.add('open');
+        card.querySelector('.proj-toggle').textContent = '\u2212 collapse';
+      }
+    });
+  });
+</script>
+
+<button class="chat-fab" id="chatFab" aria-label="Ask a question">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#0E1114" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head">
+    <div>Ask about Rajwant<div class="chat-head-sub">answers grounded in his real work — not general AI chat</div></div>
+    <button class="chat-close" id="chatClose">&times;</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">Hi! Ask me anything about Rajwant's experience, projects, or background — I'll answer from what he's actually shared here.</div>
+  </div>
+  <input type="text" id="honeypot-field" name="website" tabindex="-1" autocomplete="off">
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="e.g. What did he build at Luxottica?" maxlength="800">
+    <button class="chat-send" id="chatSend">Send</button>
+  </div>
+</div>
+
+<div class="cf-turnstile" data-sitekey="PUT_YOUR_TURNSTILE_SITE_KEY_HERE" data-size="invisible" id="turnstileWidget"></div>
+
+<script>
+  const CHATBOT_ENDPOINT = "PUT_YOUR_WORKER_URL_HERE"; // e.g. https://rm-portfolio-chatbot.yoursubdomain.workers.dev
+
+  const fab = document.getElementById('chatFab');
+  const panel = document.getElementById('chatPanel');
+  const closeBtn = document.getElementById('chatClose');
+  const body = document.getElementById('chatBody');
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+  const honeypot = document.getElementById('honeypot-field');
+
+  fab.addEventListener('click', () => panel.classList.toggle('open'));
+  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+  function addMsg(text, cls){
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + cls;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  async function getTurnstileToken(){
+    return new Promise((resolve) => {
+      if (typeof turnstile === 'undefined'){ resolve(null); return; }
+      try{
+        turnstile.render('#turnstileWidget', {
+          sitekey: document.getElementById('turnstileWidget').dataset.sitekey,
+          callback: (token) => resolve(token),
+          'error-callback': () => resolve(null),
+        });
+      }catch(e){ resolve(null); }
+    });
+  }
+
+  async function sendMessage(){
+    const text = input.value.trim();
+    if(!text) return;
+    if (CHATBOT_ENDPOINT.includes('PUT_YOUR_WORKER_URL_HERE')){
+      addMsg('Chatbot backend not connected yet — see chatbot/README.md to deploy it.', 'err');
+      return;
+    }
+    addMsg(text, 'user');
+    input.value = '';
+    sendBtn.disabled = true;
+    addMsg('...', 'bot');
+    const thinkingEl = body.lastChild;
+
+    try{
+      const token = await getTurnstileToken();
+      const res = await fetch(CHATBOT_ENDPOINT + '/chat', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ message: text, turnstileToken: token, website: honeypot.value })
+      });
+      const data = await res.json();
+      thinkingEl.remove();
+      if(!res.ok){
+        addMsg(data.error || 'Something went wrong.', 'err');
+      } else {
+        addMsg(data.reply, 'bot');
+      }
+    }catch(e){
+      thinkingEl.remove();
+      addMsg('Network error — please try again.', 'err');
+    }finally{
+      sendBtn.disabled = false;
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', (e) => { if(e.key === 'Enter') sendMessage(); });
+</script>
+
+</body>
+</html>

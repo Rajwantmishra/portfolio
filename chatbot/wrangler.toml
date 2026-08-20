@@ -1,0 +1,12 @@
+name = "rm-portfolio-chatbot"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+TURNSTILE_SITE_KEY = "PUT_YOUR_TURNSTILE_SITE_KEY_HERE"
+
+# Create with: wrangler kv namespace create CHAT_KV
+# Then paste the returned id below.
+[[kv_namespaces]]
+binding = "CHAT_KV"
+id = "PUT_YOUR_KV_NAMESPACE_ID_HERE"
