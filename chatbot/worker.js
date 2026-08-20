@@ -128,7 +128,6 @@ async function handleChat(request, env) {
       "api-key": env.AZURE_OPENAI_API_KEY,
     },
     body: JSON.stringify({
-      max_completion_tokens: 500,
       messages: [
         { role: "system", content: buildSystemPrompt(KNOWLEDGE_BASE) },
         { role: "user", content: message.trim() },
