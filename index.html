@@ -311,6 +311,22 @@
   .chat-gate-start:disabled{opacity:0.5;cursor:not-allowed;}
   .chat-gate-alt{font-family:var(--mono);font-size:11px;color:var(--muted2);text-align:center;}
   .chat-gate-alt a{color:var(--teal);}
+
+  /* RESUME GATE */
+  .resume-gate-overlay{
+    display:none;position:fixed;inset:0;z-index:300;
+    background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px;
+  }
+  .resume-gate-overlay.open{display:flex;}
+  .resume-gate-modal{
+    width:380px;max-width:100%;background:var(--panel);border:1px solid var(--border-strong);
+    border-radius:10px;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,0.5);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .resume-gate-head{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--display);font-size:16px;font-weight:600;
+  }
 </style>
 </head>
 <body>
@@ -325,7 +341,7 @@
       <a href="#research">Research</a>
       <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
-      <a class="nav-cta" href="Rajwant_Mishra_Resume.docx" download>Resume ↓</a>
+      <a class="nav-cta resume-link" href="Rajwant_Mishra_Resume.docx" download>Resume ↓</a>
     </div>
   </div>
 </nav>
@@ -719,7 +735,7 @@
           <a href="mailto:rajwantmishra@gmail.com">rajwantmishra@gmail.com</a>
           <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">linkedin.com/in/rajwant</a>
           <a href="https://medium.com/@rajwantmishra" target="_blank" rel="noopener">medium.com/@rajwantmishra</a>
-          <a href="Rajwant_Mishra_Resume.docx" download>Download resume ↓</a>
+          <a class="resume-link" href="Rajwant_Mishra_Resume.docx" download>Download resume ↓</a>
         </div>
       </div>
     </div>
@@ -775,6 +791,25 @@
   <div class="chat-input-row" id="chatInputRow" style="display:none">
     <input type="text" id="chatInput" placeholder="e.g. What did he build at Luxottica?" maxlength="800">
     <button class="chat-send" id="chatSend">Send</button>
+  </div>
+</div>
+
+<div class="resume-gate-overlay" id="resumeGateOverlay">
+  <div class="resume-gate-modal">
+    <div class="resume-gate-head">
+      <div>Before you download</div>
+      <button class="chat-close" id="resumeGateClose">&times;</button>
+    </div>
+    <p class="chat-gate-note">Quick details so Rajwant knows who's reaching out.</p>
+    <div>
+      <label for="resumeGateName">YOUR NAME</label>
+      <input type="text" id="resumeGateName" placeholder="Jane Doe" maxlength="80">
+    </div>
+    <div>
+      <label for="resumeGateEmail">EMAIL</label>
+      <input type="email" id="resumeGateEmail" placeholder="jane@company.com" maxlength="200">
+    </div>
+    <button class="chat-gate-start" id="resumeGateStart" disabled>Download resume ↓</button>
   </div>
 </div>
 
@@ -939,6 +974,85 @@
 
   sendBtn.addEventListener('click', sendMessage);
   input.addEventListener('keydown', (e) => { if(e.key === 'Enter') sendMessage(); });
+
+  // --- Resume download gate ---
+  const resumeOverlay = document.getElementById('resumeGateOverlay');
+  const resumeClose = document.getElementById('resumeGateClose');
+  const resumeName = document.getElementById('resumeGateName');
+  const resumeEmail = document.getElementById('resumeGateEmail');
+  const resumeStart = document.getElementById('resumeGateStart');
+  let pendingResumeHref = null;
+
+  function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function triggerDownload(href){
+    const a = document.createElement('a');
+    a.href = href;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  function updateResumeStart(){
+    resumeStart.disabled = !(resumeName.value.trim() && isValidEmail(resumeEmail.value.trim()));
+  }
+  resumeName.addEventListener('input', updateResumeStart);
+  resumeEmail.addEventListener('input', updateResumeStart);
+
+  function getKnownLead(){
+    if (visitor && visitor.name && visitor.email) return visitor;
+    try {
+      const saved = sessionStorage.getItem('rm_resume_lead');
+      if (saved) return JSON.parse(saved);
+    } catch(e) {}
+    return null;
+  }
+
+  document.querySelectorAll('.resume-link').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = a.getAttribute('href');
+      const known = getKnownLead();
+      if (known) {
+        triggerDownload(href);
+        return;
+      }
+      pendingResumeHref = href;
+      resumeName.value = '';
+      resumeEmail.value = '';
+      updateResumeStart();
+      resumeOverlay.classList.add('open');
+    });
+  });
+
+  resumeClose.addEventListener('click', () => resumeOverlay.classList.remove('open'));
+  resumeOverlay.addEventListener('click', (e) => { if (e.target === resumeOverlay) resumeOverlay.classList.remove('open'); });
+
+  resumeStart.addEventListener('click', async () => {
+    const name = resumeName.value.trim();
+    const email = resumeEmail.value.trim();
+    if (!name || !isValidEmail(email)) return;
+    resumeStart.disabled = true;
+    resumeStart.textContent = 'Preparing...';
+    const lead = { name, email };
+    try { sessionStorage.setItem('rm_resume_lead', JSON.stringify(lead)); } catch(e) {}
+
+    if (!CHATBOT_ENDPOINT.includes('PUT_YOUR_WORKER_URL_HERE')) {
+      try {
+        await fetch(CHATBOT_ENDPOINT + '/lead', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ name, email, source: 'resume_download' })
+        });
+      } catch(e) { /* don't block the download on a logging failure */ }
+    }
+
+    resumeOverlay.classList.remove('open');
+    resumeStart.textContent = 'Download resume ↓';
+    resumeStart.disabled = false;
+    if (pendingResumeHref) triggerDownload(pendingResumeHref);
+  });
 </script>
 
 </body>

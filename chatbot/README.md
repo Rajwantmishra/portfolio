@@ -85,11 +85,15 @@ This gives you:
   immediately, no `wrangler deploy` needed. "Reset to file default" discards
   any admin edits and reverts to whatever is bundled in `knowledge_base.json`
   at your last deploy.
-- A **question log table** — every question asked, the answer given, and
-  when, for the last 90 days.
+- A **question log table** — every question asked, the answer given, the
+  visitor's name/email/purpose (from the chat intake gate), and when, for
+  the last 90 days.
+- A **leads table** — name + email captured from the resume-download gate
+  on the site (also reusable for any other lead-capture form via `/lead`).
 
 Raw JSON is also available directly, if you prefer curl/scripts:
 - `GET /admin/logs?key=<ADMIN_SECRET>&limit=50` — question logs
+- `GET /admin/leads?key=<ADMIN_SECRET>&limit=50` — leads (resume downloads, etc.)
 - `GET /admin/kb?key=<ADMIN_SECRET>` — current knowledge base + whether it's
   the file default or an admin-saved override
 - `POST /admin/kb?key=<ADMIN_SECRET>` — replace the knowledge base (raw JSON

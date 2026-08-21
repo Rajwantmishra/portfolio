@@ -2,12 +2,14 @@
  * Rajwant Mishra Portfolio Chatbot — Cloudflare Worker
  *
  * Endpoints:
- *   POST /chat                 { message, turnstileToken, website (honeypot, must be empty) }
- *   GET  /admin?key=ADMIN_SECRET               -> admin dashboard (logs + knowledge base editor)
- *   GET  /admin/logs?key=ADMIN_SECRET&limit=50 -> logged questions, as JSON
- *   GET  /admin/kb?key=ADMIN_SECRET            -> current knowledge base, as JSON
- *   POST /admin/kb?key=ADMIN_SECRET            -> replace the knowledge base (raw JSON body)
- *   POST /admin/kb/reset?key=ADMIN_SECRET      -> revert knowledge base to the file bundled at deploy time
+ *   POST /chat                  { message, turnstileToken, website (honeypot, must be empty) }
+ *   POST /lead                  { name, email, source }  -> log a resume-download (or similar) lead
+ *   GET  /admin?key=ADMIN_SECRET                -> admin dashboard (logs + knowledge base editor)
+ *   GET  /admin/logs?key=ADMIN_SECRET&limit=50  -> logged chat questions, as JSON
+ *   GET  /admin/leads?key=ADMIN_SECRET&limit=50 -> logged leads (e.g. resume downloads), as JSON
+ *   GET  /admin/kb?key=ADMIN_SECRET             -> current knowledge base, as JSON
+ *   POST /admin/kb?key=ADMIN_SECRET             -> replace the knowledge base (raw JSON body)
+ *   POST /admin/kb/reset?key=ADMIN_SECRET       -> revert knowledge base to the file bundled at deploy time
  *
  * Required secrets (set with `wrangler secret put <NAME>`):
  *   AZURE_OPENAI_API_KEY - your Azure OpenAI resource API key
@@ -187,6 +189,41 @@ async function handleChat(request, env) {
   return json({ reply });
 }
 
+async function handleLead(request, env) {
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: "Invalid request body." }, 400);
+  }
+
+  const { name, email, source } = body || {};
+  const cleanName = typeof name === "string" ? name.trim().slice(0, 80) : "";
+  const cleanEmail = typeof email === "string" ? email.trim().slice(0, 200) : "";
+  const cleanSource = typeof source === "string" ? source.trim().slice(0, 50) : "unknown";
+
+  if (!cleanName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+    return json({ error: "A name and valid email are required." }, 400);
+  }
+
+  const allowed = await checkRateLimit(env.CHAT_KV, `lead:${ip}`);
+  if (!allowed) {
+    return json({ error: "Too many requests." }, 429);
+  }
+
+  const ipHash = await sha256(ip + (env.ADMIN_SECRET || "salt"));
+  const leadKey = `lead:${Date.now()}:${crypto.randomUUID().slice(0, 8)}`;
+  await env.CHAT_KV.put(
+    leadKey,
+    JSON.stringify({ name: cleanName, email: cleanEmail, source: cleanSource, ipHash, ts: new Date().toISOString() }),
+    { expirationTtl: 60 * 60 * 24 * 90 }
+  );
+
+  return json({ ok: true });
+}
+
 function requireAdminKey(request, env) {
   const url = new URL(request.url);
   const key = url.searchParams.get("key");
@@ -198,6 +235,21 @@ async function handleAdminLogs(request, env) {
   const url = new URL(request.url);
   const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10), 200);
   const list = await env.CHAT_KV.list({ prefix: "log:", limit });
+  const entries = await Promise.all(
+    list.keys.map(async (k) => {
+      const val = await env.CHAT_KV.get(k.name);
+      return val ? JSON.parse(val) : null;
+    })
+  );
+  entries.sort((a, b) => (a && b ? new Date(b.ts) - new Date(a.ts) : 0));
+  return json({ count: entries.length, entries: entries.filter(Boolean) });
+}
+
+async function handleAdminLeads(request, env) {
+  if (!requireAdminKey(request, env)) return json({ error: "Unauthorized." }, 401);
+  const url = new URL(request.url);
+  const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10), 200);
+  const list = await env.CHAT_KV.list({ prefix: "lead:", limit });
   const entries = await Promise.all(
     list.keys.map(async (k) => {
       const val = await env.CHAT_KV.get(k.name);
@@ -288,6 +340,16 @@ function adminPage(key) {
   <tbody></tbody>
 </table>
 
+<h2>Leads (resume downloads, etc.)</h2>
+<div>
+  <button id="loadLeads">Refresh leads</button>
+</div>
+<div id="leadStatus"></div>
+<table id="leadTable" style="display:none">
+  <thead><tr><th>Time</th><th>Name</th><th>Email</th><th>Source</th></tr></thead>
+  <tbody></tbody>
+</table>
+
 <script>
 const KEY = ${safeKey};
 
@@ -354,9 +416,36 @@ async function loadLogs() {
   document.getElementById('logTable').style.display = data.entries.length ? '' : 'none';
 }
 
+async function loadLeads() {
+  const status = document.getElementById('leadStatus');
+  status.textContent = 'Loading...';
+  const res = await fetch('/admin/leads?key=' + encodeURIComponent(KEY) + '&limit=100');
+  const data = await res.json();
+  if (!res.ok) { status.innerHTML = '<span class="err">' + (data.error || 'Failed to load') + '</span>'; return; }
+  status.textContent = data.count + ' leads (last 90 days)';
+  const tbody = document.querySelector('#leadTable tbody');
+  tbody.innerHTML = '';
+  for (const e of data.entries) {
+    const tr = document.createElement('tr');
+    const time = document.createElement('td');
+    time.textContent = new Date(e.ts).toLocaleString();
+    const name = document.createElement('td');
+    name.textContent = e.name || '';
+    const email = document.createElement('td');
+    email.textContent = e.email || '';
+    const source = document.createElement('td');
+    source.textContent = e.source || '';
+    tr.append(time, name, email, source);
+    tbody.appendChild(tr);
+  }
+  document.getElementById('leadTable').style.display = data.entries.length ? '' : 'none';
+}
+
 document.getElementById('loadLogs').addEventListener('click', loadLogs);
+document.getElementById('loadLeads').addEventListener('click', loadLeads);
 loadKB();
 loadLogs();
+loadLeads();
 </script>
 </body>
 </html>`;
@@ -381,11 +470,17 @@ export default {
     if (url.pathname === "/chat" && request.method === "POST") {
       return handleChat(request, env);
     }
+    if (url.pathname === "/lead" && request.method === "POST") {
+      return handleLead(request, env);
+    }
     if (url.pathname === "/admin" && request.method === "GET") {
       return handleAdminPage(request, env);
     }
     if (url.pathname === "/admin/logs" && request.method === "GET") {
       return handleAdminLogs(request, env);
+    }
+    if (url.pathname === "/admin/leads" && request.method === "GET") {
+      return handleAdminLeads(request, env);
     }
     if (url.pathname === "/admin/kb" && request.method === "GET") {
       return handleGetKB(request, env);
