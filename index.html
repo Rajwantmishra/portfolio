@@ -287,6 +287,22 @@
   }
   .chat-send:disabled{opacity:0.5;cursor:not-allowed;}
   #honeypot-field{position:absolute;left:-9999px;opacity:0;height:0;width:0;}
+  .chat-gate{padding:20px;display:flex;flex-direction:column;gap:14px;flex:1;overflow-y:auto;}
+  .chat-gate-note{font-size:13.5px;color:var(--muted);line-height:1.5;}
+  .chat-gate label{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted2);letter-spacing:0.03em;margin-bottom:6px;}
+  .chat-gate input,.chat-gate textarea{
+    width:100%;box-sizing:border-box;background:#1A1E24;border:1px solid var(--border);border-radius:6px;
+    color:var(--text);padding:10px 11px;font-size:14px;font-family:var(--body);resize:none;
+  }
+  .chat-gate input:focus,.chat-gate textarea:focus{outline:1px solid var(--teal);}
+  .chat-gate textarea{height:76px;}
+  .chat-gate-start{
+    background:var(--amber);border:none;border-radius:6px;padding:11px 16px;
+    font-family:var(--mono);font-size:13px;font-weight:600;color:var(--bg);cursor:pointer;
+  }
+  .chat-gate-start:disabled{opacity:0.5;cursor:not-allowed;}
+  .chat-gate-alt{font-family:var(--mono);font-size:11px;color:var(--muted2);text-align:center;}
+  .chat-gate-alt a{color:var(--teal);}
 </style>
 </head>
 <body>
@@ -728,11 +744,23 @@
     <div>Ask about Rajwant<div class="chat-head-sub">answers grounded in his real work — not general AI chat</div></div>
     <button class="chat-close" id="chatClose">&times;</button>
   </div>
-  <div class="chat-body" id="chatBody">
-    <div class="chat-msg bot">Hi! Ask me anything about Rajwant's experience, projects, or background — I'll answer from what he's actually shared here.</div>
+  <div class="chat-gate" id="chatGate">
+    <p class="chat-gate-note">Quick intro before we start — who am I talking to, and what brings you by?</p>
+    <div>
+      <label for="gateName">YOUR NAME</label>
+      <input type="text" id="gateName" placeholder="Jane Doe" maxlength="80">
+    </div>
+    <div>
+      <label for="gatePurpose">WHAT ARE YOU HERE FOR?</label>
+      <textarea id="gatePurpose" placeholder="e.g. Hiring for a Head of AI role, exploring a partnership, curious about a project..." maxlength="300"></textarea>
+    </div>
+    <button class="chat-gate-start" id="gateStart" disabled>Start chat</button>
+    <div class="chat-gate-alt">Prefer to reach out directly? <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">Connect on LinkedIn →</a></div>
   </div>
+
+  <div class="chat-body" id="chatBody" style="display:none"></div>
   <input type="text" id="honeypot-field" name="website" tabindex="-1" autocomplete="off">
-  <div class="chat-input-row">
+  <div class="chat-input-row" id="chatInputRow" style="display:none">
     <input type="text" id="chatInput" placeholder="e.g. What did he build at Luxottica?" maxlength="800">
     <button class="chat-send" id="chatSend">Send</button>
   </div>
@@ -748,10 +776,60 @@
   const closeBtn = document.getElementById('chatClose');
   const body = document.getElementById('chatBody');
   const input = document.getElementById('chatInput');
+  const inputRow = document.getElementById('chatInputRow');
   const sendBtn = document.getElementById('chatSend');
   const honeypot = document.getElementById('honeypot-field');
+  const gate = document.getElementById('chatGate');
+  const gateName = document.getElementById('gateName');
+  const gatePurpose = document.getElementById('gatePurpose');
+  const gateStart = document.getElementById('gateStart');
 
-  fab.addEventListener('click', () => panel.classList.toggle('open'));
+  let visitor = null;
+  try {
+    const saved = sessionStorage.getItem('rm_chat_visitor');
+    if (saved) visitor = JSON.parse(saved);
+  } catch(e) {}
+
+  function openChat(){
+    if (visitor) {
+      showChatUI(visitor);
+    } else {
+      gate.style.display = 'flex';
+      body.style.display = 'none';
+      inputRow.style.display = 'none';
+    }
+  }
+
+  function showChatUI(v){
+    gate.style.display = 'none';
+    body.style.display = 'flex';
+    inputRow.style.display = 'flex';
+    if (!body.children.length) {
+      addMsg(`Hi ${v.name}! Ask me anything about Rajwant's experience, projects, or background — I'll answer from what he's actually shared here.`, 'bot');
+    }
+    input.focus();
+  }
+
+  function updateGateStart(){
+    gateStart.disabled = !(gateName.value.trim() && gatePurpose.value.trim());
+  }
+  gateName.addEventListener('input', updateGateStart);
+  gatePurpose.addEventListener('input', updateGateStart);
+
+  gateStart.addEventListener('click', () => {
+    const name = gateName.value.trim();
+    const purpose = gatePurpose.value.trim();
+    if (!name || !purpose) return;
+    visitor = { name, purpose };
+    try { sessionStorage.setItem('rm_chat_visitor', JSON.stringify(visitor)); } catch(e) {}
+    showChatUI(visitor);
+  });
+
+  fab.addEventListener('click', () => {
+    const wasOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');
+    if (!wasOpen) openChat();
+  });
   closeBtn.addEventListener('click', () => panel.classList.remove('open'));
 
   function addMsg(text, cls){
@@ -793,7 +871,13 @@
       const res = await fetch(CHATBOT_ENDPOINT + '/chat', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ message: text, turnstileToken: token, website: honeypot.value })
+        body: JSON.stringify({
+          message: text,
+          turnstileToken: token,
+          website: honeypot.value,
+          visitorName: visitor ? visitor.name : undefined,
+          visitorPurpose: visitor ? visitor.purpose : undefined,
+        })
       });
       const data = await res.json();
       thinkingEl.remove();
