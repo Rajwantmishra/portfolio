@@ -177,6 +177,25 @@
   .research-title{font-family:var(--display);font-size:16px;font-weight:600;}
   .research-desc{font-size:14px;color:var(--muted);max-width:66ch;}
 
+  /* WRITING */
+  .article-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media(max-width:800px){.article-grid{grid-template-columns:1fr;}}
+  .article-card{
+    display:flex;gap:14px;background:var(--panel);border:1px solid var(--border);
+    border-radius:6px;padding:20px 22px;text-decoration:none;color:inherit;
+    transition:border-color .2s,background .2s;
+  }
+  .article-card:hover{border-color:var(--border-strong);background:var(--panel-hover);}
+  .article-icon{
+    flex-shrink:0;width:38px;height:38px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:-0.02em;
+    background:rgba(79,209,197,0.12);color:var(--teal);
+  }
+  .article-title{font-family:var(--display);font-size:15px;font-weight:600;line-height:1.35;}
+  .article-desc{font-size:13px;color:var(--muted);margin-top:8px;}
+  .article-platforms{font-family:var(--mono);font-size:10px;color:var(--muted2);margin-top:12px;letter-spacing:0.03em;}
+
   /* SKILLS */
   .pills{display:flex;flex-wrap:wrap;gap:10px;}
   .pill{
@@ -280,6 +299,7 @@
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#research">Research</a>
+      <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
       <a class="nav-cta" href="Rajwant_Mishra_Resume.docx" download>Resume ↓</a>
     </div>
@@ -526,6 +546,110 @@
   </div>
 </section>
 
+<section id="writing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Writing</div>
+      <h2>Articles &amp; essays</h2>
+      <p class="lede">On AI governance, security, and engineering &mdash; published on LinkedIn and Medium.</p>
+    </div>
+
+    <div class="article-grid" id="articleGrid">
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/ai-governance-isnt-its-leadership-rajwant-mishra-2yhbc" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">AI Governance Isn't About AI. It's About Leadership</div>
+          <div class="article-desc">Argues AI governance succeeds or fails on leadership, not on technology or compliance checklists.</div>
+          <div class="article-platforms">LINKEDIN</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/hugging-face-security-incident-why-ai-infrastructure-becoming-mishra-odprc" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">The Hugging Face Security Incident: Why AI Infrastructure Is Becoming a New Attack Surface</div>
+          <div class="article-desc">External AI models and datasets should be treated like untrusted software &mdash; what the incident signals about AI infrastructure as an emerging attack surface.</div>
+          <div class="article-platforms">LINKEDIN &middot; MEDIUM</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/give-your-agent-long-term-memory-without-blowing-context-mishra-bsusc" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">Give Your Agent a Long-Term Memory (Without Blowing the Context Window)</div>
+          <div class="article-desc">Context engineering: a cross-session memory store for coding agents that cuts token usage on repeated tasks.</div>
+          <div class="article-platforms">LINKEDIN</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/future-software-engineering-more-code-its-rajwant-mishra-cz6cc" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">The Future of Software Engineering Is Not More Code. It's More Verification</div>
+          <div class="article-desc">How agentic AI is shifting software engineering from creation toward validation, governance, and trust.</div>
+          <div class="article-platforms">LINKEDIN &middot; MEDIUM</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/shift-from-chatbots-ai-workers-redefining-security-rajwant-mishra-lp1ye" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">The Shift from Chatbots to AI Workers Is Redefining AI Security</div>
+          <div class="article-desc">The AI security conversation must evolve beyond content/prompt risk as AI moves from chatbots to autonomous workers.</div>
+          <div class="article-platforms">LINKEDIN</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/ai-chaos-confidence-where-we-get-wrong-future-rajwant-mishra-fd2ze" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">AI, Chaos and Confidence: Where We Get Wrong About the Future</div>
+          <div class="article-desc">A grounded take cutting through the noisy, polarized narratives around AI's future.</div>
+          <div class="article-platforms">LINKEDIN</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/impact-ai-companions-loneliness-across-age-groups-5-year-mishra-ei2ze" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">Impact of AI Companions on Loneliness Across Age Groups (5-Year Projection)</div>
+          <div class="article-desc">A reflection and projection on how AI companions may affect loneliness across different age groups over the next five years.</div>
+          <div class="article-platforms">LINKEDIN</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://www.linkedin.com/pulse/data-organization-ai-rajwant-mishra-ep4he" target="_blank" rel="noopener">
+        <div class="article-icon">in</div>
+        <div>
+          <div class="article-title">Data, Organization, and AI</div>
+          <div class="article-desc">On the leadership pressure organizations face as AI adoption accelerates, and how data and org structure need to adapt.</div>
+          <div class="article-platforms">LINKEDIN &middot; MEDIUM</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://medium.com/@rajwantmishra/build-a-local-wi-fi-file-drop-resumable-iphone-friendly-windows-safe-with-flask-db78831d41a9" target="_blank" rel="noopener">
+        <div class="article-icon">M</div>
+        <div>
+          <div class="article-title">Build a Local Wi-Fi File Drop (Resumable, iPhone-Friendly, Windows-Safe) with Flask</div>
+          <div class="article-desc">A hands-on build: turning a Windows PC into a local Wi-Fi drop box for phone/laptop file transfer, supporting large resumable files.</div>
+          <div class="article-platforms">MEDIUM</div>
+        </div>
+      </a>
+
+      <a class="article-card" href="https://medium.com/@rajwantmishra/cracking-the-code-reconciling-non-sap-and-sap-orders-with-smarter-logic-8e71cf15e031" target="_blank" rel="noopener">
+        <div class="article-icon">M</div>
+        <div>
+          <div class="article-title">Cracking the Code: Reconciling Non-SAP and SAP Orders with Smarter Logic</div>
+          <div class="article-desc">A practical reconciliation solution showing which orders are processed, waiting, or delayed in real time between non-SAP and SAP order systems.</div>
+          <div class="article-platforms">MEDIUM</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap">
     <div class="section-head">
@@ -570,6 +694,7 @@
         <div class="contact-links">
           <a href="mailto:rajwantmishra@gmail.com">rajwantmishra@gmail.com</a>
           <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">linkedin.com/in/rajwant</a>
+          <a href="https://medium.com/@rajwantmishra" target="_blank" rel="noopener">medium.com/@rajwantmishra</a>
           <a href="Rajwant_Mishra_Resume.docx" download>Download resume ↓</a>
         </div>
       </div>
