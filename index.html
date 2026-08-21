@@ -247,13 +247,14 @@
   .chat-fab svg{width:24px;height:24px;}
   .chat-panel{
     position:fixed;bottom:92px;right:24px;z-index:200;
-    width:min(36vw,440px);max-width:calc(100vw - 40px);
-    height:min(72vh,820px);max-height:calc(100vh - 140px);
+    width:min(30vw,620px);max-width:calc(100vw - 40px);
+    height:min(78vh,920px);max-height:calc(100vh - 140px);
     background:var(--panel);border:1px solid var(--border-strong);
     border-radius:10px;display:none;flex-direction:column;
     box-shadow:0 12px 40px rgba(0,0,0,0.5);
     overflow:hidden;
   }
+  @media (max-width:1400px){ .chat-panel{ width:min(42vw,620px); } }
   .chat-panel.open{display:flex;}
   @media (max-width:640px){
     .chat-panel{
@@ -271,10 +272,17 @@
   .chat-head-sub{font-family:var(--mono);font-size:11px;color:var(--muted2);font-weight:400;margin-top:2px;}
   .chat-close{cursor:pointer;color:var(--muted);font-size:20px;background:none;border:none;}
   .chat-body{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:12px;}
-  .chat-msg{font-size:15px;line-height:1.6;max-width:82%;padding:11px 14px;border-radius:8px;}
+  .chat-msg{font-size:15px;line-height:1.6;max-width:90%;padding:11px 14px;border-radius:8px;}
   .chat-msg.bot{background:#1E2329;color:var(--text);align-self:flex-start;}
-  .chat-msg.user{background:var(--amber);color:var(--bg);align-self:flex-end;}
+  .chat-msg.user{background:var(--amber);color:var(--bg);align-self:flex-end;white-space:pre-wrap;}
   .chat-msg.err{background:#3A1F1F;color:#F2A0A0;align-self:flex-start;}
+  .chat-msg.bot p{margin:0 0 8px;}
+  .chat-msg.bot p:last-child{margin-bottom:0;}
+  .chat-msg.bot ul{margin:4px 0 8px;padding-left:20px;}
+  .chat-msg.bot ul:last-child{margin-bottom:0;}
+  .chat-msg.bot li{margin-bottom:4px;}
+  .chat-msg.bot strong{font-weight:700;}
+  .chat-msg.bot a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;}
   .chat-input-row{display:flex;gap:8px;padding:14px;border-top:1px solid var(--border);}
   .chat-input-row input{
     flex:1;background:#1A1E24;border:1px solid var(--border);border-radius:6px;
@@ -751,6 +759,10 @@
       <input type="text" id="gateName" placeholder="Jane Doe" maxlength="80">
     </div>
     <div>
+      <label for="gateEmail">EMAIL (OPTIONAL, IN CASE RAJWANT WANTS TO FOLLOW UP)</label>
+      <input type="email" id="gateEmail" placeholder="jane@company.com" maxlength="200">
+    </div>
+    <div>
       <label for="gatePurpose">WHAT ARE YOU HERE FOR?</label>
       <textarea id="gatePurpose" placeholder="e.g. Hiring for a Head of AI role, exploring a partnership, curious about a project..." maxlength="300"></textarea>
     </div>
@@ -781,6 +793,7 @@
   const honeypot = document.getElementById('honeypot-field');
   const gate = document.getElementById('chatGate');
   const gateName = document.getElementById('gateName');
+  const gateEmail = document.getElementById('gateEmail');
   const gatePurpose = document.getElementById('gatePurpose');
   const gateStart = document.getElementById('gateStart');
 
@@ -819,8 +832,9 @@
   gateStart.addEventListener('click', () => {
     const name = gateName.value.trim();
     const purpose = gatePurpose.value.trim();
+    const email = gateEmail.value.trim();
     if (!name || !purpose) return;
-    visitor = { name, purpose };
+    visitor = { name, purpose, email };
     try { sessionStorage.setItem('rm_chat_visitor', JSON.stringify(visitor)); } catch(e) {}
     showChatUI(visitor);
   });
@@ -832,10 +846,38 @@
   });
   closeBtn.addEventListener('click', () => panel.classList.remove('open'));
 
+  function escapeHtml(str){
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderMarkdown(text){
+    let html = escapeHtml(text);
+    html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    const lines = html.split('\n');
+    let out = [], inList = false;
+    for (const line of lines) {
+      const bullet = line.match(/^\s*[-*]\s+(.*)/);
+      if (bullet) {
+        if (!inList) { out.push('<ul>'); inList = true; }
+        out.push('<li>' + bullet[1] + '</li>');
+      } else {
+        if (inList) { out.push('</ul>'); inList = false; }
+        if (line.trim()) out.push('<p>' + line + '</p>');
+      }
+    }
+    if (inList) out.push('</ul>');
+    return out.join('');
+  }
+
   function addMsg(text, cls){
     const div = document.createElement('div');
     div.className = 'chat-msg ' + cls;
-    div.textContent = text;
+    if (cls === 'bot') {
+      div.innerHTML = renderMarkdown(text);
+    } else {
+      div.textContent = text;
+    }
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
   }
@@ -877,6 +919,7 @@
           website: honeypot.value,
           visitorName: visitor ? visitor.name : undefined,
           visitorPurpose: visitor ? visitor.purpose : undefined,
+          visitorEmail: visitor ? visitor.email : undefined,
         })
       });
       const data = await res.json();
