@@ -38,6 +38,18 @@
   @media (max-width:620px){
     .flow-arrow{transform:rotate(90deg);justify-content:center;padding:2px 0}
   }
+  #mobileTabBar{display:none}
+  .tabItem.active{color:#1A1917 !important;font-weight:600}
+  .tabItem.active .tabIcon{color:oklch(0.48 0.09 250)}
+  @media (max-width:760px){
+    #mobileTabBar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:55;background:#FAF9F5;border-top:1px solid #E4E0D7;box-shadow:0 -2px 10px rgba(26,25,23,0.06);padding-bottom:env(safe-area-inset-bottom)}
+    body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}
+    #chatFab{bottom:calc(58px + env(safe-area-inset-bottom) + 14px) !important}
+  }
+  @media (max-width:640px){
+    #chatPanel{padding-bottom:0 !important}
+  }
+  .chip{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#4A4741;border:1px solid #DDD8CB;background:#FDFCF9;padding:7px 13px;border-radius:20px;white-space:nowrap}
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -67,22 +79,22 @@
       <p style="font-size:clamp(17px,1.5vw,20px);font-weight:600;color:oklch(0.48 0.09 250);margin-top:12px">Enterprise AI, Data &amp; Transformation Leader</p>
       <p style="font-size:clamp(16px,1.35vw,18.5px);color:#3D3A35;max-width:54ch;margin-top:14px;text-wrap:pretty">I lead enterprise AI and data work end to end: which bets get funded, the operating model and platforms underneath them, and whether the business actually adopts what gets built.</p>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;margin-top:22px">
-        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
-          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">15+</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Years in data &amp; AI</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:22px">
+        <div style="background:#FAF9F5;padding:14px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,4vw,32px);line-height:1;font-weight:500">15+</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#8A857D;margin-top:6px">Years in data &amp; AI</div>
         </div>
-        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
-          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">4</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Countries, one team</div>
+        <div style="background:#FAF9F5;padding:14px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,4vw,32px);line-height:1;font-weight:500">4</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#8A857D;margin-top:6px">Countries, one team</div>
         </div>
-        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
-          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">10+</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Concurrent AI initiatives</div>
+        <div style="background:#FAF9F5;padding:14px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,4vw,32px);line-height:1;font-weight:500">10+</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#8A857D;margin-top:6px">Concurrent AI initiatives</div>
         </div>
-        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
-          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">7-figure</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Annual budget owned</div>
+        <div style="background:#FAF9F5;padding:14px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,4vw,32px);line-height:1;font-weight:500">7-figure</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#8A857D;margin-top:6px">Annual budget owned</div>
         </div>
       </div>
 
@@ -120,28 +132,53 @@
           <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">01</span>
           <h3 style="font-size:19px;font-weight:600">Choosing what to fund</h3>
         </div>
-        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">Most AI proposals look good on a slide. I spend more time on the questions that decide whether they survive contact with the organization. Is the data actually there. Who owns the process the day after launch. What does it cost to run, not to build. Would buying be cheaper. Saying no early, and saying why, is a large part of the job.</p>
+        <p style="font-size:15.5px;color:#2A2825;font-weight:500;margin-top:10px">Good AI investment starts with better questions.</p>
+        <ul style="list-style:none;padding:0;margin-top:10px;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Is the data actually there?</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Who owns the process after launch?</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>What will it cost to run, not build?</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Would buying be cheaper?</li>
+        </ul>
+        <p style="font-size:14px;color:#6E6A63;margin-top:10px">Saying no early, and saying why, is a large part of the job.</p>
       </div>
       <div>
         <div style="display:flex;align-items:baseline;gap:10px">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">02</span>
           <h3 style="font-size:19px;font-weight:600">Turning a decision into a capability</h3>
         </div>
-        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">A funded idea is not a capability. I set the sequence, get the architecture and team structure in place before the pilot rather than after it, and treat governance as part of delivery instead of a review at the end. Platform work matters here. When adopting AI means one integration instead of a bespoke build, teams stop waiting for permission.</p>
+        <p style="font-size:15.5px;color:#2A2825;font-weight:500;margin-top:10px">A funded idea is not a capability yet.</p>
+        <ul style="list-style:none;padding:0;margin-top:10px;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Architecture and team in place before the pilot</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Governance built into delivery, not bolted on after</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Shared platform instead of a bespoke build each time</li>
+        </ul>
+        <p style="font-size:14px;color:#6E6A63;margin-top:10px">One integration, not a project — teams stop waiting for permission.</p>
       </div>
       <div>
         <div style="display:flex;align-items:baseline;gap:10px">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">03</span>
           <h3 style="font-size:19px;font-weight:600">Building the team</h3>
         </div>
-        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">I lead a data science and data engineering group of 16 to 30 people across four countries. Distributed teams do not run on process documents, they run on clear ownership. I give engineers and scientists the whole problem, business context included, and I would rather grow a lead internally than hire around one. With people from India to Milan to New York, most decisions get made without me in the room. That only works if everyone knows what they are accountable for.</p>
+        <p style="font-size:15.5px;color:#2A2825;font-weight:500;margin-top:10px">Distributed teams run on clear ownership, not process documents.</p>
+        <ul style="list-style:none;padding:0;margin-top:10px;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>16–30 people, 4 countries</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Whole problems handed over, business context included</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Leads grown internally, not hired around</li>
+        </ul>
+        <p style="font-size:14px;color:#6E6A63;margin-top:10px">Most decisions get made without me in the room — that only works if everyone knows what they own.</p>
       </div>
       <div>
         <div style="display:flex;align-items:baseline;gap:10px">
           <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">04</span>
           <h3 style="font-size:19px;font-weight:600">Measuring what matters</h3>
         </div>
-        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">I have not found a way to defend an AI program on enthusiasm. Cost removed, hours returned, accuracy in production, how many people actually use it. When a system only saves money in theory, that shows up in the run rate eventually, so I would rather find out in month two than month twenty.</p>
+        <p style="font-size:15.5px;color:#2A2825;font-weight:500;margin-top:10px">No AI program gets defended on enthusiasm.</p>
+        <ul style="list-style:none;padding:0;margin-top:10px;display:flex;flex-direction:column;gap:6px">
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Cost removed, hours returned</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>Accuracy in production, not in a demo</li>
+          <li style="font-size:14.5px;color:#4A4741;padding-left:14px;position:relative"><span style="position:absolute;left:0;color:#C9C3B4">–</span>How many people actually use it</li>
+        </ul>
+        <p style="font-size:14px;color:#6E6A63;margin-top:10px">Better to find out in month two than month twenty.</p>
       </div>
     </div>
 
@@ -201,7 +238,8 @@
           </div>
           <div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
-            <p style="font-size:15px;color:#4A4741">Vendors replaced by an internal NLP and LLM pipeline. Multimillion-dollar annual savings, and turnaround now set by us rather than a contract.</p>
+            <p style="font-size:17px;font-weight:600;color:oklch(0.42 0.09 250)">Multimillion-dollar annual savings</p>
+            <p style="font-size:14px;color:#4A4741;margin-top:5px">Vendors replaced in-house; turnaround now set by us, not a contract.</p>
           </div>
         </div>
         <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>Recurring vendor spend became an owned capability, which changed what the organization believed it could build.</p>
@@ -230,7 +268,8 @@
           </div>
           <div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
-            <p style="font-size:15px;color:#4A4741">Roughly 90 percent accuracy in production, with annual savings around ten times the cost of running it.</p>
+            <p style="font-size:17px;font-weight:600;color:oklch(0.42 0.09 250)">~90% production accuracy</p>
+            <p style="font-size:14px;color:#4A4741;margin-top:5px">Annual savings around 10x the cost of running it.</p>
           </div>
         </div>
         <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>It settled an argument. Data residency is not a reason to skip automation, it is a design constraint.</p>
@@ -258,7 +297,8 @@
           </div>
           <div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
-            <p style="font-size:15px;color:#4A4741">A team now exposes one interface and inherits the rest. Audit and governance are centralized without adding a gate in front of delivery.</p>
+            <p style="font-size:17px;font-weight:600;color:oklch(0.42 0.09 250)">One interface, whole stack inherited</p>
+            <p style="font-size:14px;color:#4A4741;margin-top:5px">Audit and governance centralized, no gate added in front of delivery.</p>
           </div>
         </div>
         <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>It changed the unit of AI adoption from a project to a decision, which is the difference between a handful of pilots and a portfolio.</p>
@@ -286,7 +326,8 @@
           </div>
           <div>
             <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
-            <p style="font-size:15px;color:#4A4741">One service pattern, two fully separate infrastructures, deployed internally and across group-facing websites.</p>
+            <p style="font-size:17px;font-weight:600;color:oklch(0.42 0.09 250)">Two fully separate infrastructures</p>
+            <p style="font-size:14px;color:#4A4741;margin-top:5px">One service pattern, deployed internally and across group-facing sites.</p>
           </div>
         </div>
         <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>Compliance designed in at the start costs a fraction of compliance added after the fact, and it is the only version that scales.</p>
@@ -419,15 +460,14 @@
       </div>
       <div style="flex:1 1 280px;min-width:0">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;padding-bottom:12px;border-bottom:1px solid #E4E0D7">Topics that come up most</div>
-        <ul style="list-style:none;padding:0;margin:0">
-          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Which AI investments are worth making, and which are not</li>
-          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Build versus buy, and when that answer changes</li>
-          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Why pilots stall on the way to production</li>
-          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Operating models for AI inside a large organization</li>
-          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">AI in regulated environments</li>
-          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Scaling and structuring distributed technical teams</li>
-          <li style="font-size:15.5px;color:#2A2825;padding:13px 0">Moving from technical expert to technical leader</li>
-        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:16px">
+          <span class="chip">AI investment</span>
+          <span class="chip">Build vs buy</span>
+          <span class="chip">Pilot → production</span>
+          <span class="chip">AI operating models</span>
+          <span class="chip">Regulated AI</span>
+          <span class="chip">Technical leadership</span>
+        </div>
       </div>
     </div>
   </div>
@@ -501,22 +541,28 @@
         <span style="flex:1 1 300px;font-size:16px;font-weight:500">The shift from chatbots to AI workers is redefining AI security</span>
         <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
       </a>
-      <a href="https://www.linkedin.com/pulse/data-organization-ai-rajwant-mishra-ep4he" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
-        <span style="flex:1 1 300px;font-size:16px;font-weight:500">Data, organization, and AI</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn · Medium ↗</span>
-      </a>
-      <a href="https://www.linkedin.com/pulse/give-your-agent-long-term-memory-without-blowing-context-mishra-bsusc" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
-        <span style="flex:1 1 300px;font-size:16px;font-weight:500">Give your agent a long-term memory (without blowing the context window)</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
-      </a>
-      <a href="https://www.linkedin.com/pulse/ai-chaos-confidence-where-we-get-wrong-future-rajwant-mishra-fd2ze" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
-        <span style="flex:1 1 300px;font-size:16px;font-weight:500">AI, chaos and confidence: where we get the future wrong</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
-      </a>
-      <a href="https://www.linkedin.com/pulse/impact-ai-companions-loneliness-across-age-groups-5-year-mishra-ei2ze" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
-        <span style="flex:1 1 300px;font-size:16px;font-weight:500">Impact of AI companions on loneliness across age groups</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
-      </a>
+      <div id="moreWriting" style="display:none">
+        <a href="https://www.linkedin.com/pulse/data-organization-ai-rajwant-mishra-ep4he" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+          <span style="flex:1 1 300px;font-size:16px;font-weight:500">Data, organization, and AI</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn · Medium ↗</span>
+        </a>
+        <a href="https://www.linkedin.com/pulse/give-your-agent-long-term-memory-without-blowing-context-mishra-bsusc" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+          <span style="flex:1 1 300px;font-size:16px;font-weight:500">Give your agent a long-term memory (without blowing the context window)</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+        </a>
+        <a href="https://www.linkedin.com/pulse/ai-chaos-confidence-where-we-get-wrong-future-rajwant-mishra-fd2ze" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+          <span style="flex:1 1 300px;font-size:16px;font-weight:500">AI, chaos and confidence: where we get the future wrong</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+        </a>
+        <a href="https://www.linkedin.com/pulse/impact-ai-companions-loneliness-across-age-groups-5-year-mishra-ei2ze" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+          <span style="flex:1 1 300px;font-size:16px;font-weight:500">Impact of AI companions on loneliness across age groups</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+        </a>
+      </div>
+      <button type="button" id="toggleWriting" style="display:flex;width:100%;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#57534C;background:none;border-left:none;border-right:none;border-top:none;text-align:left;cursor:pointer;font:inherit" class="hv5">
+        <span style="flex:1 1 300px;font-size:15px">View all writing</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">4 more ↓</span>
+      </button>
       <a href="https://medium.com/@rajwantmishra" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;color:#57534C" class="hv5">
         <span style="flex:1 1 300px;font-size:15px">Plus hands-on engineering write-ups on Medium</span>
         <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">All writing ↗</span>
@@ -542,6 +588,27 @@
     <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-top:clamp(36px,4vw,56px);padding-top:20px;border-top:1px solid #DDD8CB">Rajwant Mishra · New York</p>
   </div>
 </footer>
+
+<nav aria-label="Section quick links" id="mobileTabBar">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);height:58px;max-width:520px;margin:0 auto">
+    <a href="#leadership" class="tabItem" data-target="leadership" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#8A857D;text-decoration:none">
+      <span class="tabIcon" style="display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18M5 4.5h11l-2 3.25L16 11H5"/></svg></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.02em">Leader</span>
+    </a>
+    <a href="#impact" class="tabItem" data-target="impact" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#8A857D;text-decoration:none">
+      <span class="tabIcon" style="display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-8M12 20V6M20 20v-5"/></svg></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.02em">Impact</span>
+    </a>
+    <a href="#technical" class="tabItem" data-target="technical" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#8A857D;text-decoration:none">
+      <span class="tabIcon" style="display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.02em">Technical</span>
+    </a>
+    <a href="#connect" class="tabItem" data-target="connect" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#8A857D;text-decoration:none">
+      <span class="tabIcon" style="display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v13H4z"/><path d="M4 6.5l8 6.5 8-6.5"/></svg></span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.02em">Connect</span>
+    </a>
+  </div>
+</nav>
 
 <button type="button" id="chatFab" aria-expanded="false" aria-controls="chatPanel" style="position:fixed;bottom:22px;right:22px;z-index:60;height:44px;padding:0 18px;border-radius:22px;border:1px solid #C9C3B4;background:#FAF9F5;color:#57534C;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;box-shadow:0 4px 14px rgba(26,25,23,0.10)" class="hv2">Explore my work</button>
 
@@ -738,6 +805,41 @@ var CHAT_ENDPOINT = "https://rm-portfolio-chatbot.rajwantmishra.workers.dev";
         bubble("That request did not go through. LinkedIn is a reliable fallback.");
       })
       .finally(function () { sendBtn.disabled = false; });
+  });
+})();
+
+(function () {
+  var tabBar = document.getElementById('mobileTabBar');
+  if (!tabBar) return;
+  var items = tabBar.querySelectorAll('.tabItem');
+  var sections = ['leadership', 'impact', 'technical', 'connect']
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  function setActive(id) {
+    items.forEach(function (a) {
+      a.classList.toggle('active', a.dataset.target === id);
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+})();
+
+(function () {
+  var btn = document.getElementById('toggleWriting');
+  var more = document.getElementById('moreWriting');
+  if (!btn || !more) return;
+  var open = false;
+  btn.addEventListener('click', function () {
+    open = !open;
+    more.style.display = open ? 'block' : 'none';
+    btn.querySelector('span:first-child').textContent = open ? 'Show fewer' : 'View all writing';
+    btn.querySelector('span:last-child').textContent = open ? '↑' : '4 more ↓';
   });
 })();
 </script>
