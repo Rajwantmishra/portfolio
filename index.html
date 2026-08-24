@@ -1,1110 +1,794 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rajwant Mishra — AI & Data Science Leader</title>
-<meta name="description" content="Rajwant Mishra — Enterprise AI transformation, healthcare AI, and platform leadership.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Libre+Franklin:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Rajwant Mishra — Enterprise AI, Data & Transformation Leader</title>
+<meta name="description" content="Rajwant Mishra leads enterprise AI and data work from investment decisions and operating models through platforms, adoption, and measured outcomes.">
 <style>
-  :root{
-    --bg:#0E1114;
-    --panel:#161A1F;
-    --panel-hover:#1C2129;
-    --border:rgba(255,255,255,0.08);
-    --border-strong:rgba(255,255,255,0.16);
-    --text:#ECE9E2;
-    --muted:#8C929B;
-    --muted2:#5F6570;
-    --amber:#F2A93B;
-    --teal:#4FD1C5;
-    --display:'Space Grotesk',sans-serif;
-    --body:'Inter',sans-serif;
-    --mono:'IBM Plex Mono',monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--body);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
-  @media(max-width:640px){.wrap{padding:0 20px;}}
-
-  /* NAV */
-  nav{
-    position:sticky;top:0;z-index:100;
-    background:rgba(14,17,20,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
-  }
-  .nav-inner{
-    max-width:1120px;margin:0 auto;padding:18px 32px;
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .nav-logo{font-family:var(--mono);font-size:14px;letter-spacing:0.05em;color:var(--text);}
-  .nav-logo span{color:var(--amber);}
-  .nav-links{display:flex;gap:28px;align-items:center;}
-  .nav-links a{font-size:14px;color:var(--muted);transition:color .2s;}
-  .nav-links a:hover{color:var(--text);}
-  .nav-cta{
-    font-family:var(--mono);font-size:13px;color:var(--bg)!important;
-    background:var(--amber);padding:9px 16px;border-radius:3px;font-weight:600;
-    transition:opacity .2s;
-  }
-  .nav-cta:hover{opacity:0.85;}
-  @media(max-width:720px){.nav-links a:not(.nav-cta){display:none;}}
-
-  /* HERO */
-  .hero{padding:88px 0 64px;}
-  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
-  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
-  .eyebrow{
-    font-family:var(--mono);font-size:13px;color:var(--teal);
-    letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;
-    display:flex;align-items:center;gap:8px;
-  }
-  .eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);}
-  h1{
-    font-family:var(--display);font-size:44px;line-height:1.12;font-weight:600;
-    letter-spacing:-0.01em;margin-bottom:22px;
-  }
-  h1 em{font-style:normal;color:var(--amber);}
-  @media(max-width:640px){h1{font-size:32px;}}
-  .hero-sub{font-size:17px;color:var(--muted);max-width:52ch;margin-bottom:32px;}
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
-  .btn{
-    font-family:var(--mono);font-size:13px;padding:12px 20px;border-radius:3px;
-    display:inline-flex;align-items:center;gap:8px;transition:all .2s;
-  }
-  .btn-primary{background:var(--amber);color:var(--bg);font-weight:600;}
-  .btn-primary:hover{opacity:0.85;}
-  .btn-secondary{border:1px solid var(--border-strong);color:var(--text);}
-  .btn-secondary:hover{background:var(--panel-hover);}
-
-  /* DIAGRAM */
-  .diagram-wrap{position:relative;}
-  .diagram-caption{
-    font-family:var(--mono);font-size:11px;color:var(--muted2);
-    text-align:center;margin-top:14px;letter-spacing:0.03em;
-  }
-  svg{width:100%;height:auto;overflow:visible;}
-  .node-box{fill:var(--panel);stroke:var(--border-strong);stroke-width:1;}
-  .node-hub{fill:#1A1E24;stroke:var(--amber);stroke-width:1.5;}
-  .node-label{font-family:var(--mono);font-size:10.5px;fill:var(--muted);}
-  .node-label-hub{font-family:var(--display);font-size:13px;fill:var(--text);font-weight:600;}
-  .flow-line{
-    fill:none;stroke:var(--border-strong);stroke-width:1.2;
-    stroke-dasharray:4 300;
-    animation:flow 3.5s linear infinite;
-  }
-  .flow-line.out{stroke:rgba(79,209,197,0.5);}
-  @keyframes flow{to{stroke-dashoffset:-304;}}
-  .pulse{animation:pulse 2.6s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.55;}}
-
-  /* METRICS STRIP */
-  .metrics{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 0;}
-  .metrics-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
-  @media(max-width:900px){.metrics-grid{grid-template-columns:repeat(2,1fr);}}
-  .metric{text-align:left;}
-  .metric-num{font-family:var(--display);font-size:26px;font-weight:600;color:var(--amber);}
-  .metric-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:0.02em;}
-
-  /* SECTIONS */
-  section{padding:80px 0;}
-  .section-head{margin-bottom:40px;}
-  .section-eyebrow{
-    font-family:var(--mono);font-size:12px;color:var(--muted2);
-    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;
-  }
-  h2{font-family:var(--display);font-size:28px;font-weight:600;}
-  .lede{font-size:16px;color:var(--muted);max-width:68ch;margin-top:14px;}
-
-  /* ABOUT */
-  .about-body{font-size:16.5px;color:#C7CAD1;max-width:74ch;}
-  .about-body p{margin-bottom:18px;}
-
-  /* TIMELINE */
-  .tl-item{
-    display:grid;grid-template-columns:140px 1fr;gap:24px;
-    padding:22px 0;border-top:1px solid var(--border);
-  }
-  .tl-item:last-child{border-bottom:1px solid var(--border);}
-  @media(max-width:640px){.tl-item{grid-template-columns:1fr;gap:6px;}}
-  .tl-date{font-family:var(--mono);font-size:12.5px;color:var(--muted2);padding-top:2px;}
-  .tl-role{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:4px;}
-  .tl-org{font-size:13.5px;color:var(--teal);margin-bottom:10px;}
-  .tl-desc{font-size:14.5px;color:var(--muted);max-width:62ch;}
-
-  /* PROJECTS */
-  .proj-note{font-size:14.5px;color:var(--muted);max-width:70ch;margin-bottom:32px;padding:14px 18px;background:var(--panel);border-left:2px solid var(--amber);border-radius:0 4px 4px 0;}
-  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-  @media(max-width:800px){.proj-grid{grid-template-columns:1fr;}}
-  .proj-card{
-    background:var(--panel);border:1px solid var(--border);border-radius:6px;
-    padding:22px 24px;cursor:pointer;transition:border-color .2s,background .2s;
-  }
-  .proj-card:hover{border-color:var(--border-strong);background:var(--panel-hover);}
-  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
-  .proj-title{font-family:var(--display);font-size:16.5px;font-weight:600;}
-  .proj-tag{
-    font-family:var(--mono);font-size:10px;color:var(--teal);
-    border:1px solid rgba(79,209,197,0.3);padding:3px 8px;border-radius:20px;
-    white-space:nowrap;letter-spacing:0.03em;
-  }
-  .proj-summary{font-size:13.5px;color:var(--muted);margin-top:10px;}
-  .proj-detail{
-    max-height:0;overflow:hidden;transition:max-height .35s ease,margin-top .35s ease;
-    font-size:13.5px;color:#B7BAC2;
-  }
-  .proj-card.open .proj-detail{max-height:400px;margin-top:14px;}
-  .proj-detail ul{padding-left:18px;margin-top:6px;}
-  .proj-detail li{margin-bottom:6px;}
-  .proj-toggle{font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:12px;}
-
-  /* ADVISORY */
-  .advisory-list{display:flex;flex-direction:column;margin-top:28px;}
-  .advisory-row{
-    padding:24px 0;border-top:1px solid var(--border);
-    display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:start;
-  }
-  .advisory-row:last-child{border-bottom:1px solid var(--border);}
-  @media(max-width:800px){.advisory-row{grid-template-columns:1fr;gap:8px;}}
-  .advisory-hook{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.35;}
-  .advisory-proof{font-size:14.5px;color:var(--muted);line-height:1.6;max-width:56ch;}
-  .advisory-cta{
-    margin-top:32px;padding:20px 24px;background:var(--panel);
-    border-left:2px solid var(--amber);border-radius:0 4px 4px 0;
-    font-size:14.5px;color:var(--muted);
-  }
-  .advisory-cta a{font-family:var(--mono);font-size:13.5px;color:var(--teal);}
-  .advisory-cta a:hover{text-decoration:underline;}
-
-  /* RESEARCH */
-  .research-item{
-    display:grid;grid-template-columns:1fr;gap:6px;
-    padding:20px 0;border-top:1px solid var(--border);
-  }
-  .research-item:last-child{border-bottom:1px solid var(--border);}
-  .research-title{font-family:var(--display);font-size:16px;font-weight:600;}
-  .research-desc{font-size:14px;color:var(--muted);max-width:66ch;}
-
-  /* WRITING */
-  .article-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-  @media(max-width:800px){.article-grid{grid-template-columns:1fr;}}
-  .article-card{
-    display:flex;gap:14px;background:var(--panel);border:1px solid var(--border);
-    border-radius:6px;padding:20px 22px;text-decoration:none;color:inherit;
-    transition:border-color .2s,background .2s;
-  }
-  .article-card:hover{border-color:var(--border-strong);background:var(--panel-hover);}
-  .article-icon{
-    flex-shrink:0;width:38px;height:38px;border-radius:8px;
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:-0.02em;
-    background:rgba(79,209,197,0.12);color:var(--teal);
-  }
-  .article-title{font-family:var(--display);font-size:15px;font-weight:600;line-height:1.35;}
-  .article-desc{font-size:13px;color:var(--muted);margin-top:8px;}
-  .article-platforms{font-family:var(--mono);font-size:10px;color:var(--muted2);margin-top:12px;letter-spacing:0.03em;}
-
-  /* SKILLS */
-  .pills{display:flex;flex-wrap:wrap;gap:10px;}
-  .pill{
-    font-family:var(--mono);font-size:12.5px;color:var(--muted);
-    border:1px solid var(--border);padding:7px 14px;border-radius:20px;
-  }
-
-  /* EDU */
-  .edu-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;}
-  .edu-degree{font-family:var(--display);font-size:16px;font-weight:600;}
-  .edu-school{font-size:14px;color:var(--muted);}
-
-  /* CONTACT / FOOTER */
-  footer{border-top:1px solid var(--border);padding:64px 0 40px;}
-  .contact-grid{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;}
-  @media(max-width:600px){.contact-grid{grid-template-columns:1fr;text-align:center;justify-items:center;}}
-  .avatar{
-    width:88px;height:88px;border-radius:50%;
-    background:linear-gradient(135deg,#1C2129,#262C35);
-    border:1px solid var(--border-strong);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--display);font-size:26px;font-weight:600;color:var(--amber);
-    position:relative;
-  }
-  .avatar-tag{
-    position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
-    font-family:var(--mono);font-size:8.5px;color:var(--muted2);
-    background:var(--bg);padding:1px 6px;border-radius:8px;border:1px solid var(--border);
-    white-space:nowrap;
-  }
-  .contact-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;}
-  .contact-links a{font-family:var(--mono);font-size:13px;color:var(--teal);}
-  .contact-links a:hover{text-decoration:underline;}
-  .footnote{font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:36px;text-align:center;}
-
-  ::selection{background:var(--amber);color:var(--bg);}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#FAF9F5;color:#1A1917;font-family:'Libre Franklin',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+  a{color:oklch(0.48 0.09 250);text-decoration:none}
+  a:hover{color:oklch(0.38 0.09 250);text-decoration:underline;text-underline-offset:3px}
+  h1,h2,h3,h4{margin:0;font-weight:500}
+  p{margin:0}
+  ul{margin:0}
+  summary{cursor:pointer;display:block}
+  summary:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid oklch(0.52 0.09 250);outline-offset:3px}
+  ::selection{background:#E6E1D4}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+<style>
+  .hv1:hover{background:oklch(0.38 0.09 250) !important;color:#FAF9F5 !important;text-decoration:none !important}
+  .hv2:hover{border-color:#1A1917 !important;text-decoration:none !important}
+  .hv3:hover{background:#FDFCF9 !important;text-decoration:none !important}
+  .hv4:hover{background:#F2EFE6 !important;text-decoration:none !important}
+  .hv5:hover{color:oklch(0.38 0.09 250) !important;text-decoration:none !important}
+  .fabHover:hover{background:oklch(0.38 0.09 250);border-color:oklch(0.38 0.09 250)}
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<style>
-  .chat-fab{
-    position:fixed;bottom:24px;right:24px;z-index:200;
-    width:56px;height:56px;border-radius:50%;
-    background:var(--amber);border:none;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 20px rgba(0,0,0,0.4);
-    transition:transform .2s;
-  }
-  .chat-fab:hover{transform:scale(1.06);}
-  .chat-fab svg{width:24px;height:24px;}
-  .chat-panel{
-    position:fixed;bottom:92px;right:24px;z-index:200;
-    width:min(30vw,620px);max-width:calc(100vw - 40px);
-    height:min(78vh,920px);max-height:calc(100vh - 140px);
-    background:var(--panel);border:1px solid var(--border-strong);
-    border-radius:10px;display:none;flex-direction:column;
-    box-shadow:0 12px 40px rgba(0,0,0,0.5);
-    overflow:hidden;
-  }
-  @media (max-width:1400px){ .chat-panel{ width:min(42vw,620px); } }
-  .chat-panel.open{display:flex;}
-  @media (max-width:640px){
-    .chat-panel{
-      position:fixed;inset:0;bottom:0;right:0;
-      width:100vw;height:100dvh;max-width:100vw;max-height:100dvh;
-      border-radius:0;border:none;
-    }
-    .chat-close{font-size:26px;padding:4px 8px;}
-  }
-  .chat-head{
-    padding:16px 18px;border-bottom:1px solid var(--border);
-    font-family:var(--display);font-size:16px;font-weight:600;
-    display:flex;justify-content:space-between;align-items:center;
-  }
-  .chat-head-sub{font-family:var(--mono);font-size:11px;color:var(--muted2);font-weight:400;margin-top:2px;}
-  .chat-close{cursor:pointer;color:var(--muted);font-size:20px;background:none;border:none;}
-  .chat-body{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:12px;}
-  .chat-msg{font-size:15px;line-height:1.6;max-width:90%;padding:11px 14px;border-radius:8px;}
-  .chat-msg.bot{background:#1E2329;color:var(--text);align-self:flex-start;}
-  .chat-msg.user{background:var(--amber);color:var(--bg);align-self:flex-end;white-space:pre-wrap;}
-  .chat-msg.err{background:#3A1F1F;color:#F2A0A0;align-self:flex-start;}
-  .chat-msg.bot p{margin:0 0 8px;}
-  .chat-msg.bot p:last-child{margin-bottom:0;}
-  .chat-msg.bot ul{margin:4px 0 8px;padding-left:20px;}
-  .chat-msg.bot ul:last-child{margin-bottom:0;}
-  .chat-msg.bot li{margin-bottom:4px;}
-  .chat-msg.bot strong{font-weight:700;}
-  .chat-msg.bot a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;}
-  .chat-input-row{display:flex;gap:8px;padding:14px;border-top:1px solid var(--border);}
-  .chat-input-row input{
-    flex:1;background:#1A1E24;border:1px solid var(--border);border-radius:6px;
-    color:var(--text);padding:11px 12px;font-size:14.5px;font-family:var(--body);
-  }
-  .chat-input-row input:focus{outline:1px solid var(--teal);}
-  .chat-send{
-    background:var(--amber);border:none;border-radius:6px;padding:0 16px;
-    font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--bg);cursor:pointer;
-  }
-  .chat-send:disabled{opacity:0.5;cursor:not-allowed;}
-  #honeypot-field{position:absolute;left:-9999px;opacity:0;height:0;width:0;}
-  .chat-gate{padding:20px;display:flex;flex-direction:column;gap:14px;flex:1;overflow-y:auto;}
-  .chat-gate-note{font-size:13.5px;color:var(--muted);line-height:1.5;}
-  .chat-gate label{display:block;font-family:var(--mono);font-size:10.5px;color:var(--muted2);letter-spacing:0.03em;margin-bottom:6px;}
-  .chat-gate input,.chat-gate textarea{
-    width:100%;box-sizing:border-box;background:#1A1E24;border:1px solid var(--border);border-radius:6px;
-    color:var(--text);padding:10px 11px;font-size:14px;font-family:var(--body);resize:none;
-  }
-  .chat-gate input:focus,.chat-gate textarea:focus{outline:1px solid var(--teal);}
-  .chat-gate textarea{height:76px;}
-  .chat-gate-start{
-    background:var(--amber);border:none;border-radius:6px;padding:11px 16px;
-    font-family:var(--mono);font-size:13px;font-weight:600;color:var(--bg);cursor:pointer;
-  }
-  .chat-gate-start:disabled{opacity:0.5;cursor:not-allowed;}
-  .chat-gate-alt{font-family:var(--mono);font-size:11px;color:var(--muted2);text-align:center;}
-  .chat-gate-alt a{color:var(--teal);}
-
-  /* RESUME GATE */
-  .resume-gate-overlay{
-    display:none;position:fixed;inset:0;z-index:300;
-    background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px;
-  }
-  .resume-gate-overlay.open{display:flex;}
-  .resume-gate-modal{
-    width:380px;max-width:100%;background:var(--panel);border:1px solid var(--border-strong);
-    border-radius:10px;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,0.5);
-    display:flex;flex-direction:column;gap:14px;
-  }
-  .resume-gate-head{
-    display:flex;justify-content:space-between;align-items:center;
-    font-family:var(--display);font-size:16px;font-weight:600;
-  }
-</style>
 </head>
 <body>
+<div style="min-height:100vh">
 
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">RAJWANT<span>·</span>MISHRA</div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#advisory">Advisory</a>
-      <a href="#research">Research</a>
-      <a href="#writing">Writing</a>
-      <a href="#contact">Contact</a>
-      <a class="nav-cta resume-link" href="Rajwant_Mishra_Resume.docx" download>Resume ↓</a>
+<nav aria-label="Primary" style="position:sticky;top:0;z-index:50;background:rgba(250,249,245,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #E4E0D7">
+  <div style="max-width:1140px;margin:0 auto;padding:0 clamp(18px,4vw,40px);min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:14px">
+    <a href="#top" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#1A1917;white-space:nowrap">Rajwant Mishra</a>
+    <div style="display:flex;gap:clamp(14px,2vw,26px);align-items:center;flex-wrap:nowrap;justify-content:flex-end;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;margin:0 -4px;padding:0 4px">
+      <a href="#leadership" style="font-size:13.5px;color:#57534C;white-space:nowrap">Leadership</a>
+      <a href="#impact" style="font-size:13.5px;color:#57534C;white-space:nowrap">Impact</a>
+      <a href="#technical" style="font-size:13.5px;color:#57534C;white-space:nowrap">Technical</a>
+      <a href="#journey" style="font-size:13.5px;color:#57534C;white-space:nowrap">Journey</a>
+      <a href="#writing" style="font-size:13.5px;color:#57534C;white-space:nowrap">Writing</a>
+      <a href="#connect" style="font-size:13.5px;color:#1A1917;border-bottom:1px solid #C9C3B4;padding-bottom:1px;white-space:nowrap">Connect</a>
     </div>
   </div>
 </nav>
 
-<div class="wrap hero">
-  <div class="hero-grid">
-    <div>
-      <div class="eyebrow">AI &amp; Data Science Leadership</div>
-      <h1>I build the layer between <em>AI ambiguity</em> and the business that has to adopt it.</h1>
-      <p class="hero-sub">15+ years turning AI strategy into infrastructure, budget, and adoption &mdash; across healthcare, enterprise data platforms, and regulated environments spanning four countries.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#projects">See the work ↓</a>
-        <a class="btn btn-secondary" href="#contact">Get in touch</a>
+<header id="top" style="max-width:1140px;margin:0 auto;padding:clamp(22px,4vw,60px) clamp(18px,4vw,40px) clamp(28px,3vw,40px)">
+  <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px);align-items:flex-start">
+
+    <div style="flex:1 1 440px;min-width:0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;margin-bottom:10px">Enterprise AI · Data · Transformation</p>
+      <h1 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(34px,5.4vw,58px);line-height:1.03;letter-spacing:-0.015em;font-weight:400">Rajwant Mishra</h1>
+      <p style="font-size:clamp(17px,1.5vw,20px);font-weight:600;color:oklch(0.48 0.09 250);margin-top:12px">Enterprise AI, Data &amp; Transformation Leader</p>
+      <p style="font-size:clamp(16px,1.35vw,18.5px);color:#3D3A35;max-width:54ch;margin-top:14px;text-wrap:pretty">I lead enterprise AI and data work end to end: which bets get funded, the operating model and platforms underneath them, and whether the business actually adopts what gets built.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;margin-top:22px">
+        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">15+</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Years in data &amp; AI</div>
+        </div>
+        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">4</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Countries, one team</div>
+        </div>
+        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">10+</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Concurrent AI initiatives</div>
+        </div>
+        <div style="background:#FAF9F5;padding:12px 15px;box-shadow:0 0 0 1px #E4E0D7">
+          <div style="font-family:'Newsreader',Georgia,serif;font-size:26px;line-height:1">7-figure</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:#8A857D;margin-top:5px">Annual budget owned</div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px">
+        <a href="#leadership" style="background:#1A1917;color:#FAF9F5;font-size:14px;font-weight:600;padding:13px 22px;min-height:46px;display:inline-flex;align-items:center;gap:8px;border-radius:2px" class="hv1">Explore leadership <span aria-hidden="true">→</span></a>
+        <a href="#technical" style="border:1px solid #C9C3B4;color:#1A1917;font-size:14px;font-weight:600;padding:13px 22px;min-height:46px;display:inline-flex;align-items:center;gap:8px;border-radius:2px" class="hv2">Explore technical depth <span aria-hidden="true">→</span></a>
+        <a href="#journey" style="font-size:14px;color:#57534C;padding:12px 4px;min-height:44px;display:inline-flex;align-items:center">About my journey</a>
+        <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener" aria-label="LinkedIn profile" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#8A857D;padding:12px 4px;min-height:44px;display:inline-flex;align-items:center">in ↗</a>
       </div>
     </div>
-    <div class="diagram-wrap">
-      <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
-        <!-- input nodes -->
-        <g id="inputs">
-          <rect x="0" y="18" width="150" height="38" rx="4" class="node-box"/>
-          <text x="12" y="41" class="node-label">Healthcare AI &amp; Compliance</text>
 
-          <rect x="0" y="92" width="150" height="38" rx="4" class="node-box"/>
-          <text x="12" y="115" class="node-label">Platform Architecture (MCP)</text>
+      <aside aria-label="Quick view" style="flex:1 1 300px;min-width:0;background:#FFFFFF;border:1px solid #E4E0D7;padding:clamp(20px,2vw,26px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;padding-bottom:14px;border-bottom:1px solid #EDE9E0">Quick view</p>
+        <div style="padding:14px 0;border-bottom:1px solid #EDE9E0">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:6px">Who</div>
+          <div style="font-size:14.5px;color:#2A2825">Enterprise AI, data, and transformation leader. Currently accountable for the AI portfolio of a global eyewear and eyecare group's medical and clinical business.</div>
+        </div>
+        <div style="padding:14px 0;border-bottom:1px solid #EDE9E0">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:6px">Scope</div>
+          <div style="font-size:14.5px;color:#2A2825">A 16 to 30 person data science and data engineering organization across India, Israel, Italy, and the U.S. Budget and vendor ownership. Regulated healthcare data.</div>
+        </div>
+        <div style="padding:14px 0;border-bottom:1px solid #EDE9E0">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:8px">Focus</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">AI investment decisions</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Operating models</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Production AI</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Governance</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Mentoring</span>
+          </div>
+        </div>
+        <div style="padding-top:14px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:8px">Explore</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <a href="#leadership" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">How I lead <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
+            <a href="#impact" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">Selected impact <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
+            <a href="#technical" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">Technical depth <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
+            <a href="#journey" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">Journey <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
+          </div>
+        </div>
+      </aside>
+  </div>
+</header>
 
-          <rect x="0" y="166" width="150" height="38" rx="4" class="node-box"/>
-          <text x="12" y="189" class="node-label">GenAI · LLM · RAG</text>
+<div style="max-width:1140px;margin:0 auto;padding:0 clamp(18px,4vw,40px) clamp(40px,5vw,64px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:1px;background:#E4E0D7;border:1px solid #E4E0D7">
 
-          <rect x="0" y="240" width="150" height="38" rx="4" class="node-box"/>
-          <text x="12" y="263" class="node-label">Data Governance &amp; Security</text>
-        </g>
+    <a href="#leadership" style="background:#FFFFFF;padding:clamp(22px,2.4vw,30px);display:block;color:#1A1917" class="hv3">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(21px,2.2vw,26px);font-weight:400">Leadership &amp; enterprise impact</h2>
+        <span aria-hidden="true" style="color:#B5AFA3">→</span>
+      </div>
+      <p style="font-size:14.5px;color:#57534C;margin-top:10px;max-width:44ch">Deciding what to fund, building the organization that delivers it, and defending the result with numbers a finance team recognizes.</p>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid #EDE9E0">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#F2EFE8;padding:6px 10px">Strategy</span>
+        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#F2EFE8;padding:6px 10px">People</span>
+        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#F2EFE8;padding:6px 10px">Execution</span>
+        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#FAF9F5;background:oklch(0.48 0.09 250);padding:6px 10px">Business outcome</span>
+      </div>
+    </a>
 
-        <!-- flow lines in -->
-        <path class="flow-line" d="M150,37 C185,37 185,150 210,150"/>
-        <path class="flow-line" d="M150,111 C180,111 190,150 210,150"/>
-        <path class="flow-line" d="M150,185 C180,185 190,160 210,160"/>
-        <path class="flow-line" d="M150,259 C185,259 185,170 210,170"/>
+    <a href="#technical" style="background:#F5F3EC;padding:clamp(22px,2.4vw,30px);display:block;color:#1A1917" class="hv4">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(21px,2.2vw,26px);font-weight:400">AI &amp; technical depth</h2>
+        <span aria-hidden="true" style="color:#B5AFA3">→</span>
+      </div>
+      <p style="font-size:14.5px;color:#57534C;margin-top:10px;max-width:44ch">Fifteen years of building the systems underneath the strategy: data platforms, LLM pipelines, retrieval, fine-tuning, and the governance around them.</p>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid #E4E0D7">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Problem</span>
+        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Data</span>
+        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Models</span>
+        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Platform</span>
+        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#FAF9F5;background:oklch(0.48 0.09 60);padding:6px 10px">Adoption</span>
+      </div>
+    </a>
 
-        <!-- hub -->
-        <rect x="210" y="128" width="86" height="44" rx="6" class="node-box node-hub pulse"/>
-        <text x="253" y="146" text-anchor="middle" class="node-label-hub">RM</text>
-        <text x="253" y="161" text-anchor="middle" class="node-label" style="font-size:9px;">integration layer</text>
-
-        <!-- flow lines out -->
-        <path class="flow-line out" d="M296,140 C330,140 330,40 360,40"/>
-        <path class="flow-line out" d="M296,148 C325,148 330,113 360,113"/>
-        <path class="flow-line out" d="M296,158 C325,158 330,187 360,187"/>
-        <path class="flow-line out" d="M296,165 C330,165 330,261 360,261"/>
-
-        <!-- output nodes -->
-        <g id="outputs">
-          <rect x="360" y="20" width="120" height="38" rx="4" class="node-box"/>
-          <text x="372" y="43" class="node-label">$2&ndash;3M+ savings</text>
-
-          <rect x="360" y="94" width="120" height="38" rx="4" class="node-box"/>
-          <text x="372" y="117" class="node-label">16&ndash;30 person org</text>
-
-          <rect x="360" y="168" width="120" height="38" rx="4" class="node-box"/>
-          <text x="372" y="191" class="node-label">4 global regions</text>
-
-          <rect x="360" y="242" width="120" height="38" rx="4" class="node-box"/>
-          <text x="372" y="265" class="node-label">10+ initiatives</text>
-        </g>
-      </svg>
-      <div class="diagram-caption">the same integration pattern I build for teams, applied to my own track record</div>
-    </div>
   </div>
 </div>
 
-<div class="metrics">
-  <div class="wrap metrics-grid">
-    <div class="metric"><div class="metric-num">15+</div><div class="metric-label">YEARS IN AI &amp; DATA</div></div>
-    <div class="metric"><div class="metric-num">$1M+</div><div class="metric-label">ANNUAL BUDGET OWNED</div></div>
-    <div class="metric"><div class="metric-num">16&ndash;30</div><div class="metric-label">TEAM LED</div></div>
-    <div class="metric"><div class="metric-num">4</div><div class="metric-label">GLOBAL REGIONS</div></div>
-    <div class="metric"><div class="metric-num">10+</div><div class="metric-label">CONCURRENT AI INITIATIVES</div></div>
-  </div>
-</div>
+<section id="leadership" style="border-top:1px solid #E4E0D7;background:#FFFFFF">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">01 / Leadership</p>
+    <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">How I lead</h2>
+    <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:62ch;margin-top:16px;text-wrap:pretty">The hardest part of enterprise AI is rarely the model. It is deciding where to invest, designing the operating model around it, and getting people to use what gets built. That is where most of my time goes.</p>
 
-<section id="about">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">About</div>
-      <h2>Builder first, strategist by necessity.</h2>
-    </div>
-    <div class="about-body">
-      <p>I lead a 16&ndash;30 person Data Science and Data Engineering organization with direct reports across India, Israel, Milan, and the U.S., and I own AI strategy and delivery for a global enterprise's medical and clinical technology portfolio &mdash; 10+ concurrent initiatives at any given time, from automated booking to clinical translation to document processing.</p>
-      <p>What sets my work apart is that I still build. I designed and built the proprietary NLP/LLM pipeline that replaced our third-party translation vendors, saving roughly $2&ndash;3M annually. I architected an internal AI platform (ButlerAI) that abstracts LLM integration, UI, and onboarding behind a single MCP layer, so any team can adopt AI without reinventing the plumbing. I fine-tune models myself when the problem calls for it.</p>
-      <p>I operate with an entrepreneurial, ideas-to-delivery mindset &mdash; identifying where AI creates real value, building the stakeholder buy-in to move on it, and then being the person accountable for shipping it. That combination of technical depth and executive ownership is what I bring to every room.</p>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Experience</div>
-      <h2>Track record</h2>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">Feb 2023 &ndash; Present</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,3vw,48px);margin-top:clamp(36px,4vw,56px)">
       <div>
-        <div class="tl-role">Sr. Manager, IT &mdash; Data Science &amp; AI</div>
-        <div class="tl-org">Luxottica (EssilorLuxottica), New York, NY</div>
-        <div class="tl-desc">Own enterprise AI/ML strategy and delivery for the group's medical and clinical technology portfolio. Lead a global team, own $1M+ in budget, and drive the AI innovation roadmap directly with business stakeholders.</div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">Oct 2016 &ndash; Jan 2023</div>
-      <div>
-        <div class="tl-role">Lead Business Analyst &mdash; Digital &amp; AI</div>
-        <div class="tl-org">Luxottica, New York, NY</div>
-        <div class="tl-desc">Led digital transformation across sales, CRM, and marketing. Owned AI integration across SAP CRM and Salesforce, delivering real-time insights to 500+ global sales representatives.</div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">2007 &ndash; 2016</div>
-      <div>
-        <div class="tl-role">SAP Sales, CRM Business Consultant</div>
-        <div class="tl-org">Infosys, Colgate-Palmolive, Deloitte &amp; Cognizant</div>
-        <div class="tl-desc">Delivered digital transformation initiatives for Fortune 500 clients including Kraft Heinz, Colgate-Palmolive, and NuSkin. Built trade promotion systems leveraging SAP CRM and predictive modeling.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Selected Work</div>
-      <h2>Projects</h2>
-      <p class="lede">A representative slice &mdash; click any card for detail. Several additional strategic initiatives are currently in flight and not yet public.</p>
-    </div>
-
-    <div class="proj-grid" id="projGrid">
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <div class="proj-title">ButlerAI</div>
-          <div class="proj-tag">PLATFORM</div>
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">01</span>
+          <h3 style="font-size:19px;font-weight:600">Choosing what to fund</h3>
         </div>
-        <div class="proj-summary">An internal enterprise AI platform that makes adopting AI a one-integration decision, not a project.</div>
-        <div class="proj-detail">
-          <p>Architected a platform layer built around MCP (Model Context Protocol) that abstracts LLM integration, UI, user onboarding, auth, and audit behind a single standard. Any team exposes one MCP server and inherits the rest automatically.</p>
-          <ul>
-            <li>Removed repeated onboarding/UI/LLM plumbing per use case org-wide</li>
-            <li>Centralized audit and governance without slowing teams down</li>
-            <li>Designed to make AI adoption a decision, not an engineering project</li>
-          </ul>
-        </div>
-        <div class="proj-toggle">+ expand</div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <div class="proj-title">RAG-Driven Chat Service</div>
-          <div class="proj-tag">GOVERNANCE</div>
-        </div>
-        <div class="proj-summary">Compliant AI chat across regulated and non-regulated domains, without merging the data.</div>
-        <div class="proj-detail">
-          <p>Built a retrieval-augmented chat service deployed internally and across multiple group-facing websites, with fully separate medical and non-medical infrastructure to satisfy compliance requirements.</p>
-          <ul>
-            <li>Serves both internal teams and external site visitors</li>
-            <li>Strict data segregation between medical and non-medical domains</li>
-            <li>Governance built in from day one, not retrofitted</li>
-          </ul>
-        </div>
-        <div class="proj-toggle">+ expand</div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <div class="proj-title">On-Prem OCR Fine-Tuning</div>
-          <div class="proj-tag">APPLIED ML</div>
-        </div>
-        <div class="proj-summary">An open-weight model, fine-tuned on our own data, running entirely on-prem.</div>
-        <div class="proj-detail">
-          <p>Fine-tuned an on-premises, open-weight model on proprietary data to automate OCR-based document processing for business operations.</p>
-          <ul>
-            <li>~90% accuracy in production</li>
-            <li>~$1.5M annual savings against ~$150K operating cost</li>
-            <li>RAG-based fine-tuning approach, selecting the right retrieval/model strategy per use case</li>
-          </ul>
-        </div>
-        <div class="proj-toggle">+ expand</div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <div class="proj-title">Forensic Incident Processing (FIPP)</div>
-          <div class="proj-tag">SECURITY</div>
-        </div>
-        <div class="proj-summary">Finding PHI/PII in breach data fast enough to actually scope notification.</div>
-        <div class="proj-detail">
-          <p>Built an AI-driven platform to identify PHI/PII exposure within breach-related logs and leaked datasets, working with a third-party forensics partner to determine the affected notification population.</p>
-          <ul>
-            <li>Direct collaboration with forensics, compliance, and legal</li>
-            <li>Cut time and cost previously spent on manual third-party review</li>
-          </ul>
-        </div>
-        <div class="proj-toggle">+ expand</div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <div class="proj-title">BookMySpot</div>
-          <div class="proj-tag">AUTOMATION</div>
-        </div>
-        <div class="proj-summary">AI answering the phone, talking to legacy systems, actually getting things done.</div>
-        <div class="proj-detail">
-          <p>Integrated AI with telephony systems (Genesys) so AI agents can connect to legacy backend systems on customers' behalf &mdash; appointment booking, cancellations, order status, and more.</p>
-          <ul>
-            <li>Adopted across multiple business units</li>
-            <li>Bridges modern AI with legacy infrastructure without replacing it</li>
-          </ul>
-        </div>
-        <div class="proj-toggle">+ expand</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="advisory">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">For Founders &amp; Operators</div>
-      <h2>What I bring as an advisor</h2>
-      <p class="lede">Three problems I've already lived through, not theorized about.</p>
-    </div>
-
-    <div class="advisory-list">
-      <div class="advisory-row">
-        <div class="advisory-hook">Turn AI pilots into a platform, not a pile of one-offs.</div>
-        <div class="advisory-proof">ButlerAI made &ldquo;adopt AI&rdquo; a single integration decision &mdash; BookMySpot (AI + telephony for appointment booking) was one of many use cases that plugged straight in, not a bespoke rebuild.</div>
-      </div>
-      <div class="advisory-row">
-        <div class="advisory-hook">Make the budget case, not just the tech case.</div>
-        <div class="advisory-proof">Replaced third-party translation vendors with an in-house NLP/LLM pipeline &mdash; ~$2-3M in annual savings a CFO can verify, not just an engineering win.</div>
-      </div>
-      <div class="advisory-row">
-        <div class="advisory-hook">Ship AI where &ldquo;move fast&rdquo; isn't an option.</div>
-        <div class="advisory-proof">Built medical vs. non-medical infrastructure splits and healthcare-grade governance from day one, because regulated environments punish AI that wasn't designed for compliance from the start.</div>
-      </div>
-    </div>
-
-    <div class="advisory-cta">
-      Building one of these problems right now?
-      <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">Connect on LinkedIn</a>
-      &middot;
-      <a href="mailto:rajwantmishra@gmail.com">Email me</a>
-    </div>
-  </div>
-</section>
-
-<section id="research">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Research &amp; Publications</div>
-      <h2>Original work</h2>
-    </div>
-
-    <div class="research-item">
-      <div class="research-title">TrueLens Framework</div>
-      <div class="research-desc">A published framework for mitigating algorithmic bias, referenced in enterprise AI governance practice.</div>
-    </div>
-    <div class="research-item">
-      <div class="research-title">Adaptive Time-Stretching AI Algorithm ("Ice Cube")</div>
-      <div class="research-desc">Published paper on original research enabling synchronized AI-translated multilingual video, improving accessibility for media platforms.</div>
-    </div>
-  </div>
-</section>
-
-<section id="writing">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Writing</div>
-      <h2>Articles &amp; essays</h2>
-      <p class="lede">On AI governance, security, and engineering &mdash; published on LinkedIn and Medium.</p>
-    </div>
-
-    <div class="article-grid" id="articleGrid">
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/ai-governance-isnt-its-leadership-rajwant-mishra-2yhbc" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">AI Governance Isn't About AI. It's About Leadership</div>
-          <div class="article-desc">Argues AI governance succeeds or fails on leadership, not on technology or compliance checklists.</div>
-          <div class="article-platforms">LINKEDIN</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/hugging-face-security-incident-why-ai-infrastructure-becoming-mishra-odprc" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">The Hugging Face Security Incident: Why AI Infrastructure Is Becoming a New Attack Surface</div>
-          <div class="article-desc">External AI models and datasets should be treated like untrusted software &mdash; what the incident signals about AI infrastructure as an emerging attack surface.</div>
-          <div class="article-platforms">LINKEDIN &middot; MEDIUM</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/give-your-agent-long-term-memory-without-blowing-context-mishra-bsusc" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">Give Your Agent a Long-Term Memory (Without Blowing the Context Window)</div>
-          <div class="article-desc">Context engineering: a cross-session memory store for coding agents that cuts token usage on repeated tasks.</div>
-          <div class="article-platforms">LINKEDIN</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/future-software-engineering-more-code-its-rajwant-mishra-cz6cc" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">The Future of Software Engineering Is Not More Code. It's More Verification</div>
-          <div class="article-desc">How agentic AI is shifting software engineering from creation toward validation, governance, and trust.</div>
-          <div class="article-platforms">LINKEDIN &middot; MEDIUM</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/shift-from-chatbots-ai-workers-redefining-security-rajwant-mishra-lp1ye" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">The Shift from Chatbots to AI Workers Is Redefining AI Security</div>
-          <div class="article-desc">The AI security conversation must evolve beyond content/prompt risk as AI moves from chatbots to autonomous workers.</div>
-          <div class="article-platforms">LINKEDIN</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/ai-chaos-confidence-where-we-get-wrong-future-rajwant-mishra-fd2ze" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">AI, Chaos and Confidence: Where We Get Wrong About the Future</div>
-          <div class="article-desc">A grounded take cutting through the noisy, polarized narratives around AI's future.</div>
-          <div class="article-platforms">LINKEDIN</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/impact-ai-companions-loneliness-across-age-groups-5-year-mishra-ei2ze" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">Impact of AI Companions on Loneliness Across Age Groups (5-Year Projection)</div>
-          <div class="article-desc">A reflection and projection on how AI companions may affect loneliness across different age groups over the next five years.</div>
-          <div class="article-platforms">LINKEDIN</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://www.linkedin.com/pulse/data-organization-ai-rajwant-mishra-ep4he" target="_blank" rel="noopener">
-        <div class="article-icon">in</div>
-        <div>
-          <div class="article-title">Data, Organization, and AI</div>
-          <div class="article-desc">On the leadership pressure organizations face as AI adoption accelerates, and how data and org structure need to adapt.</div>
-          <div class="article-platforms">LINKEDIN &middot; MEDIUM</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://medium.com/@rajwantmishra/build-a-local-wi-fi-file-drop-resumable-iphone-friendly-windows-safe-with-flask-db78831d41a9" target="_blank" rel="noopener">
-        <div class="article-icon">M</div>
-        <div>
-          <div class="article-title">Build a Local Wi-Fi File Drop (Resumable, iPhone-Friendly, Windows-Safe) with Flask</div>
-          <div class="article-desc">A hands-on build: turning a Windows PC into a local Wi-Fi drop box for phone/laptop file transfer, supporting large resumable files.</div>
-          <div class="article-platforms">MEDIUM</div>
-        </div>
-      </a>
-
-      <a class="article-card" href="https://medium.com/@rajwantmishra/cracking-the-code-reconciling-non-sap-and-sap-orders-with-smarter-logic-8e71cf15e031" target="_blank" rel="noopener">
-        <div class="article-icon">M</div>
-        <div>
-          <div class="article-title">Cracking the Code: Reconciling Non-SAP and SAP Orders with Smarter Logic</div>
-          <div class="article-desc">A practical reconciliation solution showing which orders are processed, waiting, or delayed in real time between non-SAP and SAP order systems.</div>
-          <div class="article-platforms">MEDIUM</div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Toolkit</div>
-      <h2>Core competencies</h2>
-    </div>
-    <div class="pills">
-      <div class="pill">Enterprise AI Strategy</div>
-      <div class="pill">Healthcare AI &amp; Compliance</div>
-      <div class="pill">Responsible AI Governance</div>
-      <div class="pill">Global Team Leadership</div>
-      <div class="pill">Multi-Vendor Program Management</div>
-      <div class="pill">Azure · Databricks · OpenAI</div>
-      <div class="pill">Generative AI · NLP · LLMs</div>
-      <div class="pill">RAG Architecture</div>
-      <div class="pill">Model Context Protocol (MCP)</div>
-      <div class="pill">C-Suite Stakeholder Management</div>
-      <div class="pill">Python · R · Spark · SQL</div>
-      <div class="pill">SAP CRM · Salesforce</div>
-    </div>
-
-    <div class="section-head" style="margin-top:48px;">
-      <div class="section-eyebrow">Education</div>
-    </div>
-    <div class="edu-row">
-      <div class="edu-degree">M.S., Data Science</div>
-      <div class="edu-school">City University of New York (CUNY)</div>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="avatar">
-        RM
-        <div class="avatar-tag">photo placeholder</div>
+        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">Most AI proposals look good on a slide. I spend more time on the questions that decide whether they survive contact with the organization. Is the data actually there. Who owns the process the day after launch. What does it cost to run, not to build. Would buying be cheaper. Saying no early, and saying why, is a large part of the job.</p>
       </div>
       <div>
-        <h2 style="margin-bottom:6px;">Let's talk.</h2>
-        <p style="color:var(--muted);font-size:14.5px;">Always glad to connect on AI strategy, platform architecture, or leadership in the space.</p>
-        <div class="contact-links">
-          <a href="mailto:rajwantmishra@gmail.com">rajwantmishra@gmail.com</a>
-          <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">linkedin.com/in/rajwant</a>
-          <a href="https://medium.com/@rajwantmishra" target="_blank" rel="noopener">medium.com/@rajwantmishra</a>
-          <a class="resume-link" href="Rajwant_Mishra_Resume.docx" download>Download resume ↓</a>
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">02</span>
+          <h3 style="font-size:19px;font-weight:600">Turning a decision into a capability</h3>
+        </div>
+        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">A funded idea is not a capability. I set the sequence, get the architecture and team structure in place before the pilot rather than after it, and treat governance as part of delivery instead of a review at the end. Platform work matters here. When adopting AI means one integration instead of a bespoke build, teams stop waiting for permission.</p>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">03</span>
+          <h3 style="font-size:19px;font-weight:600">Building the team</h3>
+        </div>
+        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">I lead a data science and data engineering group of 16 to 30 people across four countries. Distributed teams do not run on process documents, they run on clear ownership. I give engineers and scientists the whole problem, business context included, and I would rather grow a lead internally than hire around one. With people from India to Milan to New York, most decisions get made without me in the room. That only works if everyone knows what they are accountable for.</p>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.48 0.09 250)">04</span>
+          <h3 style="font-size:19px;font-weight:600">Measuring what matters</h3>
+        </div>
+        <p style="font-size:15.5px;color:#4A4741;margin-top:10px;text-wrap:pretty">I have not found a way to defend an AI program on enthusiasm. Cost removed, hours returned, accuracy in production, how many people actually use it. When a system only saves money in theory, that shows up in the run rate eventually, so I would rather find out in month two than month twenty.</p>
+      </div>
+    </div>
+
+    <figure style="margin:clamp(44px,5vw,72px) 0 0;padding:clamp(24px,3vw,36px);background:#FAF9F5;border:1px solid #E4E0D7">
+      <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;margin-bottom:22px">How work moves</figcaption>
+      <div style="display:flex;flex-wrap:wrap;align-items:stretch;gap:10px">
+        <div style="flex:1 1 170px;background:#FFFFFF;border:1px solid #E4E0D7;padding:16px 18px">
+          <div style="font-size:15px;font-weight:600">Business need</div>
+          <div style="font-size:13px;color:#6E6A63;margin-top:6px">Named owner, named problem, not a technology looking for a use.</div>
+        </div>
+        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div style="flex:1 1 170px;background:#FFFFFF;border:1px solid #E4E0D7;padding:16px 18px">
+          <div style="font-size:15px;font-weight:600">The right bet</div>
+          <div style="font-size:13px;color:#6E6A63;margin-top:6px">Value, feasibility, run cost, risk, build or buy.</div>
+        </div>
+        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div style="flex:1 1 170px;background:#FFFFFF;border:1px solid #E4E0D7;padding:16px 18px">
+          <div style="font-size:15px;font-weight:600">People + platform</div>
+          <div style="font-size:13px;color:#6E6A63;margin-top:6px">Team structure and shared infrastructure before the pilot.</div>
+        </div>
+        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div style="flex:1 1 170px;background:#FFFFFF;border:1px solid #E4E0D7;padding:16px 18px">
+          <div style="font-size:15px;font-weight:600">Adoption</div>
+          <div style="font-size:13px;color:#6E6A63;margin-top:6px">Training, change management, and the process it replaces.</div>
+        </div>
+        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div style="flex:1 1 170px;background:oklch(0.48 0.09 250);border:1px solid oklch(0.48 0.09 250);padding:16px 18px">
+          <div style="font-size:15px;font-weight:600;color:#FFFFFF">Measured outcome</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.82);margin-top:6px">Cost, time, accuracy, adoption. Reviewed, not assumed.</div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="impact" style="border-top:1px solid #E4E0D7">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">02 / Impact</p>
+    <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">From opportunity to outcome</h2>
+    <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:62ch;margin-top:16px;text-wrap:pretty">Four decisions and what came of them. The business story is on the surface. The build is underneath, for anyone who wants it.</p>
+
+    <div style="display:flex;flex-direction:column;gap:1px;background:#E4E0D7;border:1px solid #E4E0D7;margin-top:clamp(32px,4vw,48px)">
+
+      <article style="background:#FFFFFF;padding:clamp(24px,3vw,38px)">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline">
+          <h3 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:400;max-width:32ch">Translation and content formatting brought in-house</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.48 0.09 60)">Cost structure</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,2.5vw,36px);margin-top:24px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">The challenge</div>
+            <p style="font-size:15px;color:#4A4741">Clinical and commercial content depended on third-party translation and formatting vendors. Cost scaled with volume, and turnaround set the pace of every launch.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">My role</div>
+            <p style="font-size:15px;color:#4A4741">Made the case to build rather than renew, owned the budget and vendor exit, and designed and built the pipeline myself alongside the team.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
+            <p style="font-size:15px;color:#4A4741">Vendors replaced by an internal NLP and LLM pipeline. Multimillion-dollar annual savings, and turnaround now set by us rather than a contract.</p>
+          </div>
+        </div>
+        <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>Recurring vendor spend became an owned capability, which changed what the organization believed it could build.</p>
+        <details style="margin-top:18px">
+          <summary style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.48 0.09 250);padding:10px 0;min-height:44px;display:flex;align-items:center;gap:8px">How it was built <span aria-hidden="true">↓</span></summary>
+          <div style="font-size:14.5px;color:#4A4741;background:#FAF9F5;border-left:2px solid #DDD8CB;padding:16px 18px;margin-top:4px">
+            <p>A proprietary NLP and LLM pipeline covering translation, terminology consistency, and layout-preserving formatting, run on internal infrastructure so clinical content never left our control.</p>
+            <p style="margin-top:10px">Related published research: the Ice Cube algorithm, an adaptive time-stretching approach that keeps AI-translated multilingual video in sync with its source.</p>
+          </div>
+        </details>
+      </article>
+
+      <article style="background:#FFFFFF;padding:clamp(24px,3vw,38px)">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline">
+          <h3 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:400;max-width:32ch">Document processing that never leaves the building</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.48 0.09 60)">Applied ML</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,2.5vw,36px);margin-top:24px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">The challenge</div>
+            <p style="font-size:15px;color:#4A4741">High-volume document work was manual, and the documents in question could not be sent to an external model API.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">My role</div>
+            <p style="font-size:15px;color:#4A4741">Chose the on-premises open-weight route over a hosted service, set the accuracy bar for production, and owned the build.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
+            <p style="font-size:15px;color:#4A4741">Roughly 90 percent accuracy in production, with annual savings around ten times the cost of running it.</p>
+          </div>
+        </div>
+        <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>It settled an argument. Data residency is not a reason to skip automation, it is a design constraint.</p>
+        <details style="margin-top:18px">
+          <summary style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.48 0.09 250);padding:10px 0;min-height:44px;display:flex;align-items:center;gap:8px">How it was built <span aria-hidden="true">↓</span></summary>
+          <div style="font-size:14.5px;color:#4A4741;background:#FAF9F5;border-left:2px solid #DDD8CB;padding:16px 18px;margin-top:4px">
+            <p>An open-weight model fine-tuned on proprietary documents, hosted on premises, using a retrieval-augmented fine-tuning approach so the model was grounded in our own reference material rather than trained from scratch.</p>
+          </div>
+        </details>
+      </article>
+
+      <article style="background:#FFFFFF;padding:clamp(24px,3vw,38px)">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline">
+          <h3 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:400;max-width:32ch">ButlerAI: adopting AI as one integration, not a project</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.48 0.09 60)">Platform</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,2.5vw,36px);margin-top:24px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">The challenge</div>
+            <p style="font-size:15px;color:#4A4741">Every team that wanted AI was rebuilding the same plumbing: model access, a front end, onboarding, authentication, audit. Each use case became its own project.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">My role</div>
+            <p style="font-size:15px;color:#4A4741">Argued for platform investment ahead of the demand, then set the architecture and the standard teams build against.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
+            <p style="font-size:15px;color:#4A4741">A team now exposes one interface and inherits the rest. Audit and governance are centralized without adding a gate in front of delivery.</p>
+          </div>
+        </div>
+        <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>It changed the unit of AI adoption from a project to a decision, which is the difference between a handful of pilots and a portfolio.</p>
+        <details style="margin-top:18px">
+          <summary style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.48 0.09 250);padding:10px 0;min-height:44px;display:flex;align-items:center;gap:8px">How it was built <span aria-hidden="true">↓</span></summary>
+          <div style="font-size:14.5px;color:#4A4741;background:#FAF9F5;border-left:2px solid #DDD8CB;padding:16px 18px;margin-top:4px">
+            <p>An internal platform built around the Model Context Protocol. It abstracts LLM integration, interface, user onboarding, authentication, and audit behind one standard. A team exposes a single MCP server and inherits the rest of the stack automatically.</p>
+          </div>
+        </details>
+      </article>
+
+      <article style="background:#FFFFFF;padding:clamp(24px,3vw,38px)">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline">
+          <h3 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(22px,2.4vw,28px);font-weight:400;max-width:32ch">AI chat across regulated and unregulated domains, without mixing the data</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.48 0.09 60)">Governance</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(20px,2.5vw,36px);margin-top:24px">
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">The challenge</div>
+            <p style="font-size:15px;color:#4A4741">Internal teams and public-facing sites both needed conversational access to company knowledge, but medical content carries obligations that marketing content does not.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">My role</div>
+            <p style="font-size:15px;color:#4A4741">Set the separation principle up front and carried it through compliance review rather than retrofitting controls after launch.</p>
+          </div>
+          <div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:7px">Outcome</div>
+            <p style="font-size:15px;color:#4A4741">One service pattern, two fully separate infrastructures, deployed internally and across group-facing websites.</p>
+          </div>
+        </div>
+        <p style="font-size:15px;color:#2A2825;margin-top:22px;padding-top:18px;border-top:1px solid #EDE9E0;max-width:70ch"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-right:8px">Why it mattered</span>Compliance designed in at the start costs a fraction of compliance added after the fact, and it is the only version that scales.</p>
+        <details style="margin-top:18px">
+          <summary style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.48 0.09 250);padding:10px 0;min-height:44px;display:flex;align-items:center;gap:8px">How it was built <span aria-hidden="true">↓</span></summary>
+          <div style="font-size:14.5px;color:#4A4741;background:#FAF9F5;border-left:2px solid #DDD8CB;padding:16px 18px;margin-top:4px">
+            <p>A retrieval-augmented chat service with strictly separate medical and non-medical infrastructure, indexes, and access paths, so no retrieval step can cross the boundary.</p>
+          </div>
+        </details>
+      </article>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:#E4E0D7;border:1px solid #E4E0D7;border-top:none">
+      <div style="background:#FDFCF9;padding:clamp(20px,2.4vw,28px)">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+          <h3 style="font-size:17px;font-weight:600">Forensic incident processing</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A">Security</span>
+        </div>
+        <p style="font-size:14.5px;color:#57534C;margin-top:9px">Finding PHI and PII exposure inside breach-related logs and leaked datasets fast enough to scope the notification population. Built with a forensics partner, alongside compliance and legal.</p>
+      </div>
+      <div style="background:#FDFCF9;padding:clamp(20px,2.4vw,28px)">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+          <h3 style="font-size:17px;font-weight:600">BookMySpot</h3>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A">Automation</span>
+        </div>
+        <p style="font-size:14.5px;color:#57534C;margin-top:9px">AI joined to the telephony stack and to legacy backends, handling booking, cancellations, and order status. Adopted across several business units without replacing the systems underneath.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="technical" style="border-top:1px solid #E4E0D7;background:#FFFFFF">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">03 / Technical</p>
+    <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">Built on technical depth</h2>
+    <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:64ch;margin-top:16px;text-wrap:pretty">My view on AI strategy comes from building and operating the systems, not from reading about them. I still fine-tune models and review architecture when the problem calls for it, and it changes the questions I ask in a funding conversation.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;margin-top:clamp(32px,4vw,48px)">
+      <div style="background:#FFFFFF;padding:clamp(20px,2.2vw,26px);box-shadow:0 0 0 1px #E4E0D7">
+        <h3 style="font-size:16px;font-weight:600;padding-bottom:12px;border-bottom:1px solid #EDE9E0">Enterprise AI</h3>
+        <ul style="list-style:none;padding:0;margin-top:12px;display:flex;flex-direction:column;gap:7px">
+          <li style="font-size:14.5px;color:#4A4741">Generative AI and LLM systems</li>
+          <li style="font-size:14.5px;color:#4A4741">Retrieval-augmented generation</li>
+          <li style="font-size:14.5px;color:#4A4741">NLP pipelines</li>
+          <li style="font-size:14.5px;color:#4A4741">Evaluation and accuracy targets</li>
+          <li style="font-size:14.5px;color:#4A4741">Getting models to production</li>
+        </ul>
+      </div>
+      <div style="background:#FFFFFF;padding:clamp(20px,2.2vw,26px);box-shadow:0 0 0 1px #E4E0D7">
+        <h3 style="font-size:16px;font-weight:600;padding-bottom:12px;border-bottom:1px solid #EDE9E0">Data &amp; machine learning</h3>
+        <ul style="list-style:none;padding:0;margin-top:12px;display:flex;flex-direction:column;gap:7px">
+          <li style="font-size:14.5px;color:#4A4741">Data science and modeling</li>
+          <li style="font-size:14.5px;color:#4A4741">Enterprise data platforms</li>
+          <li style="font-size:14.5px;color:#4A4741">Analytics and experimentation</li>
+          <li style="font-size:14.5px;color:#4A4741">On-premises fine-tuning</li>
+          <li style="font-size:14.5px;color:#4A4741">Python, R, Spark, SQL</li>
+        </ul>
+      </div>
+      <div style="background:#FFFFFF;padding:clamp(20px,2.2vw,26px);box-shadow:0 0 0 1px #E4E0D7">
+        <h3 style="font-size:16px;font-weight:600;padding-bottom:12px;border-bottom:1px solid #EDE9E0">Architecture &amp; engineering</h3>
+        <ul style="list-style:none;padding:0;margin-top:12px;display:flex;flex-direction:column;gap:7px">
+          <li style="font-size:14.5px;color:#4A4741">Cloud and hybrid architecture</li>
+          <li style="font-size:14.5px;color:#4A4741">Platform engineering</li>
+          <li style="font-size:14.5px;color:#4A4741">Model Context Protocol</li>
+          <li style="font-size:14.5px;color:#4A4741">Integration with legacy systems</li>
+          <li style="font-size:14.5px;color:#4A4741">Azure, Databricks</li>
+        </ul>
+      </div>
+      <div style="background:#F5F3EC;padding:clamp(20px,2.2vw,26px);box-shadow:0 0 0 1px #E4E0D7">
+        <h3 style="font-size:16px;font-weight:600;padding-bottom:12px;border-bottom:1px solid #E4E0D7">The leadership layer</h3>
+        <ul style="list-style:none;padding:0;margin-top:12px;display:flex;flex-direction:column;gap:7px">
+          <li style="font-size:14.5px;color:#4A4741">AI operating models</li>
+          <li style="font-size:14.5px;color:#4A4741">Governance and responsible AI</li>
+          <li style="font-size:14.5px;color:#4A4741">Investment prioritization</li>
+          <li style="font-size:14.5px;color:#4A4741">Healthcare data compliance</li>
+          <li style="font-size:14.5px;color:#4A4741">Organizational adoption</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure style="margin:clamp(40px,5vw,64px) 0 0;padding:clamp(24px,3vw,36px);background:#FAF9F5;border:1px solid #E4E0D7">
+      <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;margin-bottom:22px">How I think about an enterprise AI system</figcaption>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:stretch">
+        <div style="flex:3 1 340px;display:flex;flex-direction:column;gap:8px">
+          <div style="background:#FFFFFF;border:1px solid #E4E0D7;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline">
+            <span style="font-size:15px;font-weight:600">Business use case</span>
+            <span style="font-size:13px;color:#6E6A63">The process that changes, and who owns it</span>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #E4E0D7;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline">
+            <span style="font-size:15px;font-weight:600">Data &amp; knowledge</span>
+            <span style="font-size:13px;color:#6E6A63">Sources, quality, residency, retrieval</span>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #E4E0D7;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline">
+            <span style="font-size:15px;font-weight:600">Model layer</span>
+            <span style="font-size:13px;color:#6E6A63">Hosted, open-weight, or fine-tuned. Chosen per use case</span>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #E4E0D7;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline">
+            <span style="font-size:15px;font-weight:600">Enterprise platform</span>
+            <span style="font-size:13px;color:#6E6A63">Shared integration, identity, audit, cost control</span>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #E4E0D7;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline">
+            <span style="font-size:15px;font-weight:600">Applications</span>
+            <span style="font-size:13px;color:#6E6A63">Where a person or a system actually uses it</span>
+          </div>
+          <div style="background:oklch(0.48 0.09 250);border:1px solid oklch(0.48 0.09 250);padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline">
+            <span style="font-size:15px;font-weight:600;color:#FFFFFF">Measured outcome</span>
+            <span style="font-size:13px;color:rgba(255,255,255,0.82)">Cost, time, accuracy, adoption</span>
+          </div>
+        </div>
+        <div style="flex:1 1 180px;background:#F0EDE4;border:1px solid #E4E0D7;padding:18px;display:flex;flex-direction:column;justify-content:center">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:8px">Spans every layer</div>
+          <div style="font-size:15px;font-weight:600">Governance, security, and measurement</div>
+          <p style="font-size:13.5px;color:#57534C;margin-top:8px">Not a stage at the end. Access, audit, data separation, and evaluation are decided at each layer or they do not hold.</p>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="advising" style="border-top:1px solid #E4E0D7">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,64px)">
+      <div style="flex:1 1 380px;min-width:0">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">04 / Sharing experience</p>
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">Conversations I enjoy</h2>
+        <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:56ch;margin-top:16px;text-wrap:pretty">I like comparing notes with founders, technology leaders, and teams working through hard questions about AI, data, and transformation. Usually I learn as much as I contribute.</p>
+        <p style="font-size:16px;color:#4A4741;max-width:56ch;margin-top:16px;text-wrap:pretty">I also mentor engineers and data scientists moving from deep technical work into broader leadership, which is a harder transition than most people expect and rarely taught anywhere.</p>
+        <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-size:14px;font-weight:600;color:#1A1917;border:1px solid #C9C3B4;padding:13px 22px;min-height:46px;border-radius:2px" class="hv2">Exchange perspectives on LinkedIn <span aria-hidden="true">↗</span></a>
+      </div>
+      <div style="flex:1 1 280px;min-width:0">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;padding-bottom:12px;border-bottom:1px solid #E4E0D7">Topics that come up most</div>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Which AI investments are worth making, and which are not</li>
+          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Build versus buy, and when that answer changes</li>
+          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Why pilots stall on the way to production</li>
+          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Operating models for AI inside a large organization</li>
+          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">AI in regulated environments</li>
+          <li style="font-size:15.5px;color:#2A2825;padding:13px 0;border-bottom:1px solid #EDE9E0">Scaling and structuring distributed technical teams</li>
+          <li style="font-size:15.5px;color:#2A2825;padding:13px 0">Moving from technical expert to technical leader</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey" style="border-top:1px solid #E4E0D7;background:#FFFFFF">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">05 / Journey</p>
+    <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">How I got here</h2>
+    <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:64ch;margin-top:16px;text-wrap:pretty">I started in enterprise systems, spent years close to the code and the data, and moved into leadership because the interesting problems kept turning out to be organizational. A master's in data science along the way, mostly to stop bluffing about the statistics.</p>
+
+    <div style="margin-top:clamp(32px,4vw,48px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(18px,2.5vw,28px);padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid #E4E0D7">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.48 0.09 60);margin-bottom:8px">2007 → 2016</div>
+          <h3 style="font-size:17px;font-weight:600">Enterprise systems, consulting</h3>
+          <p style="font-size:14.5px;color:#57534C;margin-top:8px">Transformation work for Fortune 500 companies including Kraft Heinz, Colgate-Palmolive, and NuSkin, through Infosys, Deloitte, and Cognizant. Built trade promotion systems on SAP CRM with predictive modeling. Learned how large organizations really make decisions, which is not how the org chart suggests.</p>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.48 0.09 60);margin-bottom:8px">2016 → 2023</div>
+          <h3 style="font-size:17px;font-weight:600">Digital and AI, in-house</h3>
+          <p style="font-size:14.5px;color:#57534C;margin-top:8px">Led digital transformation across sales, CRM, and marketing at a global eyewear and eyecare group. Owned AI integration across SAP CRM and Salesforce, putting real-time insight in front of more than 500 sales representatives. First taste of adoption being the hard part.</p>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.48 0.09 60);margin-bottom:8px">2023 → now</div>
+          <h3 style="font-size:17px;font-weight:600">Data science and AI leadership</h3>
+          <p style="font-size:14.5px;color:#57534C;margin-top:8px">Accountable for AI and data science across the group's medical and clinical portfolio. A distributed organization of 16 to 30 people, a seven-figure budget, more than ten concurrent initiatives, and a multi-country rollout of AI clinical translation and scribe tooling.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,48px);padding-top:clamp(24px,3vw,36px)">
+        <p style="flex:1 1 300px;font-size:15.5px;color:#4A4741;text-wrap:pretty">What has stayed constant is the shape of the problem. Someone wants an outcome, the technology is only part of the answer, and the rest is judgment about people, sequencing, and cost. The AI era has made that gap wider, not narrower.</p>
+        <p style="flex:1 1 300px;font-size:15.5px;color:#4A4741;text-wrap:pretty">What I care about now is building teams where good engineers become good leaders, and making decisions that still look reasonable two years later. I write when I have something worth arguing, which is roughly once a month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="writing" style="border-top:1px solid #E4E0D7">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">06 / Writing &amp; research</p>
+    <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">Where my thinking is on record</h2>
+
+    <div style="margin-top:clamp(28px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:#E4E0D7;border:1px solid #E4E0D7">
+      <div style="background:#FDFCF9;padding:clamp(20px,2.4vw,26px)">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:8px">Published research</div>
+        <h3 style="font-size:17px;font-weight:600">TrueLens</h3>
+        <p style="font-size:14.5px;color:#57534C;margin-top:7px">A framework for mitigating algorithmic bias, referenced in enterprise AI governance practice.</p>
+      </div>
+      <div style="background:#FDFCF9;padding:clamp(20px,2.4vw,26px)">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:8px">Published research</div>
+        <h3 style="font-size:17px;font-weight:600">Ice Cube algorithm</h3>
+        <p style="font-size:14.5px;color:#57534C;margin-top:7px">Adaptive time-stretching that keeps AI-translated multilingual video synchronized with its source.</p>
+      </div>
+    </div>
+
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;margin-top:clamp(36px,4vw,52px);padding-bottom:12px;border-bottom:1px solid #E4E0D7">Selected articles</div>
+    <div style="display:flex;flex-direction:column">
+      <a href="https://www.linkedin.com/pulse/ai-governance-isnt-its-leadership-rajwant-mishra-2yhbc" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">AI governance isn't about AI. It's about leadership</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/pulse/hugging-face-security-incident-why-ai-infrastructure-becoming-mishra-odprc" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">The Hugging Face security incident: why AI infrastructure is becoming a new attack surface</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn · Medium ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/pulse/future-software-engineering-more-code-its-rajwant-mishra-cz6cc" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">The future of software engineering is not more code. It's more verification</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn · Medium ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/pulse/shift-from-chatbots-ai-workers-redefining-security-rajwant-mishra-lp1ye" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">The shift from chatbots to AI workers is redefining AI security</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/pulse/data-organization-ai-rajwant-mishra-ep4he" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">Data, organization, and AI</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn · Medium ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/pulse/give-your-agent-long-term-memory-without-blowing-context-mishra-bsusc" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">Give your agent a long-term memory (without blowing the context window)</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/pulse/ai-chaos-confidence-where-we-get-wrong-future-rajwant-mishra-fd2ze" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">AI, chaos and confidence: where we get the future wrong</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/pulse/impact-ai-companions-loneliness-across-age-groups-5-year-mishra-ei2ze" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px solid #EDE9E0;color:#1A1917" class="hv5">
+        <span style="flex:1 1 300px;font-size:16px;font-weight:500">Impact of AI companions on loneliness across age groups</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">LinkedIn ↗</span>
+      </a>
+      <a href="https://medium.com/@rajwantmishra" target="_blank" rel="noopener" style="display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;padding:16px 0;color:#57534C" class="hv5">
+        <span style="flex:1 1 300px;font-size:15px">Plus hands-on engineering write-ups on Medium</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;color:#A8A39A">All writing ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="connect" style="border-top:1px solid #E4E0D7;background:#F2EFE8">
+  <div style="max-width:1140px;margin:0 auto;padding:clamp(48px,5vw,72px) clamp(18px,4vw,40px)">
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);align-items:center">
+      <img src="headshot.png" alt="Rajwant Mishra" width="112" height="112" loading="lazy" style="width:112px;height:112px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid #DDD8CB;flex:0 0 auto">
+      <div style="flex:1 1 320px;min-width:0">
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,2.8vw,32px);font-weight:400">Worth a conversation?</h2>
+        <p style="font-size:15.5px;color:#4A4741;max-width:52ch;margin-top:10px">If you are working on something in AI, data, or transformation and want an outside read on it, I am easy to reach.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:18px">
+          <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 0;min-height:44px;display:inline-flex;align-items:center">Connect on LinkedIn ↗</a>
+          <a href="mailto:rajwantmishra@gmail.com" style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 0;min-height:44px;display:inline-flex;align-items:center">rajwantmishra@gmail.com</a>
+          <a href="https://medium.com/@rajwantmishra" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 0;min-height:44px;display:inline-flex;align-items:center">Medium ↗</a>
         </div>
       </div>
     </div>
-    <div class="footnote">&copy; RAJWANT MISHRA &mdash; BUILT WITH INTENT, NOT A TEMPLATE.</div>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-top:clamp(36px,4vw,56px);padding-top:20px;border-top:1px solid #DDD8CB">Rajwant Mishra · New York</p>
   </div>
 </footer>
 
-<script>
-  document.querySelectorAll('.proj-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const wasOpen = card.classList.contains('open');
-      document.querySelectorAll('.proj-card').forEach(c => {
-        c.classList.remove('open');
-        c.querySelector('.proj-toggle').textContent = '+ expand';
-      });
-      if(!wasOpen){
-        card.classList.add('open');
-        card.querySelector('.proj-toggle').textContent = '\u2212 collapse';
-      }
-    });
-  });
-</script>
+<button type="button" id="chatFab" aria-expanded="false" aria-controls="chatPanel" style="position:fixed;bottom:22px;right:22px;z-index:60;height:48px;padding:0 20px;border-radius:24px;border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;cursor:pointer;box-shadow:0 6px 20px rgba(26,25,23,0.18)" class="fabHover">Ask about my work</button>
 
-<button class="chat-fab" id="chatFab" aria-label="Ask a question">
-  <svg viewBox="0 0 24 24" fill="none" stroke="#0E1114" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-</button>
-
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-head">
-    <div>Ask about Rajwant<div class="chat-head-sub">answers grounded in his real work — not general AI chat</div></div>
-    <button class="chat-close" id="chatClose">&times;</button>
+<div role="dialog" aria-label="Ask about Rajwant's work" id="chatPanel" hidden style="position:fixed;bottom:82px;right:22px;z-index:61;width:min(380px,calc(100vw - 44px));max-height:min(560px,calc(100vh - 120px));background:#FFFFFF;border:1px solid #DDD8CB;box-shadow:0 16px 48px rgba(26,25,23,0.18);display:flex;flex-direction:column;animation:rise .18s ease-out">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 18px;border-bottom:1px solid #EDE9E0">
+    <div>
+      <div style="font-size:14.5px;font-weight:600">Ask about my work</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#A8A39A;margin-top:3px">Answers grounded in real projects</div>
+    </div>
+    <button type="button" id="chatClose" aria-label="Close" style="background:none;border:none;font-size:18px;color:#8A857D;cursor:pointer;line-height:1;padding:4px">&times;</button>
   </div>
-  <div class="chat-gate" id="chatGate">
-    <p class="chat-gate-note">Quick intro before we start — who am I talking to, and what brings you by?</p>
+  <div id="chatGate" style="padding:18px;display:flex;flex-direction:column;gap:12px;overflow-y:auto">
+    <p style="font-size:13px;color:#57534C;line-height:1.5;margin:0">Quick intro before we start — who am I talking to, and what brings you by?</p>
     <div>
-      <label for="gateName">YOUR NAME</label>
-      <input type="text" id="gateName" placeholder="Jane Doe" maxlength="80">
+      <label for="gateName" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#8A857D;margin-bottom:6px">YOUR NAME</label>
+      <input type="text" id="gateName" placeholder="Jane Doe" maxlength="80" style="width:100%;box-sizing:border-box;border:1px solid #DDD8CB;background:#FAF9F5;padding:10px 11px;font-family:'Libre Franklin',sans-serif;font-size:14px;color:#1A1917;border-radius:2px">
     </div>
     <div>
-      <label for="gateEmail">EMAIL (OPTIONAL, IN CASE RAJWANT WANTS TO FOLLOW UP)</label>
-      <input type="email" id="gateEmail" placeholder="jane@company.com" maxlength="200">
+      <label for="gateEmail" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#8A857D;margin-bottom:6px">EMAIL (OPTIONAL)</label>
+      <input type="email" id="gateEmail" placeholder="jane@company.com" maxlength="200" style="width:100%;box-sizing:border-box;border:1px solid #DDD8CB;background:#FAF9F5;padding:10px 11px;font-family:'Libre Franklin',sans-serif;font-size:14px;color:#1A1917;border-radius:2px">
     </div>
     <div>
-      <label for="gatePurpose">WHAT ARE YOU HERE FOR?</label>
-      <textarea id="gatePurpose" placeholder="e.g. Hiring for a Head of AI role, exploring a partnership, curious about a project..." maxlength="300"></textarea>
+      <label for="gatePurpose" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:#8A857D;margin-bottom:6px">WHAT ARE YOU HERE FOR?</label>
+      <textarea id="gatePurpose" placeholder="e.g. an advisory conversation, hiring, curious about a project..." maxlength="300" style="width:100%;box-sizing:border-box;height:70px;resize:none;border:1px solid #DDD8CB;background:#FAF9F5;padding:10px 11px;font-family:'Libre Franklin',sans-serif;font-size:14px;color:#1A1917;border-radius:2px"></textarea>
     </div>
-    <button class="chat-gate-start" id="gateStart" disabled>Start chat</button>
-    <div class="chat-gate-alt">Prefer to reach out directly? <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">Connect on LinkedIn →</a></div>
+    <button type="button" id="gateStart" disabled style="border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:11px 15px;cursor:pointer;border-radius:2px">Start chat</button>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A857D;text-align:center">Prefer to reach out directly? <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a></div>
   </div>
-
-  <div class="chat-body" id="chatBody" style="display:none"></div>
-  <input type="text" id="honeypot-field" name="website" tabindex="-1" autocomplete="off">
-  <div class="chat-input-row" id="chatInputRow" style="display:none">
-    <input type="text" id="chatInput" placeholder="e.g. What did he build at Luxottica?" maxlength="800">
-    <button class="chat-send" id="chatSend">Send</button>
-  </div>
-</div>
-
-<div class="resume-gate-overlay" id="resumeGateOverlay">
-  <div class="resume-gate-modal">
-    <div class="resume-gate-head">
-      <div>Before you download</div>
-      <button class="chat-close" id="resumeGateClose">&times;</button>
-    </div>
-    <p class="chat-gate-note">Quick details so Rajwant knows who's reaching out.</p>
-    <div>
-      <label for="resumeGateName">YOUR NAME</label>
-      <input type="text" id="resumeGateName" placeholder="Jane Doe" maxlength="80">
-    </div>
-    <div>
-      <label for="resumeGateEmail">EMAIL</label>
-      <input type="email" id="resumeGateEmail" placeholder="jane@company.com" maxlength="200">
-    </div>
-    <button class="chat-gate-start" id="resumeGateStart" disabled>Download resume ↓</button>
-  </div>
+  <div id="chatLog" hidden style="flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:10px"></div>
+  <input type="text" id="honeypot-field" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+  <form id="chatForm" hidden style="display:flex;gap:8px;padding:12px;border-top:1px solid #EDE9E0">
+    <input type="text" id="chatInput" placeholder="What did the platform work involve?" maxlength="600" aria-label="Your question" autocomplete="off" style="flex:1;min-width:0;border:1px solid #DDD8CB;background:#FAF9F5;padding:11px 12px;font-family:'Libre Franklin',sans-serif;font-size:14px;color:#1A1917;border-radius:2px">
+    <button type="submit" style="border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:0 15px;min-height:44px;cursor:pointer;border-radius:2px">Send</button>
+  </form>
 </div>
 
 <div class="cf-turnstile" data-sitekey="0x4AAAAAAEW97t-Clt4qUQx2" data-size="invisible" id="turnstileWidget"></div>
 
+</div>
+
 <script>
-  const CHATBOT_ENDPOINT = "https://rm-portfolio-chatbot.rajwantmishra.workers.dev";
+/* ---------------------------------------------------------------
+   Chatbot: paste your deployed Cloudflare Worker URL below (no
+   trailing slash). Leave it as-is and the widget still works, but
+   replies point visitors to LinkedIn instead.
+   --------------------------------------------------------------- */
+var CHAT_ENDPOINT = "https://rm-portfolio-chatbot.rajwantmishra.workers.dev";
 
-  const fab = document.getElementById('chatFab');
-  const panel = document.getElementById('chatPanel');
-  const closeBtn = document.getElementById('chatClose');
-  const body = document.getElementById('chatBody');
-  const input = document.getElementById('chatInput');
-  const inputRow = document.getElementById('chatInputRow');
-  const sendBtn = document.getElementById('chatSend');
-  const honeypot = document.getElementById('honeypot-field');
-  const gate = document.getElementById('chatGate');
-  const gateName = document.getElementById('gateName');
-  const gateEmail = document.getElementById('gateEmail');
-  const gatePurpose = document.getElementById('gatePurpose');
-  const gateStart = document.getElementById('gateStart');
+(function () {
+  var fab = document.getElementById('chatFab');
+  var panel = document.getElementById('chatPanel');
+  var gate = document.getElementById('chatGate');
+  var gateName = document.getElementById('gateName');
+  var gateEmail = document.getElementById('gateEmail');
+  var gatePurpose = document.getElementById('gatePurpose');
+  var gateStart = document.getElementById('gateStart');
+  var log = document.getElementById('chatLog');
+  var form = document.getElementById('chatForm');
+  var input = document.getElementById('chatInput');
+  var honeypot = document.getElementById('honeypot-field');
+  var visitor = null;
 
-  let visitor = null;
   try {
-    const saved = sessionStorage.getItem('rm_chat_visitor');
+    var saved = sessionStorage.getItem('rm_chat_visitor');
     if (saved) visitor = JSON.parse(saved);
-  } catch(e) {}
+  } catch (e) {}
 
-  function openChat(){
-    if (visitor) {
-      showChatUI(visitor);
-    } else {
-      gate.style.display = 'flex';
-      body.style.display = 'none';
-      inputRow.style.display = 'none';
-    }
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
-
-  function showChatUI(v){
-    gate.style.display = 'none';
-    body.style.display = 'flex';
-    inputRow.style.display = 'flex';
-    if (!body.children.length) {
-      addMsg(`Hi ${v.name}! Ask me anything about Rajwant's experience, projects, or background — I'll answer from what he's actually shared here.`, 'bot');
-    }
-    input.focus();
-  }
-
-  function updateGateStart(){
-    gateStart.disabled = !(gateName.value.trim() && gatePurpose.value.trim());
-  }
-  gateName.addEventListener('input', updateGateStart);
-  gatePurpose.addEventListener('input', updateGateStart);
-
-  gateStart.addEventListener('click', () => {
-    const name = gateName.value.trim();
-    const purpose = gatePurpose.value.trim();
-    const email = gateEmail.value.trim();
-    if (!name || !purpose) return;
-    visitor = { name, purpose, email };
-    try { sessionStorage.setItem('rm_chat_visitor', JSON.stringify(visitor)); } catch(e) {}
-    showChatUI(visitor);
-  });
-
-  fab.addEventListener('click', () => {
-    const wasOpen = panel.classList.contains('open');
-    panel.classList.toggle('open');
-    if (!wasOpen) openChat();
-  });
-  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
-
-  function escapeHtml(str){
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  function renderMarkdown(text){
-    let html = escapeHtml(text);
+  function renderMarkdown(text) {
+    var html = escapeHtml(text);
     html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    const lines = html.split('\n');
-    let out = [], inList = false;
-    for (const line of lines) {
-      const bullet = line.match(/^\s*[-*]\s+(.*)/);
-      if (bullet) {
-        if (!inList) { out.push('<ul>'); inList = true; }
-        out.push('<li>' + bullet[1] + '</li>');
+    var lines = html.split('\n'), out = [], inList = false;
+    for (var i = 0; i < lines.length; i++) {
+      var m = lines[i].match(/^\s*[-*]\s+(.*)/);
+      if (m) {
+        if (!inList) { out.push('<ul style="margin:4px 0 4px 18px;padding:0">'); inList = true; }
+        out.push('<li>' + m[1] + '</li>');
       } else {
         if (inList) { out.push('</ul>'); inList = false; }
-        if (line.trim()) out.push('<p>' + line + '</p>');
+        if (lines[i].trim()) out.push('<p style="margin:0 0 6px">' + lines[i] + '</p>');
       }
     }
     if (inList) out.push('</ul>');
     return out.join('');
   }
-
-  function addMsg(text, cls){
-    const div = document.createElement('div');
-    div.className = 'chat-msg ' + cls;
-    if (cls === 'bot') {
-      div.innerHTML = renderMarkdown(text);
-    } else {
-      div.textContent = text;
-    }
-    body.appendChild(div);
-    body.scrollTop = body.scrollHeight;
+  function bubble(text) {
+    var d = document.createElement('div');
+    d.innerHTML = renderMarkdown(text);
+    d.setAttribute('style', 'font-size:14px;line-height:1.55;padding:10px 13px;border:1px solid #EDE9E0;background:#FAF9F5;max-width:92%;align-self:flex-start;color:#2A2825');
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+  }
+  function mine(text) {
+    var d = document.createElement('div');
+    d.textContent = text;
+    d.setAttribute('style', 'font-size:14px;line-height:1.55;padding:10px 13px;border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;max-width:92%;align-self:flex-end;white-space:pre-wrap');
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
   }
 
-  async function getTurnstileToken(){
-    return new Promise((resolve) => {
-      if (typeof turnstile === 'undefined'){ resolve(null); return; }
-      try{
+  function showChatUI() {
+    gate.hidden = true;
+    log.hidden = false;
+    form.hidden = false;
+    if (!log.children.length) {
+      bubble("Hi " + visitor.name + "! Ask me about the AI portfolio, the platform work, how a decision got made, or anything on this page. I answer from actual projects, not general knowledge.");
+    }
+    input.focus();
+  }
+
+  function toggle(open) {
+    panel.hidden = !open;
+    fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      if (visitor) { showChatUI(); }
+      else { gate.hidden = false; log.hidden = true; form.hidden = true; }
+    }
+  }
+  fab.addEventListener('click', function () { toggle(panel.hidden); });
+  document.getElementById('chatClose').addEventListener('click', function () { toggle(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) toggle(false); });
+
+  function updateGateStart() {
+    gateStart.disabled = !(gateName.value.trim() && gatePurpose.value.trim());
+  }
+  gateName.addEventListener('input', updateGateStart);
+  gatePurpose.addEventListener('input', updateGateStart);
+  gateStart.addEventListener('click', function () {
+    var name = gateName.value.trim(), purpose = gatePurpose.value.trim(), email = gateEmail.value.trim();
+    if (!name || !purpose) return;
+    visitor = { name: name, purpose: purpose, email: email };
+    try { sessionStorage.setItem('rm_chat_visitor', JSON.stringify(visitor)); } catch (e) {}
+    showChatUI();
+  });
+
+  function getTurnstileToken() {
+    return new Promise(function (resolve) {
+      if (typeof turnstile === 'undefined') { resolve(null); return; }
+      try {
         turnstile.render('#turnstileWidget', {
           sitekey: document.getElementById('turnstileWidget').dataset.sitekey,
-          callback: (token) => resolve(token),
-          'error-callback': () => resolve(null),
+          callback: function (token) { resolve(token); },
+          'error-callback': function () { resolve(null); }
         });
-      }catch(e){ resolve(null); }
+      } catch (e) { resolve(null); }
     });
   }
 
-  async function sendMessage(){
-    const text = input.value.trim();
-    if(!text) return;
-    if (CHATBOT_ENDPOINT.includes('PUT_YOUR_WORKER_URL_HERE')){
-      addMsg('Chatbot backend not connected yet — see chatbot/README.md to deploy it.', 'err');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    if (!q) return;
+    var valid = CHAT_ENDPOINT && CHAT_ENDPOINT.indexOf('http') === 0 && CHAT_ENDPOINT.indexOf('PUT_YOUR') === -1;
+    if (!valid) {
+      mine(q);
+      input.value = '';
+      bubble("The assistant is not connected yet. The fastest route to an answer right now is a message on LinkedIn.");
       return;
     }
-    addMsg(text, 'user');
+    mine(q);
     input.value = '';
+    var sendBtn = form.querySelector('button[type="submit"]');
     sendBtn.disabled = true;
-    addMsg('...', 'bot');
-    const thinkingEl = body.lastChild;
+    bubble('...');
+    var pending = log.lastChild;
 
-    try{
-      const token = await getTurnstileToken();
-      const res = await fetch(CHATBOT_ENDPOINT + '/chat', {
+    getTurnstileToken().then(function (token) {
+      return fetch(CHAT_ENDPOINT + '/chat', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: text,
+          message: q,
           turnstileToken: token,
           website: honeypot.value,
           visitorName: visitor ? visitor.name : undefined,
           visitorPurpose: visitor ? visitor.purpose : undefined,
-          visitorEmail: visitor ? visitor.email : undefined,
+          visitorEmail: visitor ? visitor.email : undefined
         })
       });
-      const data = await res.json();
-      thinkingEl.remove();
-      if(!res.ok){
-        addMsg(data.error || 'Something went wrong.', 'err');
-      } else {
-        addMsg(data.reply, 'bot');
-      }
-    }catch(e){
-      thinkingEl.remove();
-      addMsg('Network error — please try again.', 'err');
-    }finally{
-      sendBtn.disabled = false;
-    }
-  }
-
-  sendBtn.addEventListener('click', sendMessage);
-  input.addEventListener('keydown', (e) => { if(e.key === 'Enter') sendMessage(); });
-
-  // --- Resume download gate ---
-  const resumeOverlay = document.getElementById('resumeGateOverlay');
-  const resumeClose = document.getElementById('resumeGateClose');
-  const resumeName = document.getElementById('resumeGateName');
-  const resumeEmail = document.getElementById('resumeGateEmail');
-  const resumeStart = document.getElementById('resumeGateStart');
-  let pendingResumeHref = null;
-
-  function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
-  function triggerDownload(href){
-    const a = document.createElement('a');
-    a.href = href;
-    a.download = '';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  }
-
-  function updateResumeStart(){
-    resumeStart.disabled = !(resumeName.value.trim() && isValidEmail(resumeEmail.value.trim()));
-  }
-  resumeName.addEventListener('input', updateResumeStart);
-  resumeEmail.addEventListener('input', updateResumeStart);
-
-  function getKnownLead(){
-    if (visitor && visitor.name && visitor.email) return visitor;
-    try {
-      const saved = sessionStorage.getItem('rm_resume_lead');
-      if (saved) return JSON.parse(saved);
-    } catch(e) {}
-    return null;
-  }
-
-  document.querySelectorAll('.resume-link').forEach(a => {
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      const href = a.getAttribute('href');
-      const known = getKnownLead();
-      if (known) {
-        triggerDownload(href);
-        return;
-      }
-      pendingResumeHref = href;
-      resumeName.value = '';
-      resumeEmail.value = '';
-      updateResumeStart();
-      resumeOverlay.classList.add('open');
-    });
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        pending.remove();
+        bubble(res.ok ? res.data.reply : (res.data.error || "Something went wrong."));
+      })
+      .catch(function () {
+        pending.remove();
+        bubble("That request did not go through. LinkedIn is a reliable fallback.");
+      })
+      .finally(function () { sendBtn.disabled = false; });
   });
-
-  resumeClose.addEventListener('click', () => resumeOverlay.classList.remove('open'));
-  resumeOverlay.addEventListener('click', (e) => { if (e.target === resumeOverlay) resumeOverlay.classList.remove('open'); });
-
-  resumeStart.addEventListener('click', async () => {
-    const name = resumeName.value.trim();
-    const email = resumeEmail.value.trim();
-    if (!name || !isValidEmail(email)) return;
-    resumeStart.disabled = true;
-    resumeStart.textContent = 'Preparing...';
-    const lead = { name, email };
-    try { sessionStorage.setItem('rm_resume_lead', JSON.stringify(lead)); } catch(e) {}
-
-    if (!CHATBOT_ENDPOINT.includes('PUT_YOUR_WORKER_URL_HERE')) {
-      try {
-        await fetch(CHATBOT_ENDPOINT + '/lead', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({ name, email, source: 'resume_download' })
-        });
-      } catch(e) { /* don't block the download on a logging failure */ }
-    }
-
-    resumeOverlay.classList.remove('open');
-    resumeStart.textContent = 'Download resume ↓';
-    resumeStart.disabled = false;
-    if (pendingResumeHref) triggerDownload(pendingResumeHref);
-  });
+})();
 </script>
-
 </body>
 </html>
