@@ -29,6 +29,15 @@
   .hv4:hover{background:#F2EFE6 !important;text-decoration:none !important}
   .hv5:hover{color:oklch(0.38 0.09 250) !important;text-decoration:none !important}
   .fabHover:hover{background:oklch(0.38 0.09 250);border-color:oklch(0.38 0.09 250)}
+  @media (max-width:640px){
+    #chatPanel{
+      position:fixed !important;inset:0 !important;bottom:0 !important;right:0 !important;
+      width:100vw !important;max-width:100vw !important;
+      height:100dvh !important;max-height:100dvh !important;
+      border:none !important;border-radius:0 !important;
+    }
+    #chatFab{bottom:16px !important;right:16px !important}
+  }
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -597,7 +606,7 @@
 
 <button type="button" id="chatFab" aria-expanded="false" aria-controls="chatPanel" style="position:fixed;bottom:22px;right:22px;z-index:60;height:48px;padding:0 20px;border-radius:24px;border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;cursor:pointer;box-shadow:0 6px 20px rgba(26,25,23,0.18)" class="fabHover">Ask about my work</button>
 
-<div role="dialog" aria-label="Ask about Rajwant's work" id="chatPanel" hidden style="position:fixed;bottom:82px;right:22px;z-index:61;width:min(380px,calc(100vw - 44px));max-height:min(560px,calc(100vh - 120px));background:#FFFFFF;border:1px solid #DDD8CB;box-shadow:0 16px 48px rgba(26,25,23,0.18);display:flex;flex-direction:column;animation:rise .18s ease-out">
+<div role="dialog" aria-label="Ask about Rajwant's work" id="chatPanel" style="position:fixed;bottom:82px;right:22px;z-index:61;width:min(380px,calc(100vw - 44px));max-height:min(560px,calc(100vh - 120px));background:#FFFFFF;border:1px solid #DDD8CB;box-shadow:0 16px 48px rgba(26,25,23,0.18);display:none;flex-direction:column;animation:rise .18s ease-out">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 18px;border-bottom:1px solid #EDE9E0">
     <div>
       <div style="font-size:14.5px;font-weight:600">Ask about my work</div>
@@ -622,9 +631,9 @@
     <button type="button" id="gateStart" disabled style="border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:11px 15px;cursor:pointer;border-radius:2px">Start chat</button>
     <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#8A857D;text-align:center">Prefer to reach out directly? <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a></div>
   </div>
-  <div id="chatLog" hidden style="flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:10px"></div>
+  <div id="chatLog" style="flex:1;overflow-y:auto;padding:16px 18px;display:none;flex-direction:column;gap:10px"></div>
   <input type="text" id="honeypot-field" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
-  <form id="chatForm" hidden style="display:flex;gap:8px;padding:12px;border-top:1px solid #EDE9E0">
+  <form id="chatForm" style="display:none;gap:8px;padding:12px;border-top:1px solid #EDE9E0">
     <input type="text" id="chatInput" placeholder="What did the platform work involve?" maxlength="600" aria-label="Your question" autocomplete="off" style="flex:1;min-width:0;border:1px solid #DDD8CB;background:#FAF9F5;padding:11px 12px;font-family:'Libre Franklin',sans-serif;font-size:14px;color:#1A1917;border-radius:2px">
     <button type="submit" style="border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:0 15px;min-height:44px;cursor:pointer;border-radius:2px">Send</button>
   </form>
@@ -697,10 +706,12 @@ var CHAT_ENDPOINT = "https://rm-portfolio-chatbot.rajwantmishra.workers.dev";
     log.scrollTop = log.scrollHeight;
   }
 
+  var panelOpen = false;
+
   function showChatUI() {
-    gate.hidden = true;
-    log.hidden = false;
-    form.hidden = false;
+    gate.style.display = 'none';
+    log.style.display = 'flex';
+    form.style.display = 'flex';
     if (!log.children.length) {
       bubble("Hi " + visitor.name + "! Ask me about the AI portfolio, the platform work, how a decision got made, or anything on this page. I answer from actual projects, not general knowledge.");
     }
@@ -708,16 +719,17 @@ var CHAT_ENDPOINT = "https://rm-portfolio-chatbot.rajwantmishra.workers.dev";
   }
 
   function toggle(open) {
-    panel.hidden = !open;
+    panelOpen = open;
+    panel.style.display = open ? 'flex' : 'none';
     fab.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (open) {
       if (visitor) { showChatUI(); }
-      else { gate.hidden = false; log.hidden = true; form.hidden = true; }
+      else { gate.style.display = 'flex'; log.style.display = 'none'; form.style.display = 'none'; }
     }
   }
-  fab.addEventListener('click', function () { toggle(panel.hidden); });
+  fab.addEventListener('click', function () { toggle(!panelOpen); });
   document.getElementById('chatClose').addEventListener('click', function () { toggle(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) toggle(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panelOpen) toggle(false); });
 
   function updateGateStart() {
     gateStart.disabled = !(gateName.value.trim() && gatePurpose.value.trim());
