@@ -168,6 +168,24 @@
   .proj-detail li{margin-bottom:6px;}
   .proj-toggle{font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:12px;}
 
+  /* ADVISORY */
+  .advisory-list{display:flex;flex-direction:column;margin-top:28px;}
+  .advisory-row{
+    padding:24px 0;border-top:1px solid var(--border);
+    display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:start;
+  }
+  .advisory-row:last-child{border-bottom:1px solid var(--border);}
+  @media(max-width:800px){.advisory-row{grid-template-columns:1fr;gap:8px;}}
+  .advisory-hook{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.35;}
+  .advisory-proof{font-size:14.5px;color:var(--muted);line-height:1.6;max-width:56ch;}
+  .advisory-cta{
+    margin-top:32px;padding:20px 24px;background:var(--panel);
+    border-left:2px solid var(--amber);border-radius:0 4px 4px 0;
+    font-size:14.5px;color:var(--muted);
+  }
+  .advisory-cta a{font-family:var(--mono);font-size:13.5px;color:var(--teal);}
+  .advisory-cta a:hover{text-decoration:underline;}
+
   /* RESEARCH */
   .research-item{
     display:grid;grid-template-columns:1fr;gap:6px;
@@ -338,6 +356,7 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#advisory">Advisory</a>
       <a href="#research">Research</a>
       <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
@@ -564,6 +583,38 @@
         <div class="proj-toggle">+ expand</div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<section id="advisory">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">For Founders &amp; Operators</div>
+      <h2>What I bring as an advisor</h2>
+      <p class="lede">Three problems I've already lived through, not theorized about.</p>
+    </div>
+
+    <div class="advisory-list">
+      <div class="advisory-row">
+        <div class="advisory-hook">Turn AI pilots into a platform, not a pile of one-offs.</div>
+        <div class="advisory-proof">ButlerAI made &ldquo;adopt AI&rdquo; a single integration decision &mdash; BookMySpot (AI + telephony for appointment booking) was one of many use cases that plugged straight in, not a bespoke rebuild.</div>
+      </div>
+      <div class="advisory-row">
+        <div class="advisory-hook">Make the budget case, not just the tech case.</div>
+        <div class="advisory-proof">Replaced third-party translation vendors with an in-house NLP/LLM pipeline &mdash; ~$2-3M in annual savings a CFO can verify, not just an engineering win.</div>
+      </div>
+      <div class="advisory-row">
+        <div class="advisory-hook">Ship AI where &ldquo;move fast&rdquo; isn't an option.</div>
+        <div class="advisory-proof">Built medical vs. non-medical infrastructure splits and healthcare-grade governance from day one, because regulated environments punish AI that wasn't designed for compliance from the start.</div>
+      </div>
+    </div>
+
+    <div class="advisory-cta">
+      Building one of these problems right now?
+      <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      &middot;
+      <a href="mailto:rajwantmishra@gmail.com">Email me</a>
     </div>
   </div>
 </section>
