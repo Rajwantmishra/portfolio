@@ -25,10 +25,7 @@
 <style>
   .hv1:hover{background:oklch(0.38 0.09 250) !important;color:#FAF9F5 !important;text-decoration:none !important}
   .hv2:hover{border-color:#1A1917 !important;text-decoration:none !important}
-  .hv3:hover{background:#FDFCF9 !important;text-decoration:none !important}
-  .hv4:hover{background:#F2EFE6 !important;text-decoration:none !important}
   .hv5:hover{color:oklch(0.38 0.09 250) !important;text-decoration:none !important}
-  .fabHover:hover{background:oklch(0.38 0.09 250);border-color:oklch(0.38 0.09 250)}
   @media (max-width:640px){
     #chatPanel{
       position:fixed !important;inset:0 !important;bottom:0 !important;right:0 !important;
@@ -37,6 +34,9 @@
       border:none !important;border-radius:0 !important;
     }
     #chatFab{bottom:16px !important;right:16px !important}
+  }
+  @media (max-width:620px){
+    .flow-arrow{transform:rotate(90deg);justify-content:center;padding:2px 0}
   }
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -48,12 +48,12 @@
   <div style="max-width:1140px;margin:0 auto;padding:0 clamp(18px,4vw,40px);min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:14px">
     <a href="#top" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;color:#1A1917;white-space:nowrap">Rajwant Mishra</a>
     <div style="display:flex;gap:clamp(14px,2vw,26px);align-items:center;flex-wrap:nowrap;justify-content:flex-end;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;margin:0 -4px;padding:0 4px">
-      <a href="#leadership" style="font-size:13.5px;color:#57534C;white-space:nowrap">Leadership</a>
-      <a href="#impact" style="font-size:13.5px;color:#57534C;white-space:nowrap">Impact</a>
-      <a href="#technical" style="font-size:13.5px;color:#57534C;white-space:nowrap">Technical</a>
-      <a href="#journey" style="font-size:13.5px;color:#57534C;white-space:nowrap">Journey</a>
-      <a href="#writing" style="font-size:13.5px;color:#57534C;white-space:nowrap">Writing</a>
-      <a href="#connect" style="font-size:13.5px;color:#1A1917;border-bottom:1px solid #C9C3B4;padding-bottom:1px;white-space:nowrap">Connect</a>
+      <a href="#leadership" style="font-size:13.5px;color:#57534C;white-space:nowrap;padding:12px 2px;display:inline-flex;align-items:center">Leadership</a>
+      <a href="#impact" style="font-size:13.5px;color:#57534C;white-space:nowrap;padding:12px 2px;display:inline-flex;align-items:center">Impact</a>
+      <a href="#technical" style="font-size:13.5px;color:#57534C;white-space:nowrap;padding:12px 2px;display:inline-flex;align-items:center">Technical</a>
+      <a href="#journey" style="font-size:13.5px;color:#57534C;white-space:nowrap;padding:12px 2px;display:inline-flex;align-items:center">Journey</a>
+      <a href="#writing" style="font-size:13.5px;color:#57534C;white-space:nowrap;padding:12px 2px;display:inline-flex;align-items:center">Writing</a>
+      <a href="#connect" style="font-size:13.5px;color:#1A1917;white-space:nowrap;padding:12px 2px;display:inline-flex;align-items:center;border-bottom:1px solid #C9C3B4">Connect</a>
     </div>
   </div>
 </nav>
@@ -94,80 +94,19 @@
       </div>
     </div>
 
-      <aside aria-label="Quick view" style="flex:1 1 300px;min-width:0;background:#FFFFFF;border:1px solid #E4E0D7;padding:clamp(20px,2vw,26px)">
-        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A;padding-bottom:14px;border-bottom:1px solid #EDE9E0">Quick view</p>
-        <div style="padding:14px 0;border-bottom:1px solid #EDE9E0">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:6px">Who</div>
-          <div style="font-size:14.5px;color:#2A2825">Enterprise AI, data, and transformation leader. Currently accountable for the AI portfolio of a global eyewear and eyecare group's medical and clinical business.</div>
+      <aside aria-label="Focus areas" style="flex:1 1 260px;min-width:0;background:#FFFFFF;border:1px solid #E4E0D7;padding:clamp(20px,2vw,26px)">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:12px">Focus</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:5px 10px">AI investment decisions</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:5px 10px">Operating models</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:5px 10px">Production AI</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:5px 10px">Governance</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:5px 10px">Mentoring</span>
         </div>
-        <div style="padding:14px 0;border-bottom:1px solid #EDE9E0">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:6px">Scope</div>
-          <div style="font-size:14.5px;color:#2A2825">A 16 to 30 person data science and data engineering organization across India, Israel, Italy, and the U.S. Budget and vendor ownership. Regulated healthcare data.</div>
-        </div>
-        <div style="padding:14px 0;border-bottom:1px solid #EDE9E0">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:8px">Focus</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">AI investment decisions</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Operating models</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Production AI</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Governance</span>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#57534C;border:1px solid #E4E0D7;padding:4px 9px">Mentoring</span>
-          </div>
-        </div>
-        <div style="padding-top:14px">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#A8A39A;margin-bottom:8px">Explore</div>
-          <div style="display:flex;flex-direction:column;gap:2px">
-            <a href="#leadership" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">How I lead <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
-            <a href="#impact" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">Selected impact <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
-            <a href="#technical" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">Technical depth <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
-            <a href="#journey" style="font-size:14px;padding:7px 0;display:flex;justify-content:space-between;align-items:center">Journey <span aria-hidden="true" style="color:#B5AFA3">→</span></a>
-          </div>
-        </div>
+        <p style="font-size:13.5px;color:#6E6A63;margin-top:16px;padding-top:16px;border-top:1px solid #EDE9E0">Regulated healthcare data, a distributed team across four countries, budget and vendor ownership.</p>
       </aside>
   </div>
 </header>
-
-<div style="max-width:1140px;margin:0 auto;padding:0 clamp(18px,4vw,40px) clamp(40px,5vw,64px)">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:1px;background:#E4E0D7;border:1px solid #E4E0D7">
-
-    <a href="#leadership" style="background:#FFFFFF;padding:clamp(22px,2.4vw,30px);display:block;color:#1A1917" class="hv3">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
-        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(21px,2.2vw,26px);font-weight:400">Leadership &amp; enterprise impact</h2>
-        <span aria-hidden="true" style="color:#B5AFA3">→</span>
-      </div>
-      <p style="font-size:14.5px;color:#57534C;margin-top:10px;max-width:44ch">Deciding what to fund, building the organization that delivers it, and defending the result with numbers a finance team recognizes.</p>
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid #EDE9E0">
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#F2EFE8;padding:6px 10px">Strategy</span>
-        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#F2EFE8;padding:6px 10px">People</span>
-        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#F2EFE8;padding:6px 10px">Execution</span>
-        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#FAF9F5;background:oklch(0.48 0.09 250);padding:6px 10px">Business outcome</span>
-      </div>
-    </a>
-
-    <a href="#technical" style="background:#F5F3EC;padding:clamp(22px,2.4vw,30px);display:block;color:#1A1917" class="hv4">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
-        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(21px,2.2vw,26px);font-weight:400">AI &amp; technical depth</h2>
-        <span aria-hidden="true" style="color:#B5AFA3">→</span>
-      </div>
-      <p style="font-size:14.5px;color:#57534C;margin-top:10px;max-width:44ch">Fifteen years of building the systems underneath the strategy: data platforms, LLM pipelines, retrieval, fine-tuning, and the governance around them.</p>
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid #E4E0D7">
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Problem</span>
-        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Data</span>
-        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Models</span>
-        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#2A2825;background:#FFFFFF;border:1px solid #E4E0D7;padding:6px 10px">Platform</span>
-        <span aria-hidden="true" style="color:#C9C3B4;font-size:12px">→</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.04em;color:#FAF9F5;background:oklch(0.48 0.09 60);padding:6px 10px">Adoption</span>
-      </div>
-    </a>
-
-  </div>
-</div>
 
 <section id="leadership" style="border-top:1px solid #E4E0D7;background:#FFFFFF">
   <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
@@ -213,22 +152,22 @@
           <div style="font-size:15px;font-weight:600">Business need</div>
           <div style="font-size:13px;color:#6E6A63;margin-top:6px">Named owner, named problem, not a technology looking for a use.</div>
         </div>
-        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div aria-hidden="true" class="flow-arrow" style="display:flex;align-items:center;color:#C9C3B4">→</div>
         <div style="flex:1 1 170px;background:#FFFFFF;border:1px solid #E4E0D7;padding:16px 18px">
           <div style="font-size:15px;font-weight:600">The right bet</div>
           <div style="font-size:13px;color:#6E6A63;margin-top:6px">Value, feasibility, run cost, risk, build or buy.</div>
         </div>
-        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div aria-hidden="true" class="flow-arrow" style="display:flex;align-items:center;color:#C9C3B4">→</div>
         <div style="flex:1 1 170px;background:#FFFFFF;border:1px solid #E4E0D7;padding:16px 18px">
           <div style="font-size:15px;font-weight:600">People + platform</div>
           <div style="font-size:13px;color:#6E6A63;margin-top:6px">Team structure and shared infrastructure before the pilot.</div>
         </div>
-        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div aria-hidden="true" class="flow-arrow" style="display:flex;align-items:center;color:#C9C3B4">→</div>
         <div style="flex:1 1 170px;background:#FFFFFF;border:1px solid #E4E0D7;padding:16px 18px">
           <div style="font-size:15px;font-weight:600">Adoption</div>
           <div style="font-size:13px;color:#6E6A63;margin-top:6px">Training, change management, and the process it replaces.</div>
         </div>
-        <div aria-hidden="true" style="display:flex;align-items:center;color:#C9C3B4">→</div>
+        <div aria-hidden="true" class="flow-arrow" style="display:flex;align-items:center;color:#C9C3B4">→</div>
         <div style="flex:1 1 170px;background:oklch(0.48 0.09 250);border:1px solid oklch(0.48 0.09 250);padding:16px 18px">
           <div style="font-size:15px;font-weight:600;color:#FFFFFF">Measured outcome</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.82);margin-top:6px">Cost, time, accuracy, adoption. Reviewed, not assumed.</div>
@@ -475,7 +414,7 @@
         <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">04 / Sharing experience</p>
         <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">Conversations I enjoy</h2>
         <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:56ch;margin-top:16px;text-wrap:pretty">I like comparing notes with founders, technology leaders, and teams working through hard questions about AI, data, and transformation. Usually I learn as much as I contribute.</p>
-        <p style="font-size:16px;color:#4A4741;max-width:56ch;margin-top:16px;text-wrap:pretty">I also mentor engineers and data scientists moving from deep technical work into broader leadership, which is a harder transition than most people expect and rarely taught anywhere.</p>
+        <p style="font-size:16px;color:#4A4741;max-width:56ch;margin-top:16px;text-wrap:pretty">I also enjoy helping technical professionals navigate the move from deep technical expertise into broader leadership, drawing on lessons from my own journey.</p>
         <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-size:14px;font-weight:600;color:#1A1917;border:1px solid #C9C3B4;padding:13px 22px;min-height:46px;border-radius:2px" class="hv2">Exchange perspectives on LinkedIn <span aria-hidden="true">↗</span></a>
       </div>
       <div style="flex:1 1 280px;min-width:0">
@@ -498,7 +437,7 @@
   <div style="max-width:1140px;margin:0 auto;padding:clamp(52px,6vw,88px) clamp(18px,4vw,40px)">
     <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#94908A">05 / Journey</p>
     <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(28px,3.6vw,40px);font-weight:400;margin-top:12px;letter-spacing:-0.01em">How I got here</h2>
-    <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:64ch;margin-top:16px;text-wrap:pretty">I started in enterprise systems, spent years close to the code and the data, and moved into leadership because the interesting problems kept turning out to be organizational. A master's in data science along the way, mostly to stop bluffing about the statistics.</p>
+    <p style="font-size:clamp(16px,1.3vw,18px);color:#3D3A35;max-width:64ch;margin-top:16px;text-wrap:pretty">I started in enterprise systems, spent years close to the code and the data, and moved into leadership because the interesting problems kept turning out to be organizational. A master's in data science along the way, to strengthen the analytical foundation behind the decisions.</p>
 
     <div style="margin-top:clamp(32px,4vw,48px)">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(18px,2.5vw,28px);padding-bottom:clamp(28px,3vw,40px);border-bottom:1px solid #E4E0D7">
@@ -591,8 +530,8 @@
     <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);align-items:center">
       <img src="headshot.png" alt="Rajwant Mishra" width="112" height="112" loading="lazy" style="width:112px;height:112px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid #DDD8CB;flex:0 0 auto">
       <div style="flex:1 1 320px;min-width:0">
-        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,2.8vw,32px);font-weight:400">Worth a conversation?</h2>
-        <p style="font-size:15.5px;color:#4A4741;max-width:52ch;margin-top:10px">If you are working on something in AI, data, or transformation and want an outside read on it, I am easy to reach.</p>
+        <h2 style="font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,2.8vw,32px);font-weight:400">Always happy to compare notes</h2>
+        <p style="font-size:15.5px;color:#4A4741;max-width:52ch;margin-top:10px">I enjoy thoughtful conversations with people working through difficult questions in AI, data, technology, and leadership.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:18px">
           <a href="https://www.linkedin.com/in/rajwant/" target="_blank" rel="noopener" style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 0;min-height:44px;display:inline-flex;align-items:center">Connect on LinkedIn ↗</a>
           <a href="mailto:rajwantmishra@gmail.com" style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 0;min-height:44px;display:inline-flex;align-items:center">rajwantmishra@gmail.com</a>
@@ -604,12 +543,12 @@
   </div>
 </footer>
 
-<button type="button" id="chatFab" aria-expanded="false" aria-controls="chatPanel" style="position:fixed;bottom:22px;right:22px;z-index:60;height:48px;padding:0 20px;border-radius:24px;border:1px solid #1A1917;background:#1A1917;color:#FAF9F5;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;cursor:pointer;box-shadow:0 6px 20px rgba(26,25,23,0.18)" class="fabHover">Ask about my work</button>
+<button type="button" id="chatFab" aria-expanded="false" aria-controls="chatPanel" style="position:fixed;bottom:22px;right:22px;z-index:60;height:44px;padding:0 18px;border-radius:22px;border:1px solid #C9C3B4;background:#FAF9F5;color:#57534C;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;box-shadow:0 4px 14px rgba(26,25,23,0.10)" class="hv2">Explore my work</button>
 
-<div role="dialog" aria-label="Ask about Rajwant's work" id="chatPanel" style="position:fixed;bottom:82px;right:22px;z-index:61;width:min(380px,calc(100vw - 44px));max-height:min(560px,calc(100vh - 120px));background:#FFFFFF;border:1px solid #DDD8CB;box-shadow:0 16px 48px rgba(26,25,23,0.18);display:none;flex-direction:column;animation:rise .18s ease-out">
+<div role="dialog" aria-label="Explore Rajwant's work" id="chatPanel" style="position:fixed;bottom:78px;right:22px;z-index:61;width:min(380px,calc(100vw - 44px));max-height:min(560px,calc(100vh - 120px));background:#FFFFFF;border:1px solid #DDD8CB;box-shadow:0 16px 48px rgba(26,25,23,0.18);display:none;flex-direction:column;animation:rise .18s ease-out">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 18px;border-bottom:1px solid #EDE9E0">
     <div>
-      <div style="font-size:14.5px;font-weight:600">Ask about my work</div>
+      <div style="font-size:14.5px;font-weight:600">Explore my work</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#A8A39A;margin-top:3px">Answers grounded in real projects</div>
     </div>
     <button type="button" id="chatClose" aria-label="Close" style="background:none;border:none;font-size:18px;color:#8A857D;cursor:pointer;line-height:1;padding:4px">&times;</button>
